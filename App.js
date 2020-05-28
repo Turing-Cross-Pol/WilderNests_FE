@@ -6,7 +6,7 @@ import { PostForm } from "./src/PostForm/PostForm";
 
 const Stack = createStackNavigator();
 
-export const App = () => {
+const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Landing">
@@ -20,4 +20,5 @@ export const App = () => {
     </NavigationContainer>
   );
 };
+
 export default App;
