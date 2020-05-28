@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+// import { useFonts } from '@use-expo/font';
+// import { AppLoading } from 'expo';
 import {
   StyleSheet,
   Text,
@@ -9,51 +11,61 @@ import {
 } from "react-native";
 
 export const Landing = ({ navigation }) => {
+
+  // let [fontsLoaded] = useFonts({
+  //   'PatuaOne-Regular': require('../../assets/fonts/PatuaOne-Regular.ttf'),
+  //   'MavenPro-Medium': require('../../assets/fonts/MavenPro-Medium.ttf')
+  // });
+
   const handlePress = () => {
     console.log("button pressed");
   };
 
   const handlePost = () => {
     console.log("handling post");
-    navigation.navigate("Post");
+    navigation.navigate("Post"); 
   };
 
-  return (
-    <View style={styles.container}>
-      <ImageBackground
-        source={require("../../assets/images/landing-bg.png")}
-        style={styles.backgroundImage}
-      >
-        <View style={styles.logoBlock}>
-          <Image
-            style={styles.icon}
-            source={require("../../assets/images/tent-icon.png")}
-          />
-          <Text style={styles.typeBlock}>WilderNests</Text>
-          <Text style={styles.tagline}>A guide to dispersed camping</Text>
-        </View>
-        <View style={styles.buttonBlock}>
-          <View style={styles.button}>
-            <Button
-              title="Find a Campsite"
-              onPress={() => handlePress()}
-              accessibilityLabel="Find a Campsite"
-              color="#fff"
+  // if (!fontsLoaded) {
+  //   return <AppLoading />;
+  // } else {
+    return (
+      <View style={styles.container}>
+        <ImageBackground
+          source={require("../../assets/images/landing-bg.png")}
+          style={styles.backgroundImage}
+        >
+          <View style={styles.logoBlock}>
+            <Image
+              style={styles.icon}
+              source={require("../../assets/images/tent-icon.png")}
             />
+            <Text style={styles.typeBlock}>WilderNests</Text>
+            <Text style={styles.tagline}>A guide to dispersed camping</Text>
           </View>
-          <View style={styles.button}>
-            <Button
-              title="Post a Campsite"
-              onPress={() => handlePost()}
-              accessibilityLabel="Post a Campsite"
-              disabled={false}
-              color="#fff"
-            />
+          <View style={styles.buttonBlock}>
+            <View style={styles.button}>
+              <Button
+                title="Find a Campsite"
+                onPress={() => handlePress()}
+                accessibilityLabel="Find a Campsite"
+                color="#fff"
+              />
+            </View>
+            <View style={styles.button}>
+              <Button
+                title="Post a Campsite"
+                onPress={() => handlePost()}
+                accessibilityLabel="Post a Campsite"
+                disabled={false}
+                color="#fff"
+              />
+            </View>
           </View>
-        </View>
-      </ImageBackground>
-    </View>
-  );
+        </ImageBackground>
+      </View>
+    );
+  // }
 };
 
 const styles = StyleSheet.create({
@@ -82,6 +94,7 @@ const styles = StyleSheet.create({
     marginBottom: 5,
     textAlign: "center",
     color: "#fff",
+    // fontFamily: 'PatuaOne-Regular'
   },
   tagline: {
     fontSize: 18,
