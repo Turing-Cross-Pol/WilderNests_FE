@@ -1,23 +1,26 @@
-import React, { useState } from 'react';
-import { data } from '../../sample-data.js'
+import React, { useState } from "react";
+import { data } from "../../sample-data.js";
 import { ListCard } from "../ListCard/ListCard";
-import { SafeAreaView, FlatList, StyleSheet } from 'react-native'
+import {
+  FlatList,
+  StyleSheet,
+  View
+} from "react-native";
 
 export const ListView = () => {
-
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <FlatList
         data={data.data}
-        renderItem={({ item }) => <ListCard info={ item } />}
-        keyExtractor={item => item.id}
+        renderItem={({ item }) => <ListCard info={item} />}
+        keyExtractor={(item) => item.id}
       />
-    </SafeAreaView>
-  )
-}
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  },
+  }
 });

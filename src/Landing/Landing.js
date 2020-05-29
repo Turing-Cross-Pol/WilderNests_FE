@@ -20,12 +20,10 @@ export const Landing = ({ navigation }) => {
   });
 
   const handleListView = () => {
-    console.log("button pressed");
-    navigation.navigate("List View"); 
+    navigation.navigate("Toggle View"); 
   };
 
   const handlePostForm = () => {
-    console.log("handling post");
     navigation.navigate("Post"); 
   };
 
