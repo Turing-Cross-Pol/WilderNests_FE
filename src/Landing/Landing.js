@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { useFonts } from '@use-expo/font';
 import { AppLoading } from 'expo';
+import { COLORS } from '../../assets/constants/constants';
 import {
   StyleSheet,
   Text,
   View,
-  Button,
+  TouchableOpacity,
   Image,
   ImageBackground,
 } from "react-native";
@@ -45,23 +46,16 @@ export const Landing = ({ navigation }) => {
             <Text style={styles.tagline}>A guide to dispersed camping</Text>
           </View>
           <View style={styles.buttonBlock}>
-            <View style={styles.button}>
-              <Button
-                title="Find a Campsite"
-                onPress={() => handleListView()}
-                accessibilityLabel="Find a Campsite"
-                color="#fff"
-              />
-            </View>
-            <View style={styles.button}>
-              <Button
-                title="Post a Campsite"
-                onPress={() => handlePostForm()}
-                accessibilityLabel="Post a Campsite"
-                disabled={false}
-                color="#fff"
-              />
-            </View>
+            <TouchableOpacity 
+              onPress={() => handleListView()}
+            >
+              <Text style={styles.button}>Find a Campsite</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => handlePostForm()}
+            >
+              <Text style={styles.button}>Post a Campsite</Text>
+            </TouchableOpacity>
           </View>
         </ImageBackground>
       </View>
@@ -108,6 +102,11 @@ const styles = StyleSheet.create({
   button: {
     color: "#fff",
     marginBottom: 20,
+    padding: 15,
+    textAlign: 'center',
+    fontFamily: 'MavenPro-Medium',
     borderRadius: 4,
+    backgroundColor: COLORS.purple,
+    fontSize: 24,
   },
 });
