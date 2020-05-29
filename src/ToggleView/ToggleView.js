@@ -1,28 +1,59 @@
-import React from "react";
-import {
-  StyleSheet,
-  View,
-  Text,
-  TouchableOpacity
-} from "react-native";
+import React, { useState } from "react";
+import { StyleSheet, View, Text, TouchableOpacity, SafeAreaView } from "react-native";
 import { COLORS } from "../../assets/constants/constants";
+import { ListView } from "../ListView/ListView";
+import { MapView } from "../MapView/MapView";
 
-export const ToggleView = ({ currentPage }) => {
+export const ToggleView = () => {
+  const [currentPage, setCurrentPage] = useState("List View");
+  
   return (
-    <View style={styles.toggleBox}>
-      <TouchableOpacity style={currentPage === 'listView' ? styles.selected : styles.unselected}>
-        <Text style={currentPage === 'listView' ? styles.selectedText : styles.unselectedText}>List View</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={currentPage === 'mapView' ? styles.selected : styles.unselected}>
-        <Text style={currentPage === 'mapView' ? styles.selectedText : styles.unselectedText}>Map View</Text>
-      </TouchableOpacity>
-    </View>
+    <SafeAreaView style={styles.container}>
+      <View style={styles.toggleBox}>
+        <TouchableOpacity
+          onPress={() => setCurrentPage("List View")}
+          style={
+            currentPage === "List View" ? styles.selected : styles.unselected
+          }
+        >
+          <Text
+            style={
+              currentPage === "List View"
+                ? styles.selectedText
+                : styles.unselectedText
+            }
+          >
+            List View
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => setCurrentPage("Map View")}
+          style={
+            currentPage === "Map View" ? styles.selected : styles.unselected
+          }
+        >
+          <Text
+            style={
+              currentPage === "Map View"
+                ? styles.selectedText
+                : styles.unselectedText
+            }
+          >
+            Map View
+          </Text>
+        </TouchableOpacity>
+      </View>
+      {currentPage === "List View" ? <ListView /> : <MapView />}
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
   toggleBox: {
-    flexDirection: "row"
+    flexDirection: "row",
   },
   selected: {
     backgroundColor: COLORS.purple,
@@ -31,14 +62,14 @@ const styles = StyleSheet.create({
   },
   selectedText: {
     color: "#FFF",
-    textAlign: "center"
+    textAlign: "center",
   },
   unselectedText: {
-    textAlign: "center"
+    textAlign: "center",
   },
   unselected: {
     flex: 1,
     padding: 8,
-    backgroundColor: '#f1f1f1',
-  }
-})
+    backgroundColor: "#f1f1f1",
+  },
+});
