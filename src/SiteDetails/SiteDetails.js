@@ -2,17 +2,29 @@ import React from "react";
 import { Text, Image, ScrollView, StyleSheet, Button } from "react-native";
 
 export const SiteDetails = ({ route }) => {
-  const {image, name, city, state, lat, long, description, drivingTips, timestamps } = route.params;
-  const photo = image ? image : 'https://place-hold.it/300x500'
+  const {
+    image,
+    name,
+    city,
+    state,
+    lat,
+    long,
+    description,
+    drivingTips,
+    timestamps,
+  } = route.params;
+  const photo = image ? image : "https://place-hold.it/300x500";
 
   const getDirections = () => {
-    console.log('directions')
-  }
+    console.log("directions");
+  };
 
   return (
     <ScrollView style={styles.container}>
       <Text style={styles.header}>{name}</Text>
-      <Text style={styles.text}>{city}, {state}</Text>
+      <Text style={styles.text}>
+        {city}, {state}
+      </Text>
       <Image
         style={styles.image}
         source={{
@@ -42,16 +54,16 @@ const styles = StyleSheet.create({
   header: {
     fontSize: 20,
     width: 250,
-    margin: 10
+    margin: 10,
   },
   text: {
-    margin: 10
+    margin: 10,
   },
   image: {
     alignSelf: "center",
     width: 400,
     height: 200,
     marginLeft: 20,
-    marginRight: 20
+    marginRight: 20,
   },
 });
