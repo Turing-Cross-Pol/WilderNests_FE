@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-// import { useFonts } from '@use-expo/font';
-// import { AppLoading } from 'expo';
+import { useFonts } from '@use-expo/font';
+import { AppLoading } from 'expo';
 import {
   StyleSheet,
   Text,
@@ -12,10 +12,10 @@ import {
 
 export const Landing = ({ navigation }) => {
 
-  // let [fontsLoaded] = useFonts({
-  //   'PatuaOne-Regular': require('../../assets/fonts/PatuaOne-Regular.ttf'),
-  //   'MavenPro-Medium': require('../../assets/fonts/MavenPro-Medium.ttf')
-  // });
+  let [fontsLoaded] = useFonts({
+    'PatuaOne-Regular': require('../../assets/fonts/PatuaOne-Regular.ttf'),
+    'MavenPro-Medium': require('../../assets/fonts/MavenPro-Medium.ttf')
+  });
 
   const handleListView = () => {
     console.log("button pressed");
@@ -27,9 +27,9 @@ export const Landing = ({ navigation }) => {
     navigation.navigate("Post"); 
   };
 
-  // if (!fontsLoaded) {
-  //   return <AppLoading />;
-  // } else {
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  } else {
     return (
       <View style={styles.container}>
         <ImageBackground
@@ -66,7 +66,7 @@ export const Landing = ({ navigation }) => {
         </ImageBackground>
       </View>
     );
-  // }
+  }
 };
 
 const styles = StyleSheet.create({
@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
     marginBottom: 5,
     textAlign: "center",
     color: "#fff",
-    // fontFamily: 'PatuaOne-Regular'
+    fontFamily: 'PatuaOne-Regular'
   },
   tagline: {
     fontSize: 18,
