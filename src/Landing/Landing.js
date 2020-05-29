@@ -48,12 +48,16 @@ export const Landing = ({ navigation }) => {
           </View>
           <View style={styles.buttonBlock}>
             <TouchableOpacity 
+              style={styles.touchable}
               onPress={() => handleListView()}
+              activeOpacity={0.7}
             >
               <Text style={styles.button}>Find a Campsite</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => handlePostForm()}
+              style={styles.touchable}
+              activeOpacity={0.7}
             >
               <Text style={styles.button}>Post a Campsite</Text>
             </TouchableOpacity>
@@ -100,14 +104,16 @@ const styles = StyleSheet.create({
     fontSize: 20,
     flex: 2,
   },
+  touchable: {
+    borderRadius: 4,
+    backgroundColor: COLORS.purple,
+    marginBottom: 20,
+  },
   button: {
     color: "#fff",
-    marginBottom: 20,
     padding: 15,
     textAlign: 'center',
     fontFamily: 'MavenPro-Medium',
-    borderRadius: 4,
-    backgroundColor: COLORS.purple,
     fontSize: 24,
   },
 });
