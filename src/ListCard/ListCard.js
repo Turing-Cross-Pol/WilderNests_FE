@@ -16,6 +16,7 @@ export const ListCard = ({ info }) => {
   return (
     <TouchableOpacity onPress={handleCardPress} style={styles.listItem}>
       <Image
+        testID="data-img"
         style={styles.image} 
         source={{
           uri: imageUrl,
