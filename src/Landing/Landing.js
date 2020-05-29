@@ -15,6 +15,7 @@ export const Landing = ({ navigation }) => {
 
   let [fontsLoaded] = useFonts({
     'PatuaOne-Regular': require('../../assets/fonts/PatuaOne-Regular.ttf'),
+    'MavenPro-Regular': require('../../assets/fonts/MavenPro-Regular.ttf'),
     'MavenPro-Medium': require('../../assets/fonts/MavenPro-Medium.ttf')
   });
 
