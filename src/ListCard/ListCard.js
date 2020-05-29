@@ -1,10 +1,11 @@
 import React from 'react';
-import { Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { COLORS } from '../../assets/constants/constants';
 // import { TouchableOpacity } from 'react-native-gesture-handler';
 
-export const ListCard = ({ info }) => { 
-  console.log(info)
-  const image = info.image ? info.image : 'https://place-hold.it/300x500'
+export const ListCard = ({ title, location, img }) => { 
+  console.log(title, location)
+  const imageUrl = img ? img : 'https://place-hold.it/300x500'
 
   const handleCardPress = () => {
     console.log('open card')
@@ -15,28 +16,42 @@ export const ListCard = ({ info }) => {
       <Image
         style={styles.image} 
         source={{
-          uri: image,
+          uri: imageUrl,
         }}
       />
-      <Text>{info.name}</Text>
-      <Text>{info.city}</Text>
-      <Text>{info.state}</Text>
-      <Text>{info.lat}</Text>
-      <Text>{info.long}</Text>
-      <Text>{info.description}</Text>
-      <Text>{info.drivingTips}</Text>
-      <Text>Date added: {info.timestamps}</Text>
+      <View style={styles.meta}>
+        <Text style={styles.title}>{title}</Text>
+        <Text style={styles.location}>{location}</Text>
+      </View>
     </TouchableOpacity>
   )
 }
 
 const styles = StyleSheet.create({
   listItem: {
-    backgroundColor: '#333',
-    padding: 10
+    borderBottomColor: '#333',
+    borderBottomWidth: 2,
+    padding: 20,
+    flexDirection: 'row',
+    alignItems: 'flex-start',
   },
   image: {
-    width: 100,
-    height: 100,
+    width: 70,
+    height: 70,
+    marginRight: 15,
+    flex: 1,
   },
+  meta: {
+    flex: 4
+  },
+  title: {
+    fontSize: 24,
+    fontFamily: 'MavenPro-Medium',
+    marginBottom: 5,
+  },
+  location: {
+    fontSize: 16,
+    fontFamily: 'MavenPro-Medium',
+    color: COLORS.green,
+  }
 });
