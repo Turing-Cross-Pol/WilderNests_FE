@@ -1,11 +1,12 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
+import { render, waitFor } from 'react-native-testing-library';
 
 import App from './App';
 
 describe('<App />', () => {
-  it('has 1 child', () => {
-    const tree = renderer.create(<App />).toJSON();
-    expect(true).toBe(true);
+  test('Renders what we expect', async () => {
+    const { getByText } = render(<App />);
+    const wildernests = await waitFor(() => getByText('WilderNests'));
+    expect(wildernests).toBeTruthy();
   });
 });
