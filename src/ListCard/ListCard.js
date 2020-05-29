@@ -1,13 +1,17 @@
 import React from 'react';
 import { Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+// import { TouchableOpacity } from 'react-native-gesture-handler';
+import { useNavigation } from '@react-navigation/native';
+
 
 export const ListCard = ({ info }) => { 
-  console.log(info)
+  const navigation = useNavigation(); 
   const image = info.image ? info.image : 'https://place-hold.it/300x500'
+  console.log(info)
 
   const handleCardPress = () => {
     console.log('open card')
+    navigation.navigate("Details", {...info})
   }
   
   return (
