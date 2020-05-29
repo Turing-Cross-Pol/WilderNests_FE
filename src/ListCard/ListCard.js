@@ -1,14 +1,16 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { COLORS } from '../../assets/constants/constants';
-// import { TouchableOpacity } from 'react-native-gesture-handler';
+import { useNavigation } from '@react-navigation/native';
 
-export const ListCard = ({ title, location, img }) => { 
-  console.log(title, location)
-  const imageUrl = img ? img : 'https://place-hold.it/300x500'
+export const ListCard = ({ info }) => { 
+  const { name, city, state, image } = info;
+  const imageUrl = image ? image : 'https://place-hold.it/300x500';
+  const navigation = useNavigation();
 
   const handleCardPress = () => {
     console.log('open card')
+    navigation.navigate("Details", {...info})
   }
   
   return (
@@ -20,8 +22,8 @@ export const ListCard = ({ title, location, img }) => {
         }}
       />
       <View style={styles.meta}>
-        <Text style={styles.title}>{title}</Text>
-        <Text style={styles.location}>{location}</Text>
+        <Text style={styles.title}>{name}</Text>
+        <Text style={styles.location}>{city}, {state}</Text>
       </View>
     </TouchableOpacity>
   )
