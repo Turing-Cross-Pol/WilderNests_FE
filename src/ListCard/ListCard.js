@@ -1,13 +1,12 @@
 import React from 'react';
-import { Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
-// import { TouchableOpacity } from 'react-native-gesture-handler';
+import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { COLORS } from '../../assets/constants/constants';
 import { useNavigation } from '@react-navigation/native';
 
-
 export const ListCard = ({ info }) => { 
-  const navigation = useNavigation(); 
-  const image = info.image ? info.image : 'https://place-hold.it/300x500'
-  console.log(info)
+  const { name, city, state, image } = info;
+  const imageUrl = image ? image : 'https://place-hold.it/300x500';
+  const navigation = useNavigation();
 
   const handleCardPress = () => {
     console.log('open card')
@@ -19,28 +18,42 @@ export const ListCard = ({ info }) => {
       <Image
         style={styles.image} 
         source={{
-          uri: image,
+          uri: imageUrl,
         }}
       />
-      <Text>{info.name}</Text>
-      <Text>{info.city}</Text>
-      <Text>{info.state}</Text>
-      <Text>{info.lat}</Text>
-      <Text>{info.long}</Text>
-      <Text>{info.description}</Text>
-      <Text>{info.drivingTips}</Text>
-      <Text>Date added: {info.timestamps}</Text>
+      <View style={styles.meta}>
+        <Text style={styles.title}>{name}</Text>
+        <Text style={styles.location}>{city}, {state}</Text>
+      </View>
     </TouchableOpacity>
   )
 }
 
 const styles = StyleSheet.create({
   listItem: {
-    backgroundColor: '#333',
-    padding: 10
+    borderBottomColor: '#333',
+    borderBottomWidth: 2,
+    padding: 20,
+    flexDirection: 'row',
+    alignItems: 'flex-start',
   },
   image: {
-    width: 100,
-    height: 100,
+    width: 70,
+    height: 70,
+    marginRight: 15,
+    flex: 1,
   },
+  meta: {
+    flex: 4
+  },
+  title: {
+    fontSize: 24,
+    fontFamily: 'MavenPro-Medium',
+    marginBottom: 5,
+  },
+  location: {
+    fontSize: 16,
+    fontFamily: 'MavenPro-Medium',
+    color: COLORS.green,
+  }
 });
