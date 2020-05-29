@@ -54,6 +54,8 @@ const styles = StyleSheet.create({
   },
   toggleBox: {
     flexDirection: "row",
+    borderBottomWidth: 1,
+    borderBottomColor: '#000',
   },
   selected: {
     backgroundColor: COLORS.purple,
