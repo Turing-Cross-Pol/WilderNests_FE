@@ -1,7 +1,7 @@
 export const data = {
   data: [
     {
-      id: 1,
+      id: '1',
       city: 'Idaho Springs',
       state: 'Colorado',
       name: 'Dispersed Camping Near St. Mary\'s Glacier',
@@ -13,7 +13,7 @@ export const data = {
       timestamps: 'May 13, 2018',
     },
     {
-      id: 2,
+      id: '2',
       city: 'Idaho Springs',
       state: 'Colorado',
       name: 'Yankee Hill',
@@ -25,7 +25,7 @@ export const data = {
       timestamps: 'Aug 5, 2018',
     },
     {
-      id: 3,
+      id: '3',
       city: 'Idaho Springs',
       state: 'Colorado',
       name: 'Camping on Mill Creek Rd',
@@ -37,7 +37,7 @@ export const data = {
       timestamps: 'May 13, 2018',
     },
     {
-      id: 4, 
+      id: '4', 
       city: '',
       state: '',
       name: 'Bald Mountain Ln West of Central City, CO',
