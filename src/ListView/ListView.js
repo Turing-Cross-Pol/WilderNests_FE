@@ -9,7 +9,7 @@ export const ListView = () => {
     <SafeAreaView style={styles.container}>
       <FlatList
         data={data.data}
-        renderItem={({ item }) => <ListCard info={item} />}
+        renderItem={({ item }) => <ListCard title={item.name} location={`${item.city}, ${item.state}`} img={item.image} />}
         keyExtractor={item => item.id}
       />
     </SafeAreaView>

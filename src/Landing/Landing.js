@@ -1,21 +1,23 @@
 import React, { useState } from "react";
-// import { useFonts } from '@use-expo/font';
-// import { AppLoading } from 'expo';
+import { useFonts } from '@use-expo/font';
+import { AppLoading } from 'expo';
+import { COLORS } from '../../assets/constants/constants';
 import {
   StyleSheet,
   Text,
   View,
-  Button,
+  TouchableOpacity,
   Image,
   ImageBackground,
 } from "react-native";
 
 export const Landing = ({ navigation }) => {
 
-  // let [fontsLoaded] = useFonts({
-  //   'PatuaOne-Regular': require('../../assets/fonts/PatuaOne-Regular.ttf'),
-  //   'MavenPro-Medium': require('../../assets/fonts/MavenPro-Medium.ttf')
-  // });
+  let [fontsLoaded] = useFonts({
+    'PatuaOne-Regular': require('../../assets/fonts/PatuaOne-Regular.ttf'),
+    'MavenPro-Regular': require('../../assets/fonts/MavenPro-Regular.ttf'),
+    'MavenPro-Medium': require('../../assets/fonts/MavenPro-Medium.ttf')
+  });
 
   const handleListView = () => {
     console.log("button pressed");
@@ -27,9 +29,9 @@ export const Landing = ({ navigation }) => {
     navigation.navigate("Post"); 
   };
 
-  // if (!fontsLoaded) {
-  //   return <AppLoading />;
-  // } else {
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  } else {
     return (
       <View style={styles.container}>
         <ImageBackground
@@ -45,28 +47,25 @@ export const Landing = ({ navigation }) => {
             <Text style={styles.tagline}>A guide to dispersed camping</Text>
           </View>
           <View style={styles.buttonBlock}>
-            <View style={styles.button}>
-              <Button
-                title="Find a Campsite"
-                onPress={() => handleListView()}
-                accessibilityLabel="Find a Campsite"
-                color="#fff"
-              />
-            </View>
-            <View style={styles.button}>
-              <Button
-                title="Post a Campsite"
-                onPress={() => handlePostForm()}
-                accessibilityLabel="Post a Campsite"
-                disabled={false}
-                color="#fff"
-              />
-            </View>
+            <TouchableOpacity 
+              style={styles.touchable}
+              onPress={() => handleListView()}
+              activeOpacity={0.7}
+            >
+              <Text style={styles.button}>Find a Campsite</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => handlePostForm()}
+              style={styles.touchable}
+              activeOpacity={0.7}
+            >
+              <Text style={styles.button}>Post a Campsite</Text>
+            </TouchableOpacity>
           </View>
         </ImageBackground>
       </View>
     );
-  // }
+  }
 };
 
 const styles = StyleSheet.create({
@@ -95,7 +94,7 @@ const styles = StyleSheet.create({
     marginBottom: 5,
     textAlign: "center",
     color: "#fff",
-    // fontFamily: 'PatuaOne-Regular'
+    fontFamily: 'PatuaOne-Regular'
   },
   tagline: {
     fontSize: 18,
@@ -105,9 +104,16 @@ const styles = StyleSheet.create({
     fontSize: 20,
     flex: 2,
   },
+  touchable: {
+    borderRadius: 4,
+    backgroundColor: COLORS.purple,
+    marginBottom: 20,
+  },
   button: {
     color: "#fff",
-    marginBottom: 20,
-    borderRadius: 4,
+    padding: 15,
+    textAlign: 'center',
+    fontFamily: 'MavenPro-Medium',
+    fontSize: 24,
   },
 });
