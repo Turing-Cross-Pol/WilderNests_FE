@@ -4,6 +4,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { Landing } from "./src/Landing/Landing";
 import { PostForm } from "./src/PostForm/PostForm";
 import { ListView } from "./src/ListView/ListView";
+import { SiteDetails } from "./src/SiteDetails/SiteDetails";
 
 const Stack = createStackNavigator();
 
@@ -18,6 +19,7 @@ const App = () => {
         />
         <Stack.Screen name="Post" component={PostForm} />
         <Stack.Screen name="List View" component={ListView} />
+        <Stack.Screen name="Details" component={SiteDetails} />
       </Stack.Navigator>
     </NavigationContainer>
   );
