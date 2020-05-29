@@ -17,11 +17,12 @@ export const Landing = ({ navigation }) => {
   //   'MavenPro-Medium': require('../../assets/fonts/MavenPro-Medium.ttf')
   // });
 
-  const handlePress = () => {
+  const handleListView = () => {
     console.log("button pressed");
+    navigation.navigate("List View"); 
   };
 
-  const handlePost = () => {
+  const handlePostForm = () => {
     console.log("handling post");
     navigation.navigate("Post"); 
   };
@@ -47,7 +48,7 @@ export const Landing = ({ navigation }) => {
             <View style={styles.button}>
               <Button
                 title="Find a Campsite"
-                onPress={() => handlePress()}
+                onPress={() => handleListView()}
                 accessibilityLabel="Find a Campsite"
                 color="#fff"
               />
@@ -55,7 +56,7 @@ export const Landing = ({ navigation }) => {
             <View style={styles.button}>
               <Button
                 title="Post a Campsite"
-                onPress={() => handlePost()}
+                onPress={() => handlePostForm()}
                 accessibilityLabel="Post a Campsite"
                 disabled={false}
                 color="#fff"
