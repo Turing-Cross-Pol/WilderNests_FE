@@ -1,5 +1,13 @@
 import React from "react";
-import { Text, Image, ScrollView, StyleSheet, Button } from "react-native";
+import {
+  Text,
+  Image,
+  ScrollView,
+  StyleSheet,
+  Button,
+  View,
+  FlatList,
+} from "react-native";
 
 export const SiteDetails = ({ route }) => {
   const {
@@ -19,19 +27,15 @@ export const SiteDetails = ({ route }) => {
     console.log("directions");
   };
 
-  const createStarDisplay = rating => {
+  const createStarDisplay = (rating) => {
     const numStars = rating ? Math.ceil(rating) : 0;
     const filledStars = Array(numStars).fill(
-      `../../assets/images/filled-star.png`
+      require("../../assets/images/filled-star.png")
     );
-    const emptyStars = Array(10 - numStars).fill(
-      `../../assets/images/empty-star.png`
+    const emptyStars = Array(5 - numStars).fill(
+      require("../../assets/images/empty-star.png")
     );
-    userStars = filledStars.concat(emptyStars).map((star, index) => {
-      return (
-        <Image key={index} style={styles.star} souce={`${star}`} />
-      );
-    });
+    return filledStars.concat(emptyStars);
   };
 
   const stars = createStarDisplay();
@@ -39,7 +43,16 @@ export const SiteDetails = ({ route }) => {
   return (
     <ScrollView style={styles.container}>
       <Text style={styles.header}>{name}</Text>
-      {stars}
+      <View style={styles.starsContainer}>
+        <FlatList
+          numColumns={5}
+          data={stars}
+          renderItem={({ item, index }) => (
+            <Image source={item} key={index} style={styles.star} />
+          )}
+          keyExtractor={(item) => item.key}
+        />
+      </View>
       <Text style={styles.text}>
         {city}, {state}
       </Text>
@@ -69,6 +82,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+  starsContainer: {
+    display: "flex",
+    flexDirection: "row",
+    marginLeft: 10
+  },
   header: {
     fontSize: 20,
     width: 250,
@@ -78,8 +96,9 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   star: {
-    height: 10,
-    width: 10
+    height: 15,
+    width: 15,
+    marginRight: 3
   },
   image: {
     alignSelf: "center",
