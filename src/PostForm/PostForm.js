@@ -22,6 +22,7 @@ export const PostForm = () => {
   const [description, setDescription] = useState("");
   const [driving_tips, setDrivingTips] = useState("");
   const [image_url, setImgUrl] = useState("");
+  const [error, setError] = useState("");
 
   const handleAmenities = (amenity) => {
     if (amenities.includes(amenity)) {
@@ -34,10 +35,18 @@ export const PostForm = () => {
 
   const handleInputChange = (value, func) => {
     func(value);
+    if (lat && lon && name && error) {
+      setError("");
+    }
   };
 
   const handleSubmit = () => {
-    console.log(amenities);
+    if (lat && lon && name) {
+      // postData();
+      console.log("success")
+    } else {
+      setError("All fields marked with an * are required");
+    }
   };
 
   const postData = async () => {
@@ -68,41 +77,41 @@ export const PostForm = () => {
   return (
     <ScrollView style={styles.container}>
       <Text style={styles.text}>Tell us about your campsite</Text>
-      <Text style={styles.label}>Title:</Text>
+      <Text style={styles.label}>Title*:</Text>
       <TextInput
         style={styles.input}
         placeholder="Campsite Title"
         value={name}
         onChangeText={(value) => handleInputChange(value, setName)}
-      />
+        />
       <Text style={styles.label}>City:</Text>
       <TextInput
         style={styles.input}
         placeholder="Closest city/town"
         value={city}
         onChangeText={(value) => handleInputChange(value, setCity)}
-      />
+        />
       <Text style={styles.label}>State:</Text>
       <TextInput
         style={styles.input}
         placeholder="State"
         value={state}
         onChangeText={(value) => handleInputChange(value, setState)}
-      />
-      <Text style={styles.label}>Lat:</Text>
+        />
+      <Text style={styles.label}>Lat*:</Text>
       <TextInput
         style={styles.input}
         placeholder="Latitude"
         value={lat}
         onChangeText={(value) => handleInputChange(value, setLat)}
-      />
-      <Text style={styles.label}>Long:</Text>
+        />
+      <Text style={styles.label}>Long*:</Text>
       <TextInput
         style={styles.input}
         placeholder="Longitude"
         value={lon}
         onChangeText={(value) => handleInputChange(value, setLon)}
-      />
+        />
       <Text style={styles.label}>Description:</Text>
       <TextInput
         style={styles.input}
@@ -111,7 +120,7 @@ export const PostForm = () => {
         numberOfLines={4}
         value={description}
         onChangeText={(value) => handleInputChange(value, setDescription)}
-      />
+        />
       <Text style={styles.label}>Directions:</Text>
       <TextInput
         style={styles.input}
@@ -120,92 +129,93 @@ export const PostForm = () => {
         numberOfLines={4}
         value={driving_tips}
         onChangeText={(value) => handleInputChange(value, setDrivingTips)}
-      />
+        />
       <Text style={styles.label}>Image:</Text>
       <TextInput
         style={styles.input}
         placeholder="Image URL"
         value={image_url}
         onChangeText={(value) => handleInputChange(value, setImgUrl)}
-      />
+        />
       <Text style={styles.text}>Available Amenities Nearby:</Text>
       <View style={styles.allCheckboxes}>
         <TouchableOpacity
           style={styles.checkContainer}
           onPress={() => handleAmenities("fire")}
-        >
+          >
           <Image
             style={styles.icon}
             source={amenities.includes("fire") ? fullCheck : emptyCheck}
-          />
+            />
           <Text style={styles.label}>Firepit</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.checkContainer}
           onPress={() => handleAmenities("boat")}
-        >
+          >
           <Image
             style={styles.icon}
             source={amenities.includes("boat") ? fullCheck : emptyCheck}
-          />
+            />
           <Text style={styles.label}>Boating/Water</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.checkContainer}
           onPress={() => handleAmenities("fish")}
-        >
+          >
           <Image
             style={styles.icon}
             source={amenities.includes("fish") ? fullCheck : emptyCheck}
-          />
+            />
           <Text style={styles.label}>Fishing</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.checkContainer}
           onPress={() => handleAmenities("bike")}
-        >
+          >
           <Image
             style={styles.icon}
             source={amenities.includes("bike") ? fullCheck : emptyCheck}
-          />
+            />
           <Text style={styles.label}>Mountain Biking Trails</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.checkContainer}
           onPress={() => handleAmenities("atv")}
-        >
+          >
           <Image
             style={styles.icon}
             source={amenities.includes("atv") ? fullCheck : emptyCheck}
-          />
+            />
           <Text style={styles.label}>ATV Trails</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.checkContainer}
           onPress={() => handleAmenities("horse")}
-        >
+          >
           <Image
             style={styles.icon}
             source={amenities.includes("horse") ? fullCheck : emptyCheck}
-          />
+            />
           <Text style={styles.label}>Horse Trails</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.checkContainer}
           onPress={() => handleAmenities("hike")}
-        >
+          >
           <Image
             style={styles.icon}
             source={amenities.includes("hike") ? fullCheck : emptyCheck}
-          />
+            />
           <Text style={styles.label}>Hiking Trails</Text>
         </TouchableOpacity>
       </View>
+      {!!error && <Text>{error}</Text>}
       <Button
         onPress={handleSubmit}
         title="Submit Campsite"
         color={"#7E62CF"}
-      />
+        />
     </ScrollView>
   );
 };
