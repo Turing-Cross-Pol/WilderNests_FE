@@ -36,7 +36,9 @@ export const PostForm = () => {
     func(value);
   };
 
-  const handleSubmit = () => {};
+  const handleSubmit = () => {
+
+  };
 
   return (
     <ScrollView style={styles.container}>
@@ -105,44 +107,44 @@ export const PostForm = () => {
       <View style={styles.allCheckboxes}>
         <TouchableOpacity
           style={styles.checkContainer}
-          onPress={() => handleAmenities("Firepit")}
+          onPress={() => handleAmenities("fire")}
         >
           <Image
             style={styles.icon}
-            source={amenities.includes("Firepit") ? fullCheck : emptyCheck}
+            source={amenities.includes("fire") ? fullCheck : emptyCheck}
           />
           <Text style={styles.label}>Firepit</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.checkContainer}
-          onPress={() => handleAmenities("Boating/Water")}
+          onPress={() => handleAmenities("boat")}
         >
           <Image
             style={styles.icon}
             source={
-              amenities.includes("Boating/Water") ? fullCheck : emptyCheck
+              amenities.includes("boat") ? fullCheck : emptyCheck
             }
           />
           <Text style={styles.label}>Boating/Water</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.checkContainer}
-          onPress={() => handleAmenities("Fishing")}
+          onPress={() => handleAmenities("fish")}
         >
           <Image
             style={styles.icon}
-            source={amenities.includes("Fishing") ? fullCheck : emptyCheck}
+            source={amenities.includes("fish") ? fullCheck : emptyCheck}
           />
           <Text style={styles.label}>Fishing</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.checkContainer}
-          onPress={() => handleAmenities("Mountain Biking Trails")}
+          onPress={() => handleAmenities("bike")}
         >
           <Image
             style={styles.icon}
             source={
-              amenities.includes("Mountain Biking Trails")
+              amenities.includes("bike")
                 ? fullCheck
                 : emptyCheck
             }
@@ -151,32 +153,32 @@ export const PostForm = () => {
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.checkContainer}
-          onPress={() => handleAmenities("ATV Trails")}
+          onPress={() => handleAmenities("atv")}
         >
           <Image
             style={styles.icon}
-            source={amenities.includes("ATV Trails") ? fullCheck : emptyCheck}
+            source={amenities.includes("atv") ? fullCheck : emptyCheck}
           />
           <Text style={styles.label}>ATV Trails</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.checkContainer}
-          onPress={() => handleAmenities("Horse Trails")}
+          onPress={() => handleAmenities("horse")}
         >
           <Image
             style={styles.icon}
-            source={amenities.includes("Horse Trails") ? fullCheck : emptyCheck}
+            source={amenities.includes("horse") ? fullCheck : emptyCheck}
           />
           <Text style={styles.label}>Horse Trails</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.checkContainer}
-          onPress={() => handleAmenities("Hiking Trails")}
+          onPress={() => handleAmenities("hike")}
         >
           <Image
             style={styles.icon}
             source={
-              amenities.includes("Hiking Trails") ? fullCheck : emptyCheck
+              amenities.includes("hike") ? fullCheck : emptyCheck
             }
           />
           <Text style={styles.label}>Hiking Trails</Text>
