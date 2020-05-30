@@ -2,26 +2,25 @@ import React, { useState } from "react";
 import MapView from "react-native-maps";
 import { StyleSheet, Text, View, Dimensions } from "react-native";
 import { Marker } from "react-native-maps";
-import { data } from "../../sample-data.js";
 import { QuickView } from "../QuickView/QuickView";
 
-export const MapList = () => {
-  [selectedCampsite, setSelectedCampsite] = useState(null);
+export const MapList = ({ data }) => {
+  const [selectedCampsite, setSelectedCampsite] = useState(null);
 
   const matchCampsiteData = (e) => {
     const { latitude, longitude } = e.nativeEvent.coordinate;
-    let foundSite = data.data.find(
-      (site) => site.lat === latitude && site.long === longitude
+    let foundSite = data.find(
+      (site) => site.lat === latitude && site.lon === longitude
     );
     setSelectedCampsite(foundSite);
   };
 
-  const markers = data.data.map((location) => {
-    let { lat, long } = location;
+  const markers = data.map((location) => {
+    let { lat, lon } = location;
     return (
       <Marker
         key={location.id}
-        coordinate={{ latitude: lat, longitude: long }}
+        coordinate={{ latitude: lat, longitude: lon }}
         image={require("../../assets/images/tent-location-icon.png")}
         onSelect={(e) => matchCampsiteData(e)}
       />
