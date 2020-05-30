@@ -13,7 +13,7 @@ export const ListCard = ({ info }) => {
     navigation.navigate("Details", { ...info });
   };
 
-  const card = (
+  return (
     <TouchableOpacity onPress={handleCardPress} style={styles.listItem}>
       <Image
         testID="data-img"
@@ -30,7 +30,6 @@ export const ListCard = ({ info }) => {
       </View>
     </TouchableOpacity>
   );
-  return { card };
 };
 
 const styles = StyleSheet.create({
