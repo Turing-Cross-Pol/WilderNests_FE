@@ -13,6 +13,7 @@ export const MapList = () => {
     return (<Marker
       key={location.id}
       coordinate={{latitude: lat, longitude: long}}
+      image={require('../../assets/images/tent-location-icon.png')}
     />)
   })
 
