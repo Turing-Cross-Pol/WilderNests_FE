@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { COLORS } from './assets/constants/constants';
@@ -11,6 +11,13 @@ import { SiteDetails } from "./src/SiteDetails/SiteDetails";
 const Stack = createStackNavigator();
 
 const App = () => {
+  const [campsiteData, setCampsiteDate] = useState([]);
+
+  useEffect(async () => {
+    const response = await fetch('');
+    const data = await response.json();
+    setCampsiteDate(data.data);
+  })
 
   const brandHeader = {
     title: 'WilderNests',
@@ -38,7 +45,8 @@ const App = () => {
         <Stack.Screen 
           name="Toggle View" 
           component={ToggleView} 
-          options={brandHeader} 
+          options={brandHeader}
+          data={campsiteData} 
         />
         <Stack.Screen 
           name="Details" 
