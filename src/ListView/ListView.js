@@ -9,11 +9,11 @@ import {
 
 export const ListView = () => {
   return (
-    <View testID="list container" style={styles.container}>
+    <View style={styles.container}>
       <FlatList
         data={data.data}
         renderItem={({ item }) => <ListCard info={item} />}
-        keyExtractor={(item) => item.id}
+        keyExtractor={item => item.id}
       />
     </View>
   );
