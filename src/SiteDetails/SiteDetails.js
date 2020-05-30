@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Text,
   Image,
@@ -11,6 +11,8 @@ import {
 import { TouchableOpacity } from "react-native-gesture-handler";
 
 export const SiteDetails = ({ route }) => {
+  const [userRating, setUserRating] = useState(0);
+  
   const {
     image_url,
     name,
@@ -21,30 +23,32 @@ export const SiteDetails = ({ route }) => {
     description,
     driving_tips,
     timestamps,
+    rating
   } = route.params;
   const photo = image_url ? image_url : "https://place-hold.it/300x500";
-
+  
   const getDirections = () => {
     console.log("directions");
   };
-
+  
   const createStarDisplay = (rating) => {
     const numStars = rating ? Math.ceil(rating) : 0;
     const filledStars = Array(numStars).fill(
       require("../../assets/images/filled-star.png")
-    );
-    const emptyStars = Array(5 - numStars).fill(
-      require("../../assets/images/empty-star.png")
-    );
-    return filledStars.concat(emptyStars);
-  };
+      );
+      const emptyStars = Array(5 - numStars).fill(
+        require("../../assets/images/empty-star.png")
+        );
+        return filledStars.concat(emptyStars);
+      };
+      
+  const [stars, setStars] = useState(createStarDisplay(rating))
 
   const handleRating = (index) => {
     const rating = index;
-    console.log(rating);
+    setUserRating(rating);
+    setStars(createStarDisplay(userRating));
   };
-
-  const stars = createStarDisplay();
 
   return (
     <ScrollView style={styles.container}>
