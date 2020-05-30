@@ -4,12 +4,11 @@ import { COLORS } from "../../assets/constants/constants";
 import { useNavigation } from "@react-navigation/native";
 
 export const ListCard = ({ info }) => {
-  const { name, city, state, image } = info;
-  const imageUrl = image ? image : "https://place-hold.it/300x500";
+  const { name, city, state, image_url } = info;
+  const imageUrl = image_url ? image_url : "https://place-hold.it/300x500";
   const navigation = useNavigation();
 
   const handleCardPress = () => {
-    console.log("open card");
     navigation.navigate("Details", { ...info });
   };
 

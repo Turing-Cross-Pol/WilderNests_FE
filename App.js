@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { COLORS } from './assets/constants/constants';
@@ -11,6 +11,17 @@ import { SiteDetails } from "./src/SiteDetails/SiteDetails";
 const Stack = createStackNavigator();
 
 const App = () => {
+  const [campsiteData, setCampsiteDate] = useState([]);
+
+  useEffect(() => {
+    loadData();
+  }, [])
+
+  const loadData = async () => {
+    const response = await fetch('https://dpcamping-be-stage.herokuapp.com/campsites/');
+    const data = await response.json();
+    setCampsiteDate(data);
+  }
 
   const brandHeader = {
     title: 'WilderNests',
@@ -37,8 +48,8 @@ const App = () => {
         <Stack.Screen name="Post" component={PostForm} />
         <Stack.Screen 
           name="Toggle View" 
-          component={ToggleView} 
-          options={brandHeader} 
+          component={() => <ToggleView data={campsiteData} />} 
+          options={brandHeader}
         />
         <Stack.Screen 
           name="Details" 
