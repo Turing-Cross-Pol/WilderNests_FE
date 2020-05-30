@@ -8,9 +8,9 @@ export const SiteDetails = ({ route }) => {
     city,
     state,
     lat,
-    long,
+    lon,
     description,
-    drivingTips,
+    driving_tips,
     timestamps,
   } = route.params;
   const photo = image ? image : "https://place-hold.it/300x500";
@@ -32,11 +32,11 @@ export const SiteDetails = ({ route }) => {
         }}
       />
       <Text style={styles.text}>Lat: {lat}</Text>
-      <Text style={styles.text}>Long: {long}</Text>
+      <Text style={styles.text}>Long: {lon}</Text>
       <Text style={styles.header}>Description:</Text>
       <Text style={styles.text}>{description}</Text>
       <Text style={styles.header}>Driving Tips:</Text>
-      <Text style={styles.text}>{drivingTips}</Text>
+      <Text style={styles.text}>{driving_tips}</Text>
       <Text style={styles.text}>Date added: {timestamps}</Text>
       <Button
         onPress={getDirections}
