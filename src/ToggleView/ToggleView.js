@@ -6,7 +6,6 @@ import { MapList } from "../MapList/MapList";
 
 export const ToggleView = ({ data }) => {
   const [currentPage, setCurrentPage] = useState("List View");
-  
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.toggleBox}>
