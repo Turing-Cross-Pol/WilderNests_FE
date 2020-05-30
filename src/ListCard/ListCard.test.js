@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '@testing-library/react-native';
+import { render, waitFor } from "react-native-testing-library";
 import { data } from '../../sample-data';
 import { ListCard } from './ListCard';
 import { NavigationContainer } from "@react-navigation/native";
@@ -16,19 +16,21 @@ describe('ListCard Test', () => {
   });
 
   test('Renders what we expect', async () => {
-    // const { getByText, getByTestId } = render(
-    //   <NavigationContainer>
-    //     <Stack.Screen 
-    //       name="List Card"
-    //       component={() => <ListCard info={sampleData} />}
-    //     />
-    //   </NavigationContainer>
-    // );
+    const { getByText, getByTestId } = render(
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen 
+            name="List Card"
+            component={() => <ListCard info={sampleData} />}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    );
 
-    // await getByText("Dispersed Camping Near St. Mary's Glacier");
-    // expect(getByText("Dispersed Camping Near St. Mary's Glacier")).toBeTruthy();
-    // expect(getByText('Idaho Springs, Colorado')).toBeTruthy();
-    // expect(getByTestId('data-img')).toBeTruthy();
+    const campsiteName = await waitFor(() => getByText("Dispersed Camping Near St. Mary's Glacier"));
+    expect(campsiteName).toBeTruthy();
+    expect(getByText('Idaho Springs, Colorado')).toBeTruthy();
+    expect(getByTestId('data-img')).toBeTruthy();
     expect(true).toEqual(true);
   });
 });
