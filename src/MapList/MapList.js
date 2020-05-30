@@ -17,6 +17,7 @@ export const MapList = ({ data }) => {
 
   const markers = data.map((location) => {
     let { lat, lon } = location;
+    
     return (
       <Marker
         key={location.id}
