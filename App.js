@@ -13,11 +13,16 @@ const Stack = createStackNavigator();
 const App = () => {
   const [campsiteData, setCampsiteDate] = useState([]);
 
-  useEffect(async () => {
-    const response = await fetch('');
+  useEffect(() => {
+    loadData();
+    console.log(campsiteData)
+  }, [])
+
+  const loadData = async () => {
+    const response = await fetch('https://dpcamping-be-stage.herokuapp.com/campsites/');
     const data = await response.json();
     setCampsiteDate(data.data);
-  })
+  }
 
   const brandHeader = {
     title: 'WilderNests',
