@@ -3,7 +3,7 @@ import { Text, Image, ScrollView, StyleSheet, Button } from "react-native";
 
 export const SiteDetails = ({ route }) => {
   const {
-    image,
+    image_url,
     name,
     city,
     state,
@@ -13,7 +13,7 @@ export const SiteDetails = ({ route }) => {
     driving_tips,
     timestamps,
   } = route.params;
-  const photo = image ? image : "https://place-hold.it/300x500";
+  const photo = image_url ? image_url : "https://place-hold.it/300x500";
 
   const getDirections = () => {
     console.log("directions");
