@@ -42,8 +42,7 @@ export const PostForm = () => {
 
   const handleSubmit = () => {
     if (lat && lon && name) {
-      // postData();
-      console.log("success")
+      postData();
     } else {
       setError("All fields marked with an * are required");
     }
@@ -61,6 +60,7 @@ export const PostForm = () => {
       lat, 
       lon
     }
+    console.log(newCampsite)
     const response = await fetch(
       "https://dpcamping-be-stage.herokuapp.com/campsites/",
       {
@@ -210,7 +210,7 @@ export const PostForm = () => {
           <Text style={styles.label}>Hiking Trails</Text>
         </TouchableOpacity>
       </View>
-      {!!error && <Text>{error}</Text>}
+      {!!error && <Text style={styles.error}>{error}</Text>}
       <Button
         onPress={handleSubmit}
         title="Submit Campsite"
@@ -260,4 +260,9 @@ const styles = StyleSheet.create({
     marginLeft: 20,
     marginTop: 10,
   },
+  error: {
+    color: "red",
+    textAlign: "center",
+    fontSize: 15
+  }
 });
