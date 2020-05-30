@@ -4,7 +4,7 @@ import { COLORS } from "../../assets/constants/constants";
 import { ListView } from "../ListView/ListView";
 import { MapList } from "../MapList/MapList";
 
-export const ToggleView = () => {
+export const ToggleView = ({ data }) => {
   const [currentPage, setCurrentPage] = useState("List View");
   
   return (
@@ -43,7 +43,7 @@ export const ToggleView = () => {
           </Text>
         </TouchableOpacity>
       </View>
-      {currentPage === "List View" ? <ListView /> : <MapList />}
+      {currentPage === "List View" ? <ListView data={data}/> : <MapList data={data}/>}
     </SafeAreaView>
   );
 };
