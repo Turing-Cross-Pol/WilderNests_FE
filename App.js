@@ -15,13 +15,12 @@ const App = () => {
 
   useEffect(() => {
     loadData();
-    console.log(campsiteData)
   }, [])
 
   const loadData = async () => {
     const response = await fetch('https://dpcamping-be-stage.herokuapp.com/campsites/');
     const data = await response.json();
-    setCampsiteDate(data.data);
+    setCampsiteDate(data);
   }
 
   const brandHeader = {
@@ -49,9 +48,8 @@ const App = () => {
         <Stack.Screen name="Post" component={PostForm} />
         <Stack.Screen 
           name="Toggle View" 
-          component={ToggleView} 
+          component={() => <ToggleView data={campsiteData} />} 
           options={brandHeader}
-          data={campsiteData} 
         />
         <Stack.Screen 
           name="Details" 
