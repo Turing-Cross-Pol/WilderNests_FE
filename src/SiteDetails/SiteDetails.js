@@ -19,9 +19,27 @@ export const SiteDetails = ({ route }) => {
     console.log("directions");
   };
 
+  const createStarDisplay = rating => {
+    const numStars = rating ? Math.ceil(rating) : 0;
+    const filledStars = Array(numStars).fill(
+      `../../assets/images/filled-star.png`
+    );
+    const emptyStars = Array(10 - numStars).fill(
+      `../../assets/images/empty-star.png`
+    );
+    userStars = filledStars.concat(emptyStars).map((star, index) => {
+      return (
+        <Image key={index} style={styles.star} souce={`${star}`} />
+      );
+    });
+  };
+
+  const stars = createStarDisplay();
+
   return (
     <ScrollView style={styles.container}>
       <Text style={styles.header}>{name}</Text>
+      {stars}
       <Text style={styles.text}>
         {city}, {state}
       </Text>
@@ -58,6 +76,10 @@ const styles = StyleSheet.create({
   },
   text: {
     margin: 10,
+  },
+  star: {
+    height: 10,
+    width: 10
   },
   image: {
     alignSelf: "center",
