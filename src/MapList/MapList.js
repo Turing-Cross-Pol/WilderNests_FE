@@ -2,12 +2,11 @@ import React, { useState } from "react";
 import MapView from "react-native-maps";
 import { StyleSheet, Text, View, Dimensions } from "react-native";
 import { Marker } from 'react-native-maps';
-import { data } from "../../sample-data.js";
+// import { data } from "../../sample-data.js";
 
 
-export const MapList = () => {
-
-  const markers = data.data.map(location => {
+export const MapList = ({ data }) => {
+  const markers = data.map(location => {
     let {lat, long} = location;
     console.log(lat, long)
     return (<Marker
