@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { StyleSheet, View, Text, TouchableOpacity, SafeAreaView } from "react-native";
 import { COLORS } from "../../assets/constants/constants";
 import { ListView } from "../ListView/ListView";
-import { MapView } from "../MapView/MapView";
+import { MapList } from "../MapList/MapList";
 
 export const ToggleView = () => {
   const [currentPage, setCurrentPage] = useState("List View");
@@ -43,7 +43,7 @@ export const ToggleView = () => {
           </Text>
         </TouchableOpacity>
       </View>
-      {currentPage === "List View" ? <ListView /> : <MapView />}
+      {currentPage === "List View" ? <ListView /> : <MapList />}
     </SafeAreaView>
   );
 };
