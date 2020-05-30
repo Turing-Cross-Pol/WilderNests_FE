@@ -103,14 +103,14 @@ export const PostForm = () => {
         style={styles.input}
         placeholder="Latitude"
         value={lat}
-        onChangeText={(value) => handleInputChange(value, setLat)}
+        onChangeText={(value) => handleInputChange(parseFloat(value), setLat)}
         />
       <Text style={styles.label}>Long*:</Text>
       <TextInput
         style={styles.input}
         placeholder="Longitude"
         value={lon}
-        onChangeText={(value) => handleInputChange(value, setLon)}
+        onChangeText={(value) => handleInputChange(parseFloat(value), setLon)}
         />
       <Text style={styles.label}>Description:</Text>
       <TextInput
