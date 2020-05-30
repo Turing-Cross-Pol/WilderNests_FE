@@ -8,6 +8,7 @@ import {
   View,
   FlatList,
 } from "react-native";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 export const SiteDetails = ({ route }) => {
   const {
@@ -38,6 +39,11 @@ export const SiteDetails = ({ route }) => {
     return filledStars.concat(emptyStars);
   };
 
+  const handleRating = (index) => {
+    const rating = index;
+    console.log(rating);
+  };
+
   const stars = createStarDisplay();
 
   return (
@@ -48,7 +54,9 @@ export const SiteDetails = ({ route }) => {
           numColumns={5}
           data={stars}
           renderItem={({ item, index }) => (
-            <Image source={item} key={index} style={styles.star} />
+            <TouchableOpacity onPress={() => handleRating(index)}>
+              <Image source={item} key={index} style={styles.star} />
+            </TouchableOpacity>
           )}
           keyExtractor={(item) => item.key}
         />
@@ -85,7 +93,7 @@ const styles = StyleSheet.create({
   starsContainer: {
     display: "flex",
     flexDirection: "row",
-    marginLeft: 10
+    marginLeft: 10,
   },
   header: {
     fontSize: 20,
@@ -98,7 +106,7 @@ const styles = StyleSheet.create({
   star: {
     height: 15,
     width: 15,
-    marginRight: 3
+    marginRight: 3,
   },
   image: {
     alignSelf: "center",
