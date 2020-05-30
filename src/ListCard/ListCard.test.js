@@ -28,9 +28,10 @@ describe('ListCard Test', () => {
     );
 
     const campsiteName = await waitFor(() => getByText("Dispersed Camping Near St. Mary's Glacier"));
+
     expect(campsiteName).toBeTruthy();
-    expect(getByText('Idaho Springs, Colorado')).toBeTruthy();
     expect(getByTestId('data-img')).toBeTruthy();
-    expect(true).toEqual(true);
+    expect(getByText('Idaho Springs, Colorado')).toBeTruthy();
+
   });
 });
