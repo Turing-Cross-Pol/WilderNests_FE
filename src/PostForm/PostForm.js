@@ -14,14 +14,14 @@ const fullCheck = require("../../assets/images/done.png");
 
 export const PostForm = () => {
   const [amenities, setAmenities] = useState([]);
-  const [title, setTitle] = useState('');
-  const [city, setCity] = useState('');
-  const [state, setState] = useState('');
-  const [lat, setLat] = useState('');
-  const [long, setLong] = useState('');
-  const [description, setDescription] = useState('');
-  const [directionInfo, setDirectionInfo] = useState('');
-  const [imgUrl, setImgUrl] = useState('');
+  const [name, setName] = useState("");
+  const [city, setCity] = useState("");
+  const [state, setState] = useState("");
+  const [lat, setLat] = useState("");
+  const [lon, setLon] = useState("");
+  const [description, setDescription] = useState("");
+  const [driving_tips, setDrivingTips] = useState("");
+  const [image_url, setImgUrl] = useState("");
 
   const handleAmenities = (amenity) => {
     if (amenities.includes(amenity)) {
@@ -37,7 +37,32 @@ export const PostForm = () => {
   };
 
   const handleSubmit = () => {
+    console.log(amenities);
+  };
 
+  const postData = async () => {
+    const newCampsite = {
+      name,
+      amenities,
+      city,
+      state,
+      description,
+      driving_tips,
+      image_url,
+      lat, 
+      lon
+    }
+    const response = await fetch(
+      "https://dpcamping-be-stage.herokuapp.com/campsites/",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newCampsite)
+      }
+    );
+    console.log(response.status)
   };
 
   return (
@@ -47,8 +72,8 @@ export const PostForm = () => {
       <TextInput
         style={styles.input}
         placeholder="Campsite Title"
-        value={title}
-        onChangeText={(value) => handleInputChange(value, setTitle)}
+        value={name}
+        onChangeText={(value) => handleInputChange(value, setName)}
       />
       <Text style={styles.label}>City:</Text>
       <TextInput
@@ -75,8 +100,8 @@ export const PostForm = () => {
       <TextInput
         style={styles.input}
         placeholder="Longitude"
-        value={long}
-        onChangeText={(value) => handleInputChange(value, setLong)}
+        value={lon}
+        onChangeText={(value) => handleInputChange(value, setLon)}
       />
       <Text style={styles.label}>Description:</Text>
       <TextInput
@@ -93,14 +118,14 @@ export const PostForm = () => {
         placeholder="How far is it from major roads? Any tips for landmarks to look out for?"
         multiline={true}
         numberOfLines={4}
-        value={directionInfo}
-        onChangeText={(value) => handleInputChange(value, setDirectionInfo)}
+        value={driving_tips}
+        onChangeText={(value) => handleInputChange(value, setDrivingTips)}
       />
       <Text style={styles.label}>Image:</Text>
       <TextInput
         style={styles.input}
         placeholder="Image URL"
-        value={imgUrl}
+        value={image_url}
         onChangeText={(value) => handleInputChange(value, setImgUrl)}
       />
       <Text style={styles.text}>Available Amenities Nearby:</Text>
@@ -121,9 +146,7 @@ export const PostForm = () => {
         >
           <Image
             style={styles.icon}
-            source={
-              amenities.includes("boat") ? fullCheck : emptyCheck
-            }
+            source={amenities.includes("boat") ? fullCheck : emptyCheck}
           />
           <Text style={styles.label}>Boating/Water</Text>
         </TouchableOpacity>
@@ -143,11 +166,7 @@ export const PostForm = () => {
         >
           <Image
             style={styles.icon}
-            source={
-              amenities.includes("bike")
-                ? fullCheck
-                : emptyCheck
-            }
+            source={amenities.includes("bike") ? fullCheck : emptyCheck}
           />
           <Text style={styles.label}>Mountain Biking Trails</Text>
         </TouchableOpacity>
@@ -177,9 +196,7 @@ export const PostForm = () => {
         >
           <Image
             style={styles.icon}
-            source={
-              amenities.includes("hike") ? fullCheck : emptyCheck
-            }
+            source={amenities.includes("hike") ? fullCheck : emptyCheck}
           />
           <Text style={styles.label}>Hiking Trails</Text>
         </TouchableOpacity>
@@ -196,7 +213,7 @@ export const PostForm = () => {
 const styles = StyleSheet.create({
   container: {
     marginBottom: 50,
-    marginTop: 30
+    marginTop: 30,
   },
   label: {
     fontSize: 20,
@@ -224,7 +241,7 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   allCheckboxes: {
-    marginBottom: 10
+    marginBottom: 10,
   },
   checkContainer: {
     display: "flex",
