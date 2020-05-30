@@ -13,7 +13,11 @@ export const MapList = () => {
           latitudeDelta: 0.0922,
           longitudeDelta: 0.0421,
         }}
-      />
+        showsScale={true}
+        zoomEnabled={true}
+        zoomControlEnabled={true}
+      >
+        </
     </View>
   );
 };
@@ -24,9 +28,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    marginTop: 129,
   },
   mapStyle: {
     width: Dimensions.get('window').width,
-    height: Dimensions.get('window').height,
+    height: Dimensions.get('window').height - 30,
   },
 });
