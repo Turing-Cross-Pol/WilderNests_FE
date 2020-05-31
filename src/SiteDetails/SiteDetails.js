@@ -61,7 +61,7 @@ export const SiteDetails = ({ route }) => {
           data={stars}
           renderItem={({ item, index }) => (
             <TouchableOpacity onPress={() => handleRating(index)}>
-              <Image source={item} key={index} style={styles.star} />
+              <Image testID={`star-${index}`} source={item} key={index} style={styles.star} />
             </TouchableOpacity>
           )}
           keyExtractor={(item) => item.key}
