@@ -78,5 +78,7 @@ describe("PostForm", () => {
     // debug();
     
     // Add tests for mocking out button click response value.
+    // Fill out form and Submit
+    // Ensure submitted value is correct object.
   });
 });
