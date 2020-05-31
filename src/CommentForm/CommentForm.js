@@ -130,18 +130,18 @@ const styles = StyleSheet.create({
     marginRight: 20,
     marginBottom: 5,
   },
+  message: {
+    color: COLORS.pink,
+    textAlign: "center",
+    fontSize: 20,
+    marginTop: 10
+  },
   touchable: {
     borderRadius: 4,
     backgroundColor: COLORS.purple,
     width: 200,
     alignSelf: "center",
     marginTop: 20,
-  },
-  message: {
-    color: COLORS.pink,
-    textAlign: "center",
-    fontSize: 20,
-    marginTop: 10
   },
   button: {
     color: "#fff",
