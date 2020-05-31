@@ -107,6 +107,7 @@ export const CommentForm = ({ route }) => {
       />
       {!!message && <Text style={styles.message}>{message}</Text>}
       <TouchableOpacity
+        testID="submit-opacity"
         disabled={disabled}
         style={disabled ? styles.disabled : styles.touchable}
         onPress={handleSubmit}
