@@ -8,6 +8,7 @@ import {
   Image,
   StyleSheet,
 } from "react-native";
+import { COLORS } from "../../assets/constants/constants";
 
 export const CommentForm = ({ route }) => {
   const { newRating, name, id } = route.params;
@@ -49,7 +50,7 @@ export const CommentForm = ({ route }) => {
         )}
         keyExtractor={(item) => item.key}
       />
-      <Text>Rating for {name}</Text>
+      <Text style={styles.header}>Comment for {name}</Text>
       <TextInput
         style={styles.input}
         placeholder="Comment Title"
@@ -64,8 +65,8 @@ export const CommentForm = ({ route }) => {
         value={description}
         onChangeText={(newComment) => setDescription(newComment)}
       />
-      <TouchableOpacity>
-        <Text>Submit Comment</Text>
+      <TouchableOpacity style={styles.touchable}>
+        <Text style={styles.button}>Submit Comment</Text>
       </TouchableOpacity>
     </SafeAreaView>
   );
@@ -77,9 +78,14 @@ const styles = StyleSheet.create({
     width: 25,
     marginRight: 3,
   },
+  header: {
+    fontSize: 20,
+    textAlign: "center",
+    marginBottom: 20,
+  },
   flatList: {
     alignSelf: "center",
-    margin: 20
+    margin: 20,
   },
   input: {
     fontSize: 20,
@@ -89,5 +95,19 @@ const styles = StyleSheet.create({
     marginLeft: 20,
     marginRight: 20,
     marginBottom: 5,
+  },
+  touchable: {
+    borderRadius: 4,
+    backgroundColor: COLORS.purple,
+    width: 200,
+    alignSelf: "center",
+    marginTop: 20
+  },
+  button: {
+    color: "#fff",
+    padding: 15,
+    textAlign: "center",
+    fontFamily: "MavenPro-Medium",
+    fontSize: 20,
   },
 });
