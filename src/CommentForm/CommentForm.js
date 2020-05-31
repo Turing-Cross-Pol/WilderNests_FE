@@ -9,6 +9,7 @@ import {
   StyleSheet,
 } from "react-native";
 import { COLORS } from "../../assets/constants/constants";
+import { postComment } from "../apiCalls";
 
 export const CommentForm = ({ route }) => {
   const { newRating, name, id } = route.params;
@@ -39,35 +40,11 @@ export const CommentForm = ({ route }) => {
   };
 
   const handleSubmit = () => {
-    postComment();
+    postComment(id, description, title, rating);
     setRating("");
     setDescription("");
     setTitle("");
     setMessage("Comment posted!");
-  };
-
-  const postComment = async () => {
-    const comment = {
-      campsite_id: id,
-      description,
-      title,
-      rating,
-    };
-    try {
-      const response = await fetch(
-        `https://dpcamping-be-stage.herokuapp.com/campsites/${id}/comments`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(comment),
-        }
-      );
-      console.log(response.status);
-    } catch (error) {
-      setMessage(error.message);
-    }
   };
 
   const disabled = !title && !description && !rating;
@@ -110,7 +87,7 @@ export const CommentForm = ({ route }) => {
         testID="submit-opacity"
         disabled={disabled}
         style={disabled ? styles.disabled : styles.touchable}
-        onPress={handleSubmit}
+        onPress={!disabled ? handleSubmit: () => {}}
       >
         <Text style={styles.button}>Submit Comment</Text>
       </TouchableOpacity>
