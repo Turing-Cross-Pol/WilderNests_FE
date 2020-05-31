@@ -15,7 +15,7 @@ export const CommentForm = ({ route }) => {
   const [rating, setRating] = useState(newRating);
   const [description, setDescription] = useState("");
   const [title, setTitle] = useState("");
-  const [message, setMessage] = useState("")
+  const [message, setMessage] = useState("");
 
   const createStarDisplay = (rating) => {
     const numStars = rating ? Math.ceil(rating) : 0;
@@ -43,7 +43,7 @@ export const CommentForm = ({ route }) => {
     setRating("");
     setDescription("");
     setTitle("");
-    setMessage("Comment posted!")
+    setMessage("Comment posted!");
   };
 
   const postComment = async () => {
@@ -69,6 +69,8 @@ export const CommentForm = ({ route }) => {
       setMessage(error.message);
     }
   };
+
+  const disabled = !title && !description && !rating;
 
   return (
     <SafeAreaView>
@@ -99,7 +101,11 @@ export const CommentForm = ({ route }) => {
         onChangeText={(newComment) => setDescription(newComment)}
       />
       {!!message && <Text style={styles.message}>{message}</Text>}
-      <TouchableOpacity style={styles.touchable} onPress={handleSubmit}>
+      <TouchableOpacity
+        disabled={disabled}
+        style={disabled ? styles.disabled : styles.touchable}
+        onPress={handleSubmit}
+      >
         <Text style={styles.button}>Submit Comment</Text>
       </TouchableOpacity>
     </SafeAreaView>
@@ -134,11 +140,18 @@ const styles = StyleSheet.create({
     color: COLORS.pink,
     textAlign: "center",
     fontSize: 20,
-    marginTop: 10
+    marginTop: 10,
   },
   touchable: {
     borderRadius: 4,
     backgroundColor: COLORS.purple,
+    width: 200,
+    alignSelf: "center",
+    marginTop: 20,
+  },
+  disabled: {
+    borderRadius: 4,
+    backgroundColor: "lightgray",
     width: 200,
     alignSelf: "center",
     marginTop: 20,
