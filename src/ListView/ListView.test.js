@@ -35,7 +35,7 @@ describe("ListView", () => {
       getByText("Bald Mountain Ln West of Central City, CO")
     );
     const siteLocation = await waitFor(() =>
-      findAllByText("Idaho Springs, Colorado")
+      findAllByText("Idaho Springs, CO")
     );
 
     expect(siteTitle1).toBeTruthy();

@@ -3,7 +3,7 @@ export const data = {
     {
       id: '1',
       city: 'Idaho Springs',
-      state: 'Colorado',
+      state: 'CO',
       name: 'Dispersed Camping Near St. Mary\'s Glacier',
       lat: 39.799558,
       lon: -105.626933,
@@ -15,7 +15,7 @@ export const data = {
     {
       id: '2',
       city: 'Idaho Springs',
-      state: 'Colorado',
+      state: 'CO',
       name: 'Yankee Hill',
       lat: 39.80458,
       lon: -105.56873,
@@ -27,7 +27,7 @@ export const data = {
     {
       id: '3',
       city: 'Idaho Springs',
-      state: 'Colorado',
+      state: 'CO',
       name: 'Camping on Mill Creek Rd',
       lat: 39.78307,
       lon: -105.6235,
