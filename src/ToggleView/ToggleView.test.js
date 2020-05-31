@@ -1,15 +1,38 @@
 import React from "react";
-import { render, waitFor } from "react-native-testing-library";
+import { render, waitFor, fireEvent } from "react-native-testing-library";
 import { data } from "../../sample-data";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { ToggleView } from "./ToggleView";
+jest.mock("react-native/Libraries/Animated/src/NativeAnimatedHelper");
+
+jest.mock("react-native-maps", () => {
+  const { View, TouchableOpacity } = require("react-native");
+  const onPressMock = jest.fn();
+  const MockMapView = (props) => {
+    return <View>{props.children}</View>;
+  };
+  const MockMarker = (props) => {
+    return (
+      <TouchableOpacity testID="marker" onPress={onPressMock}>
+        {props.children}
+      </TouchableOpacity>
+    );
+  };
+  return {
+    __esModule: true,
+    default: MockMapView,
+    Marker: MockMarker,
+  };
+});
 
 describe("ToggleView", () => {
   let Stack;
+  let onPressMock;
 
   beforeEach(() => {
     Stack = createStackNavigator();
+    onPressMock = jest.fn();
   });
 
   test("Renders what we expect", async () => {
@@ -58,5 +81,22 @@ describe("ToggleView", () => {
     expect(siteTitle2).toBeTruthy();
     expect(siteTitle3).toBeTruthy();
     expect(siteTitle4).toBeTruthy();
+  });
+
+  test("Can navigate to the on the Map View page", async () => {
+    const toggleComponent = () => <ToggleView data={data.data} />;
+
+    const { getByText, findAllByTestId } = render(
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="Toggle View">
+          <Stack.Screen name="Toggle View" component={toggleComponent} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    );
+
+    const mapViewBtn = await waitFor(() => getByText("Map View"));
+    fireEvent.press(mapViewBtn);
+    const markers = await waitFor(() => findAllByTestId("marker"));
+    expect(markers).toHaveLength(4);
   });
 });
