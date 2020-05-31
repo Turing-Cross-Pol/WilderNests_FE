@@ -14,7 +14,7 @@ import { COLORS } from "../../assets/constants/constants";
 const emptyCheck = require("../../assets/images/checkbox.png");
 const fullCheck = require("../../assets/images/done.png");
 
-export const PostForm = () => {
+export const PostForm = ({ loadData }) => {
   const [amenities, setAmenities] = useState([]);
   const [name, setName] = useState("");
   const [city, setCity] = useState("");
@@ -40,7 +40,9 @@ export const PostForm = () => {
   };
 
   const handleSubmit = () => {
-    if (lat && lon && name) {
+    const isLatValid = lat && lat > -90 && lat < 90;
+    const isLonValid = lon && lon > -180 && lon < 180;
+    if (isLatValid && isLonValid && name) {
       postData();
       setAmenities("");
       setName("");
@@ -52,11 +54,12 @@ export const PostForm = () => {
       setDrivingTips("");
       setImgUrl("");
       setMessage("Form successfully submitted");
+      loadData();
       setTimeout(() => {
         setMessage("");
       }, 3000);
     } else {
-      setMessage("All fields marked with an * are required");
+      setMessage("All fields marked with an * are required and must be valid.");
       setTimeout(() => {
         setMessage("");
       }, 3000);
@@ -117,17 +120,19 @@ export const PostForm = () => {
         value={state}
         onChangeText={(value) => handleInputChange(value, setState)}
       />
-      <Text style={styles.label}>Lat*:</Text>
+      <Text style={styles.label}>Lat (-90 to 90)*:</Text>
       <TextInput
         style={styles.input}
         placeholder="Latitude"
+        keyboardType="numeric"
         value={lat}
         onChangeText={(value) => handleInputChange(parseFloat(value), setLat)}
       />
-      <Text style={styles.label}>Long*:</Text>
+      <Text style={styles.label}>Long (-180 to 180)*:</Text>
       <TextInput
         style={styles.input}
         placeholder="Longitude"
+        keyboardType="numeric"
         value={lon}
         onChangeText={(value) => handleInputChange(parseFloat(value), setLon)}
       />
