@@ -28,11 +28,11 @@ describe("PostForm", () => {
 
     const header = await waitFor(() => getByText('Tell us about your campsite'));
     expect(header).toBeTruthy();
-    expect(getByText('Title:')).toBeTruthy();
+    expect(getByText('Title*:')).toBeTruthy();
     expect(getByText('City:')).toBeTruthy();
     expect(getByText('State:')).toBeTruthy();
-    expect(getByText('Lat:')).toBeTruthy();
-    expect(getByText('Long:')).toBeTruthy();
+    expect(getByText('Lat (-90 to 90)*:')).toBeTruthy();
+    expect(getByText('Long (-180 to 180)*:')).toBeTruthy();
     expect(getByText('Description:')).toBeTruthy();
     expect(getByText('Directions:')).toBeTruthy();
     expect(getByText('Image:')).toBeTruthy();
@@ -74,7 +74,7 @@ describe("PostForm", () => {
     const image = getByPlaceholder('Image URL');
     const submitButton = getByText('Submit Campsite');
 
-    fireEvent.changeText(title, { nativeEvent: { text: 'My Favorite Spot'}})
+    // fireEvent.changeText(title, { nativeEvent: { text: 'My Favorite Spot'}})
     // debug();
     
     // Add tests for mocking out button click response value.
