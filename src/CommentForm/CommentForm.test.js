@@ -3,8 +3,9 @@ import { render, waitFor, fireEvent } from "react-native-testing-library";
 import { data } from "../../sample-data";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-
+import { postComment } from "../apiCalls"
 import { CommentForm } from "./CommentForm";
+jest.mock("../apiCalls");
 
 describe("CommentForm", () => {
   let Stack;
@@ -46,8 +47,6 @@ describe("CommentForm", () => {
   test("Should have a disbled button if all fields are blank", async () => {
     const route = { params: data.data[0] };
     const commentFormComponent = () => <CommentForm route={route} />;
-    const handleSubmit = jest.fn();
-
     const { getByTestId } = render(
       <NavigationContainer>
         <Stack.Navigator initialRouteName="Comment">
@@ -58,6 +57,25 @@ describe("CommentForm", () => {
 
     const submitBtn = await waitFor(() => getByTestId("submit-opacity"));
     fireEvent.press(submitBtn);
-    expect(handleSubmit).not.toBeCalled();
+    expect(postComment).not.toBeCalled();
+  });
+
+  test("Should be able to submit the form if any fields aren't blank", async () => {
+    const route = { params: data.data[0] };
+    const commentFormComponent = () => <CommentForm route={route} />;
+
+    const { getByTestId, getByPlaceholder } = render(
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="Comment">
+          <Stack.Screen name="Comment" component={commentFormComponent} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    );
+
+    const submitBtn = await waitFor(() => getByTestId("submit-opacity"));
+    const titleInput = await waitFor(() => getByPlaceholder("Comment Title"));
+    fireEvent.changeText(titleInput, 'Great Campsite');
+    fireEvent.press(submitBtn);
+    expect(postComment).toBeCalled();
   });
 });
