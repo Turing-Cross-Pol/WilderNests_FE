@@ -9,19 +9,22 @@ import {
   Image,
 } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { COLORS } from "../../assets/constants/constants";
+
 const emptyCheck = require("../../assets/images/checkbox.png");
 const fullCheck = require("../../assets/images/done.png");
 
-export const PostForm = () => {
+export const PostForm = ({ loadData }) => {
   const [amenities, setAmenities] = useState([]);
-  const [title, setTitle] = useState('');
-  const [city, setCity] = useState('');
-  const [state, setState] = useState('');
-  const [lat, setLat] = useState('');
-  const [long, setLong] = useState('');
-  const [description, setDescription] = useState('');
-  const [directionInfo, setDirectionInfo] = useState('');
-  const [imgUrl, setImgUrl] = useState('');
+  const [name, setName] = useState("");
+  const [city, setCity] = useState("");
+  const [state, setState] = useState("");
+  const [lat, setLat] = useState("");
+  const [lon, setLon] = useState("");
+  const [description, setDescription] = useState("");
+  const [driving_tips, setDrivingTips] = useState("");
+  const [image_url, setImgUrl] = useState("");
+  const [message, setMessage] = useState("");
 
   const handleAmenities = (amenity) => {
     if (amenities.includes(amenity)) {
@@ -36,17 +39,72 @@ export const PostForm = () => {
     func(value);
   };
 
-  const handleSubmit = () => {};
+  const handleSubmit = () => {
+    const isLatValid = lat && lat > -90 && lat < 90;
+    const isLonValid = lon && lon > -180 && lon < 180;
+    if (isLatValid && isLonValid && name) {
+      postData();
+      setAmenities("");
+      setName("");
+      setCity("");
+      setState("");
+      setLat("");
+      setLon("");
+      setDescription("");
+      setDrivingTips("");
+      setImgUrl("");
+      setMessage("Form successfully submitted");
+      loadData();
+      setTimeout(() => {
+        setMessage("");
+      }, 3000);
+    } else {
+      setMessage("All fields marked with an * are required and must be valid.");
+      setTimeout(() => {
+        setMessage("");
+      }, 3000);
+    }
+  };
+
+  const postData = async () => {
+    const newCampsite = {
+      amenities: amenities.join(', '),
+      name,
+      city,
+      state,
+      description,
+      driving_tips,
+      image_url,
+      lat,
+      lon,
+    };
+    console.log(newCampsite);
+    try {
+      const response = await fetch(
+        "https://dpcamping-be-stage.herokuapp.com/campsites/",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newCampsite),
+        }
+      );
+      console.log(response.status);
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
 
   return (
     <ScrollView style={styles.container}>
       <Text style={styles.text}>Tell us about your campsite</Text>
-      <Text style={styles.label}>Title:</Text>
+      <Text style={styles.label}>Title*:</Text>
       <TextInput
         style={styles.input}
         placeholder="Campsite Title"
-        value={title}
-        onChangeText={(value) => handleInputChange(value, setTitle)}
+        value={name}
+        onChangeText={(value) => handleInputChange(value, setName)}
       />
       <Text style={styles.label}>City:</Text>
       <TextInput
@@ -62,19 +120,21 @@ export const PostForm = () => {
         value={state}
         onChangeText={(value) => handleInputChange(value, setState)}
       />
-      <Text style={styles.label}>Lat:</Text>
+      <Text style={styles.label}>Lat (-90 to 90)*:</Text>
       <TextInput
         style={styles.input}
         placeholder="Latitude"
+        keyboardType="numeric"
         value={lat}
-        onChangeText={(value) => handleInputChange(value, setLat)}
+        onChangeText={(value) => handleInputChange(parseFloat(value), setLat)}
       />
-      <Text style={styles.label}>Long:</Text>
+      <Text style={styles.label}>Long (-180 to 180)*:</Text>
       <TextInput
         style={styles.input}
         placeholder="Longitude"
-        value={long}
-        onChangeText={(value) => handleInputChange(value, setLong)}
+        keyboardType="numeric"
+        value={lon}
+        onChangeText={(value) => handleInputChange(parseFloat(value), setLon)}
       />
       <Text style={styles.label}>Description:</Text>
       <TextInput
@@ -91,104 +151,97 @@ export const PostForm = () => {
         placeholder="How far is it from major roads? Any tips for landmarks to look out for?"
         multiline={true}
         numberOfLines={4}
-        value={directionInfo}
-        onChangeText={(value) => handleInputChange(value, setDirectionInfo)}
+        value={driving_tips}
+        onChangeText={(value) => handleInputChange(value, setDrivingTips)}
       />
       <Text style={styles.label}>Image:</Text>
       <TextInput
         style={styles.input}
         placeholder="Image URL"
-        value={imgUrl}
+        value={image_url}
         onChangeText={(value) => handleInputChange(value, setImgUrl)}
       />
       <Text style={styles.text}>Available Amenities Nearby:</Text>
       <View style={styles.allCheckboxes}>
         <TouchableOpacity
           style={styles.checkContainer}
-          onPress={() => handleAmenities("Firepit")}
+          onPress={() => handleAmenities("fire")}
           testID='Firepit'
         >
           <Image
             style={styles.icon}
-            source={amenities.includes("Firepit") ? fullCheck : emptyCheck}
+            source={amenities.includes("fire") ? fullCheck : emptyCheck}
           />
           <Text style={styles.label}>Firepit</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.checkContainer}
-          onPress={() => handleAmenities("Boating/Water")}
+          onPress={() => handleAmenities("boat")}
           testID='Boating/Water'
         >
           <Image
             style={styles.icon}
-            source={
-              amenities.includes("Boating/Water") ? fullCheck : emptyCheck
-            }
+            source={amenities.includes("boat") ? fullCheck : emptyCheck}
           />
           <Text style={styles.label}>Boating/Water</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.checkContainer}
-          onPress={() => handleAmenities("Fishing")}
+          onPress={() => handleAmenities("fish")}
           testID='Fishing'
         >
           <Image
             style={styles.icon}
-            source={amenities.includes("Fishing") ? fullCheck : emptyCheck}
+            source={amenities.includes("fish") ? fullCheck : emptyCheck}
           />
           <Text style={styles.label}>Fishing</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.checkContainer}
-          onPress={() => handleAmenities("Mountain Biking Trails")}
+          onPress={() => handleAmenities("bike")}
           testID='Mountain Biking Trails'
         >
           <Image
             style={styles.icon}
-            source={
-              amenities.includes("Mountain Biking Trails")
-                ? fullCheck
-                : emptyCheck
-            }
+            source={amenities.includes("bike") ? fullCheck : emptyCheck}
           />
           <Text style={styles.label}>Mountain Biking Trails</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.checkContainer}
-          onPress={() => handleAmenities("ATV Trails")}
+          onPress={() => handleAmenities("atv")}
           testID='ATV Trails'
         >
           <Image
             style={styles.icon}
-            source={amenities.includes("ATV Trails") ? fullCheck : emptyCheck}
+            source={amenities.includes("atv") ? fullCheck : emptyCheck}
           />
           <Text style={styles.label}>ATV Trails</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.checkContainer}
-          onPress={() => handleAmenities("Horse Trails")}
+          onPress={() => handleAmenities("horse")}
           testID='Horse Trails'
         >
           <Image
             style={styles.icon}
-            source={amenities.includes("Horse Trails") ? fullCheck : emptyCheck}
+            source={amenities.includes("horse") ? fullCheck : emptyCheck}
           />
           <Text style={styles.label}>Horse Trails</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.checkContainer}
-          onPress={() => handleAmenities("Hiking Trails")}
+          onPress={() => handleAmenities("hike")}
           testID='Hiking Trails'
         >
           <Image
             style={styles.icon}
-            source={
-              amenities.includes("Hiking Trails") ? fullCheck : emptyCheck
-            }
+            source={amenities.includes("hike") ? fullCheck : emptyCheck}
           />
           <Text style={styles.label}>Hiking Trails</Text>
         </TouchableOpacity>
       </View>
+      {!!message && <Text style={styles.message}>{message}</Text>}
       <Button
         onPress={handleSubmit}
         title="Submit Campsite"
@@ -201,23 +254,23 @@ export const PostForm = () => {
 const styles = StyleSheet.create({
   container: {
     marginBottom: 50,
-    marginTop: 30
+    marginTop: 30,
   },
   label: {
     fontSize: 20,
     marginLeft: 20,
-    color: "#537A72",
+    color: COLORS.green,
   },
   text: {
     fontSize: 25,
     textAlign: "center",
     margin: 10,
-    color: "#7E62CF",
+    color: COLORS.purple,
   },
   input: {
     fontSize: 20,
     padding: 15,
-    borderBottomColor: "#537A72",
+    borderBottomColor: COLORS.green,
     borderBottomWidth: 1,
     marginLeft: 20,
     marginRight: 20,
@@ -229,7 +282,7 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   allCheckboxes: {
-    marginBottom: 10
+    marginBottom: 10,
   },
   checkContainer: {
     display: "flex",
@@ -237,5 +290,10 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     marginLeft: 20,
     marginTop: 10,
+  },
+  message: {
+    color: COLORS.pink,
+    textAlign: "center",
+    fontSize: 15,
   },
 });
