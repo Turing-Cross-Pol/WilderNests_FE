@@ -1,5 +1,5 @@
 import React from "react";
-import { render, waitFor } from "react-native-testing-library";
+import { render, waitFor, fireEvent } from "react-native-testing-library";
 import { data } from "../../sample-data";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -41,5 +41,23 @@ describe("CommentForm", () => {
     expect(titleInput).toBeTruthy();
     expect(commentInput).toBeTruthy();
     expect(submitBtn).toBeTruthy();
+  });
+
+  test("Should have a disbled button if all fields are blank", async () => {
+    const route = { params: data.data[0] };
+    const commentFormComponent = () => <CommentForm route={route} />;
+    const handleSubmit = jest.fn();
+
+    const { getByTestId } = render(
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="Comment">
+          <Stack.Screen name="Comment" component={commentFormComponent} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    );
+
+    const submitBtn = await waitFor(() => getByTestId("submit-opacity"));
+    fireEvent.press(submitBtn);
+    expect(handleSubmit).not.toBeCalled();
   });
 });
