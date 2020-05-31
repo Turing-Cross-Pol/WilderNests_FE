@@ -15,6 +15,7 @@ export const CommentForm = ({ route }) => {
   const [rating, setRating] = useState(newRating);
   const [description, setDescription] = useState("");
   const [title, setTitle] = useState("");
+  const [message, setMessage] = useState("")
 
   const createStarDisplay = (rating) => {
     const numStars = rating ? Math.ceil(rating) : 0;
@@ -35,6 +36,38 @@ export const CommentForm = ({ route }) => {
     setRating(newRating);
     const newStars = createStarDisplay(newRating);
     setStars(newStars);
+  };
+
+  const handleSubmit = () => {
+    postComment();
+    setRating("");
+    setDescription("");
+    setTitle("");
+    setMessage("Comment posted!")
+  };
+
+  const postComment = async () => {
+    const comment = {
+      campsite_id: id,
+      description,
+      title,
+      rating,
+    };
+    try {
+      const response = await fetch(
+        `https://dpcamping-be-stage.herokuapp.com/campsites/${id}/comments`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(comment),
+        }
+      );
+      console.log(response.status);
+    } catch (error) {
+      setMessage(error.message);
+    }
   };
 
   return (
@@ -65,7 +98,8 @@ export const CommentForm = ({ route }) => {
         value={description}
         onChangeText={(newComment) => setDescription(newComment)}
       />
-      <TouchableOpacity style={styles.touchable}>
+      {!!message && <Text style={styles.message}>{message}</Text>}
+      <TouchableOpacity style={styles.touchable} onPress={handleSubmit}>
         <Text style={styles.button}>Submit Comment</Text>
       </TouchableOpacity>
     </SafeAreaView>
@@ -90,7 +124,7 @@ const styles = StyleSheet.create({
   input: {
     fontSize: 20,
     padding: 15,
-    borderColor: "#537A72",
+    borderColor: COLORS.green,
     borderWidth: 1,
     marginLeft: 20,
     marginRight: 20,
@@ -101,7 +135,13 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.purple,
     width: 200,
     alignSelf: "center",
-    marginTop: 20
+    marginTop: 20,
+  },
+  message: {
+    color: COLORS.pink,
+    textAlign: "center",
+    fontSize: 20,
+    marginTop: 10
   },
   button: {
     color: "#fff",
