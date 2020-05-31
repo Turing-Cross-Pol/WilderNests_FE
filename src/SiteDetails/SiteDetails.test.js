@@ -13,7 +13,7 @@ describe("SiteDetails", () => {
     Stack = createStackNavigator();
   })
 
-  test("Renders a list of ", async () => {
+  test("Renders what we expect", async () => {
     const route = { params: data.data[0]}
     const detailsComponent = () => (
       <SiteDetails route={route} />
@@ -29,7 +29,7 @@ describe("SiteDetails", () => {
         </Stack.Navigator>
       </NavigationContainer>
     );
-    
+
     const siteTitle = await waitFor(() => getByText("Dispersed Camping Near St. Mary's Glacier"));
     const lat = await waitFor(() => getByText("Lat: 39.799558"));
     const lon = await waitFor(() => getByText("Long: -105.626933"));
