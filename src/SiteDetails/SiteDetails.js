@@ -24,33 +24,31 @@ export const SiteDetails = ({ route }) => {
     description,
     driving_tips,
     timestamps,
-    rating
+    rating,
+    id
   } = route.params;
   const photo = image_url ? image_url : "https://place-hold.it/300x500";
-  
+
   const getDirections = () => {
     console.log("directions");
   };
-  
+
   const createStarDisplay = (rating) => {
     const numStars = rating ? Math.ceil(rating) : 0;
     const filledStars = Array(numStars).fill(
       require("../../assets/images/filled-star.png")
-      );
-      const emptyStars = Array(5 - numStars).fill(
-        require("../../assets/images/empty-star.png")
-        );
-        return filledStars.concat(emptyStars);
-      };
-      
-  const [stars, setStars] = useState(createStarDisplay(rating))
+    );
+    const emptyStars = Array(5 - numStars).fill(
+      require("../../assets/images/empty-star.png")
+    );
+    return filledStars.concat(emptyStars);
+  };
+
+  const stars = createStarDisplay(rating);
 
   const handleRating = (index) => {
-    const rating = index + 1;
-    // setUserRating(newRating);
-    // const newStars = createStarDisplay(newRating)
-    // setStars(newStars);
-    navigation.navigate("Comment Form", { rating })
+    const newRating = index + 1;
+    navigation.navigate("Comment Form", { newRating, name, id });
   };
 
   return (
