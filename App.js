@@ -37,6 +37,14 @@ const App = () => {
     headerTintColor: '#fff',
   }
 
+  const toggleComponent = () => (
+    <ToggleView data={campsiteData} />
+  )
+
+  const postFormComponent = () => (
+    <PostForm loadData={loadData} />
+  )
+
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Landing">
@@ -45,10 +53,10 @@ const App = () => {
           component={Landing}
           options={{ headerShown: false }}
         />
-        <Stack.Screen name="Post" component={PostForm} />
+        <Stack.Screen name="Post" component={postFormComponent} />
         <Stack.Screen 
           name="Toggle View" 
-          component={() => <ToggleView data={campsiteData} />} 
+          component={toggleComponent} 
           options={brandHeader}
         />
         <Stack.Screen 
