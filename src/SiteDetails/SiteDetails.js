@@ -45,9 +45,10 @@ export const SiteDetails = ({ route }) => {
   const [stars, setStars] = useState(createStarDisplay(rating))
 
   const handleRating = (index) => {
-    const rating = index;
-    setUserRating(rating);
-    setStars(createStarDisplay(userRating));
+    const newRating = index + 1;
+    setUserRating(newRating);
+    const newStars = createStarDisplay(newRating)
+    setStars(newStars);
   };
 
   return (
