@@ -166,6 +166,7 @@ export const PostForm = ({ loadData }) => {
         <TouchableOpacity
           style={styles.checkContainer}
           onPress={() => handleAmenities("fire")}
+          testID='Firepit'
         >
           <Image
             style={styles.icon}
@@ -176,6 +177,7 @@ export const PostForm = ({ loadData }) => {
         <TouchableOpacity
           style={styles.checkContainer}
           onPress={() => handleAmenities("boat")}
+          testID='Boating/Water'
         >
           <Image
             style={styles.icon}
@@ -186,6 +188,7 @@ export const PostForm = ({ loadData }) => {
         <TouchableOpacity
           style={styles.checkContainer}
           onPress={() => handleAmenities("fish")}
+          testID='Fishing'
         >
           <Image
             style={styles.icon}
@@ -196,6 +199,7 @@ export const PostForm = ({ loadData }) => {
         <TouchableOpacity
           style={styles.checkContainer}
           onPress={() => handleAmenities("bike")}
+          testID='Mountain Biking Trails'
         >
           <Image
             style={styles.icon}
@@ -206,6 +210,7 @@ export const PostForm = ({ loadData }) => {
         <TouchableOpacity
           style={styles.checkContainer}
           onPress={() => handleAmenities("atv")}
+          testID='ATV Trails'
         >
           <Image
             style={styles.icon}
@@ -216,6 +221,7 @@ export const PostForm = ({ loadData }) => {
         <TouchableOpacity
           style={styles.checkContainer}
           onPress={() => handleAmenities("horse")}
+          testID='Horse Trails'
         >
           <Image
             style={styles.icon}
@@ -226,6 +232,7 @@ export const PostForm = ({ loadData }) => {
         <TouchableOpacity
           style={styles.checkContainer}
           onPress={() => handleAmenities("hike")}
+          testID='Hiking Trails'
         >
           <Image
             style={styles.icon}

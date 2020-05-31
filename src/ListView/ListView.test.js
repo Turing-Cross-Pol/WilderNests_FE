@@ -13,8 +13,8 @@ describe("ListView", () => {
     Stack = createStackNavigator();
   })
 
-  test("Renders the App name", async () => {
-    const { getByText } = render(
+  test("Renders a list of ", async () => {
+    const { getByText, findAllByText } = render(
       <NavigationContainer>
         <Stack.Navigator initialRouteName="List View">
           <Stack.Screen
@@ -25,8 +25,16 @@ describe("ListView", () => {
       </NavigationContainer>
     );
 
-    const site1 = await waitFor(() => getByText("Dispersed Camping Near St. Mary's Glacier"));
-    expect(site1).toBeTruthy();
-    expect(true).toEqual(true)
+    const siteTitle1 = await waitFor(() => getByText("Dispersed Camping Near St. Mary's Glacier"));
+    const siteTitle2 = await waitFor(() => getByText("Yankee Hill"));
+    const siteTitle3 = await waitFor(() => getByText("Camping on Mill Creek Rd"));
+    const siteTitle4 = await waitFor(() => getByText("Bald Mountain Ln West of Central City, CO"));
+    const siteLocation = await waitFor(() => findAllByText("Idaho Springs, Colorado"));
+    
+    expect(siteTitle1).toBeTruthy();
+    expect(siteLocation).toHaveLength(3);
+    expect(siteTitle2).toBeTruthy();
+    expect(siteTitle3).toBeTruthy();
+    expect(siteTitle4).toBeTruthy();
   });
 });
