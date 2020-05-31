@@ -29,17 +29,7 @@ describe("SiteDetails", () => {
         </Stack.Navigator>
       </NavigationContainer>
     );
-
-      //     id: '1',
-      // city: 'Idaho Springs',
-      // state: 'Colorado',
-      // name: 'Dispersed Camping Near St. Mary\'s Glacier',
-      // lat: 39.799558,
-      // long: -105.626933,
-      // description: 'Dispersed campsites are all along Fall River Rd. We saw at least 4 other vehicles camping 20 to 100 feet off the road. There are also a dozen or so areas to pull off on the shoulder as well. Expect mostly level dirt paths or shoulder areas and look for stone fire rings marking the dispersed sites. There are no amenities (no restrooms, water, etc.). We stayed several days and were not bothered. See http://www.fs.usda.gov/Internet/FSE_DOCUMENTS/stelprdb5165771.pdf for exact site details.',
-      // drivingTips: '',
-      // image: 'https://freecampsites.net/wp-content/uploads/2019/06/Idaho-Falls-2-800x600.jpg',
-
+    
     const siteTitle = await waitFor(() => getByText("Dispersed Camping Near St. Mary's Glacier"));
     const lat = await waitFor(() => getByText("Lat: 39.799558"));
     const lon = await waitFor(() => getByText("Long: -105.626933"));
