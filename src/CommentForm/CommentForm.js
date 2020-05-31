@@ -58,7 +58,7 @@ export const CommentForm = ({ route }) => {
         renderItem={({ item, index }) => (
           <TouchableOpacity onPress={() => handleRating(index)}>
             <Image
-              testID="star-icon"
+              testID={`star-${index}`}
               source={item}
               key={index}
               style={styles.star}
