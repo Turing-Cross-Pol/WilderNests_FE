@@ -68,7 +68,7 @@ export const PostForm = ({ loadData }) => {
 
   const postData = async () => {
     const newCampsite = {
-      amenities: [...amenities],
+      amenities: amenities.join(', '),
       name,
       city,
       state,
