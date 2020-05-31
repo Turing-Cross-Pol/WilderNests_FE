@@ -5,16 +5,17 @@ import { render, waitFor, fireEvent } from "react-native-testing-library";
 import { data } from '../../sample-data';
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
+jest.mock('react-native/Libraries/Animated/src/NativeAnimatedHelper');
+
 import { MapList } from "./MapList";
 
-jest.mock('react-native/Libraries/Animated/src/NativeAnimatedHelper');
 jest.mock('react-native-maps', () => {
   const { View, TouchableOpacity } = require('react-native');
   const onPressMock = jest.fn();
-  const MockMapView = () => {
+  const MockMapView = (props) => {
     return <View>{props.children}</View>;
   };
-  const MockMarker = () => {
+  const MockMarker = (props) => {
     return <TouchableOpacity testID='marker' onPress={onPressMock}>{props.children}</TouchableOpacity>;
   };
   return {
