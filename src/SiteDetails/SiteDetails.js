@@ -9,10 +9,11 @@ import {
   FlatList,
 } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { useNavigation } from "@react-navigation/native";
 
 export const SiteDetails = ({ route }) => {
-  const [userRating, setUserRating] = useState(0);
-  
+  const navigation = useNavigation();
+
   const {
     image_url,
     name,
@@ -45,10 +46,11 @@ export const SiteDetails = ({ route }) => {
   const [stars, setStars] = useState(createStarDisplay(rating))
 
   const handleRating = (index) => {
-    const newRating = index + 1;
-    setUserRating(newRating);
-    const newStars = createStarDisplay(newRating)
-    setStars(newStars);
+    const rating = index + 1;
+    // setUserRating(newRating);
+    // const newStars = createStarDisplay(newRating)
+    // setStars(newStars);
+    navigation.navigate("Comment Form", { rating })
   };
 
   return (
