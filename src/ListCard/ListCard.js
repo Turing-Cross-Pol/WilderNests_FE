@@ -1,12 +1,30 @@
-import React from "react";
-import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
+import React, { useState } from "react";
+import { View, Text, Image, StyleSheet, TouchableOpacity, FlatList } from "react-native";
 import { COLORS } from "../../assets/constants/constants";
 import { useNavigation } from "@react-navigation/native";
 
 export const ListCard = ({ info }) => {
-  const { name, city, state, image_url } = info;
+  const { name, city, state, image_url, average_rating } = info;
+  let averageRating = average_rating;
+  if (averageRating === "no comments") {
+    averageRating = 0;
+  }
   const imageUrl = image_url ? image_url : "https://place-hold.it/300x500";
   const navigation = useNavigation();
+
+
+  const createStarDisplay = (averageRating) => {
+    const numStars = Math.ceil(averageRating);
+    const filledStars = Array(numStars).fill(
+      require("../../assets/images/filled-star.png")
+    );
+    const emptyStars = Array(5 - numStars).fill(
+      require("../../assets/images/empty-star.png")
+    );
+    return filledStars.concat(emptyStars);
+  };
+
+  const stars = createStarDisplay(averageRating);
 
   const handleCardPress = () => {
     navigation.navigate("Details", { ...info });
@@ -23,6 +41,16 @@ export const ListCard = ({ info }) => {
       />
       <View style={styles.meta}>
         <Text style={styles.title}>{name}</Text>
+        <View style={styles.starsContainer}>
+          <FlatList
+            numColumns={5}
+            data={stars}
+            renderItem={({ item, index }) => <Image source={item} key={index} style={styles.star} />}
+            keyExtractor={(item, index) => index.toString()}
+            listKey={(item, index) => index.toString()}
+          />
+        </View>
+        {!averageRating && <Text>No ratings yet</Text>}
         <Text style={styles.location}>
           {city}, {state}
         </Text>
@@ -57,5 +85,15 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontFamily: "MavenPro-Medium",
     color: COLORS.green,
+  },
+  starsContainer: {
+    display: "flex",
+    flexDirection: "column",
+    marginBottom: 5,
+  },
+  star: {
+    height: 15,
+    width: 15,
+    marginRight: 3,
   },
 });
