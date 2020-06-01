@@ -4,7 +4,7 @@ import {
   Image,
   ScrollView,
   StyleSheet,
-  Button,
+  SafeAreaView,
   View,
   FlatList,
 } from "react-native";
@@ -60,11 +60,14 @@ export const SiteDetails = ({ route }) => {
           numColumns={5}
           data={stars}
           renderItem={({ item, index }) => (
-            <TouchableOpacity onPress={() => handleRating(index)}>
+            <TouchableOpacity
+              testID={`star-${index}`}
+              onPress={() => handleRating(index)}
+            >
               <Image source={item} key={index} style={styles.star} />
             </TouchableOpacity>
           )}
-          keyExtractor={(item) => item.key}
+          keyExtractor={(item, index) => index.toString()}
         />
       </View>
       <Text style={styles.text}>

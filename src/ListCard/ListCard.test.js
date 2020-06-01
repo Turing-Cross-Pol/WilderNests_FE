@@ -31,7 +31,7 @@ describe('ListCard Test', () => {
 
     expect(campsiteName).toBeTruthy();
     expect(getByTestId('data-img')).toBeTruthy();
-    expect(getByText('Idaho Springs, Colorado')).toBeTruthy();
+    expect(getByText('Idaho Springs, CO')).toBeTruthy();
 
   });
 });
