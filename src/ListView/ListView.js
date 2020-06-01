@@ -13,7 +13,7 @@ export const ListView = ({ data }) => {
       <FlatList
         data={data}
         renderItem={({ item }) => <ListCard info={item} />}
-        keyExtractor={item => item.id}
+        keyExtractor={item => item.id.toString()}
       />
     </View>
   );
