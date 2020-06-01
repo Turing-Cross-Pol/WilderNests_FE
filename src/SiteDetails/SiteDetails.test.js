@@ -3,8 +3,10 @@ import { render, waitFor, fireEvent } from "react-native-testing-library";
 import { data } from "../../sample-data";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
+import { CommentForm } from "../CommentForm/CommentForm"
 
 import { SiteDetails } from "./SiteDetails";
+jest.mock("react-native/Libraries/Animated/src/NativeAnimatedHelper");
 
 describe("SiteDetails", () => {
   let Stack;
@@ -45,29 +47,43 @@ describe("SiteDetails", () => {
   test("Can navigate to the comment form by clicking on a star", async () => {
     const route = { params: data.data[0] };
     const detailsComponent = () => <SiteDetails route={route} />;
+    const commentFormComponent = () => <CommentForm route={route} />;
 
     const { getByTestId, getByText } = render(
       <NavigationContainer>
         <Stack.Navigator initialRouteName="Details">
           <Stack.Screen name="Details" component={detailsComponent} />
+          <Stack.Screen name="Comment Form" component={commentFormComponent} />
         </Stack.Navigator>
       </NavigationContainer>
     );
 
     const thirdStar = await waitFor(() => getByTestId("star-3"));
-    fireEvent.press(thirdStar);
+    fireEvent(thirdStar, "press");
+    const commentDescription = await waitFor(() =>
+      getByText("Comment for Dispersed Camping Near St. Mary's Glacier")
+    );
+    expect(commentDescription).toBeTruthy();
   });
 
   test("Can navigate to the comment form by clicking on the comment button", async () => {
     const route = { params: data.data[0] };
     const detailsComponent = () => <SiteDetails route={route} />;
+    const commentFormComponent = () => <CommentForm route={route} />;
 
     const { getByText } = render(
       <NavigationContainer>
         <Stack.Navigator initialRouteName="Details">
           <Stack.Screen name="Details" component={detailsComponent} />
+          <Stack.Screen name="Comment Form" component={commentFormComponent} />
         </Stack.Navigator>
       </NavigationContainer>
     );
+    const commentBtn = await waitFor(() => getByText("Write a Comment/Review"));
+    fireEvent(commentBtn, "press");
+    const commentDescription = await waitFor(() =>
+      getByText("Comment for Dispersed Camping Near St. Mary's Glacier")
+    );
+    expect(commentDescription).toBeTruthy();
   });
 });
