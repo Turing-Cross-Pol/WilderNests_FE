@@ -26,12 +26,12 @@ export const SiteDetails = ({ route }) => {
     description,
     driving_tips,
     timestamps,
-    rating,
     id,
   } = route.params;
   const photo = image_url ? image_url : "https://place-hold.it/300x500";
 
   const [comments, setComments] = useState([]);
+  const [averageRating, setAverageRating] = useState(0);
 
   useEffect(() => {
     loadComments();
@@ -42,14 +42,15 @@ export const SiteDetails = ({ route }) => {
     const newComments = await response.json();
   
     setComments(newComments[0])
+    setAverageRating(newComments[1].average_rating);
   }
   
   const getDirections = () => {
     console.log("directions");
   };
 
-  const createStarDisplay = (rating) => {
-    const numStars = rating ? Math.ceil(rating) : 0;
+  const createStarDisplay = (averageRating) => {
+    const numStars = Math.ceil(averageRating);
     const filledStars = Array(numStars).fill(
       require("../../assets/images/filled-star.png")
     );
@@ -59,7 +60,7 @@ export const SiteDetails = ({ route }) => {
     return filledStars.concat(emptyStars);
   };
 
-  const stars = createStarDisplay(rating);
+  const stars = createStarDisplay(averageRating);
 
   const handleRating = (index) => {
     const newRating = index + 1;
@@ -86,6 +87,7 @@ export const SiteDetails = ({ route }) => {
           )}
           keyExtractor={(item, index) => index.toString()}
         />
+        <Text style={styles.averageRatingText}>Average Rating: {averageRating.toFixed(1)} out of {comments.length} reviews</Text>
       </View>
       <Image
         style={styles.image}
@@ -143,8 +145,11 @@ const styles = StyleSheet.create({
   },
   starsContainer: {
     display: "flex",
-    flexDirection: "row",
+    flexDirection: "column",
     marginBottom: 20,
+  },
+  averageRatingText: {
+    paddingTop: 5,
   },
   image: {
     alignSelf: "center",
