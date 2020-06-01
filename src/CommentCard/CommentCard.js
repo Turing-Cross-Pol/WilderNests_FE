@@ -37,6 +37,7 @@ export const CommentCard = ({ info }) => {
             <Image source={item} key={item.id} style={styles.star} />
           )}
           listKey={(item, index) => index.toString()}
+          keyExtractor={(item, index) => index.toString()}
         />
       </View>
       <Text style={styles.description}>{description}</Text>
