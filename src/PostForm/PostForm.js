@@ -5,10 +5,10 @@ import {
   Text,
   TextInput,
   ScrollView,
-  Button,
+  TouchableOpacity,
   Image,
 } from "react-native";
-import { TouchableOpacity } from "react-native-gesture-handler";
+// import { TouchableOpacity } from "react-native-gesture-handler";
 import { COLORS } from "../../assets/constants/constants";
 
 const emptyCheck = require("../../assets/images/checkbox.png");
@@ -242,11 +242,12 @@ export const PostForm = ({ loadData }) => {
         </TouchableOpacity>
       </View>
       {!!message && <Text style={styles.message}>{message}</Text>}
-      <Button
+      <TouchableOpacity
+        style={styles.touchable}
         onPress={handleSubmit}
-        title="Submit Campsite"
-        color={"#7E62CF"}
-      />
+      >
+        <Text style={styles.button}>Submit Campsite</Text>
+      </TouchableOpacity>
     </ScrollView>
   );
 };
@@ -295,5 +296,18 @@ const styles = StyleSheet.create({
     color: COLORS.pink,
     textAlign: "center",
     fontSize: 15,
+  },
+  button: {
+    color: "#fff",
+    padding: 15,
+    textAlign: 'center',
+    fontFamily: 'MavenPro-Medium',
+    fontSize: 20,
+  },
+  touchable: {
+    borderRadius: 4,
+    backgroundColor: COLORS.purple,
+    alignSelf: "center",
+    marginTop: 20,
   },
 });
