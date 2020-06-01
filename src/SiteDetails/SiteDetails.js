@@ -34,14 +34,14 @@ export const SiteDetails = ({ route }) => {
   const [comments, setComments] = useState([]);
 
   useEffect(() => {
-    loadAverageRating();
+    loadComments();
   }, []);
 
-  const loadAverageRating = async () => {
+  const loadComments = async () => {
     const response = await fetch(`https://dpcamping-be-stage.herokuapp.com/campsites/${id}/comments`);
-    const comments = await response.json();
-    console.log('comments', comments);
-    setComments(comments)
+    const newComments = await response.json();
+  
+    setComments(newComments[0])
   }
   
   const getDirections = () => {
@@ -116,8 +116,8 @@ export const SiteDetails = ({ route }) => {
         {comments.length 
           ? (<FlatList 
               data={comments}
-              renderItem={({ item }) => <CommentCard info={item} stars={stars} />}
-              keyExtractor={item => item.id}
+              renderItem={({ item }) => <CommentCard info={item} stars={stars} key={item.id} />}
+              listKey={(item) => item.id.toString()}
             />)
           : (<TouchableOpacity onPress={() => navigation.navigate("Comment Form", { name, id })}><Text style={styles.noReviews}>No reviews yet. Click to leave a review.</Text></TouchableOpacity>)
         }
