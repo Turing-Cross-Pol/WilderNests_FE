@@ -52,7 +52,22 @@ describe("ToggleView", () => {
     expect(map).toBeTruthy();
   });
 
-  test("Starts on the List View page", async () => {
+  test("Starts on the Map View page", async () => {
+    const toggleComponent = () => <ToggleView data={data.data} />;
+
+    const { findAllByTestId } = render(
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="Toggle View">
+          <Stack.Screen name="Toggle View" component={toggleComponent} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    );
+
+    const markers = await waitFor(() => findAllByTestId("marker"));
+    expect(markers).toHaveLength(4);
+  });
+
+  test("Can navigate to the on the Map View page", async () => {
     const toggleComponent = () => <ToggleView data={data.data} />;
 
     const { getByText, findAllByText } = render(
@@ -62,6 +77,9 @@ describe("ToggleView", () => {
         </Stack.Navigator>
       </NavigationContainer>
     );
+
+    const listViewBtn = await waitFor(() => getByText("List View"));
+    fireEvent.press(listViewBtn);
     const siteTitle1 = await waitFor(() =>
       getByText("Dispersed Camping Near St. Mary's Glacier")
     );
@@ -81,22 +99,5 @@ describe("ToggleView", () => {
     expect(siteTitle2).toBeTruthy();
     expect(siteTitle3).toBeTruthy();
     expect(siteTitle4).toBeTruthy();
-  });
-
-  test("Can navigate to the on the Map View page", async () => {
-    const toggleComponent = () => <ToggleView data={data.data} />;
-
-    const { getByText, findAllByTestId } = render(
-      <NavigationContainer>
-        <Stack.Navigator initialRouteName="Toggle View">
-          <Stack.Screen name="Toggle View" component={toggleComponent} />
-        </Stack.Navigator>
-      </NavigationContainer>
-    );
-
-    const mapViewBtn = await waitFor(() => getByText("Map View"));
-    fireEvent.press(mapViewBtn);
-    const markers = await waitFor(() => findAllByTestId("marker"));
-    expect(markers).toHaveLength(4);
   });
 });
