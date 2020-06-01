@@ -26,12 +26,17 @@ export const SiteDetails = ({ route }) => {
     description,
     driving_tips,
     timestamps,
+    average_rating,
     id,
   } = route.params;
   const photo = image_url ? image_url : "https://place-hold.it/300x500";
 
   const [comments, setComments] = useState([]);
-  const [averageRating, setAverageRating] = useState(0);
+  let averageRating = average_rating;  
+  
+  if (averageRating === "no comments") {
+    averageRating = 0;
+  }
 
   useEffect(() => {
     loadComments();
@@ -42,15 +47,14 @@ export const SiteDetails = ({ route }) => {
     const newComments = await response.json();
   
     setComments(newComments[0])
-    setAverageRating(newComments[1].average_rating);
   }
   
   const getDirections = () => {
     console.log("directions");
   };
 
-  const createStarDisplay = (averageRating) => {
-    const numStars = Math.ceil(averageRating);
+  const createStarDisplay = (rating) => {
+    const numStars = Math.ceil(rating);
     const filledStars = Array(numStars).fill(
       require("../../assets/images/filled-star.png")
     );
@@ -87,7 +91,7 @@ export const SiteDetails = ({ route }) => {
           )}
           keyExtractor={(item, index) => index.toString()}
         />
-        <Text style={styles.averageRatingText}>Average Rating: {averageRating.toFixed(1)} out of {comments.length} reviews</Text>
+        {!averageRating ? <Text style={styles.averageRatingText}>No ratings yet</Text> : <Text style={styles.averageRatingText}>Average Rating: {averageRating.toFixed(1)} out of {comments.length} reviews</Text>}
       </View>
       <Image
         style={styles.image}
@@ -120,6 +124,7 @@ export const SiteDetails = ({ route }) => {
               data={comments}
               renderItem={({ item }) => <CommentCard info={item} stars={stars} key={item.id} />}
               listKey={(item) => item.id.toString()}
+              keyExtractor={(item) => item.id.toString()}
             />)
           : (<TouchableOpacity onPress={() => navigation.navigate("Comment Form", { name, id })}><Text style={styles.noReviews}>No reviews yet. Click to leave a review.</Text></TouchableOpacity>)
         }
