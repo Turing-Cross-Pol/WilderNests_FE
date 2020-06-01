@@ -65,7 +65,7 @@ export const CommentForm = ({ route }) => {
             />
           </TouchableOpacity>
         )}
-        keyExtractor={(item) => item.key}
+        keyExtractor={(item, index) => index.toString()}
       />
       <Text style={styles.header}>Comment for {name}</Text>
       <TextInput
