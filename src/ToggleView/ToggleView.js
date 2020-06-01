@@ -5,26 +5,10 @@ import { ListView } from "../ListView/ListView";
 import { MapList } from "../MapList/MapList";
 
 export const ToggleView = ({ data }) => {
-  const [currentPage, setCurrentPage] = useState("List View");
+  const [currentPage, setCurrentPage] = useState("Map View");
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.toggleBox}>
-        <TouchableOpacity
-          onPress={() => setCurrentPage("List View")}
-          style={
-            currentPage === "List View" ? styles.selected : styles.unselected
-          }
-        >
-          <Text
-            style={
-              currentPage === "List View"
-                ? styles.selectedText
-                : styles.unselectedText
-            }
-          >
-            List View
-          </Text>
-        </TouchableOpacity>
         <TouchableOpacity
           onPress={() => setCurrentPage("Map View")}
           style={
@@ -39,6 +23,22 @@ export const ToggleView = ({ data }) => {
             }
           >
             Map View
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => setCurrentPage("List View")}
+          style={
+            currentPage === "List View" ? styles.selected : styles.unselected
+          }
+        >
+          <Text
+            style={
+              currentPage === "List View"
+                ? styles.selectedText
+                : styles.unselectedText
+            }
+          >
+            List View
           </Text>
         </TouchableOpacity>
       </View>

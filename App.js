@@ -8,6 +8,9 @@ import { ToggleView } from "./src/ToggleView/ToggleView";
 import { SiteDetails } from "./src/SiteDetails/SiteDetails";
 import { CommentForm } from "./src/CommentForm/CommentForm";
 
+// Disables warnsing from displaying in app.
+console.disableYellowBox = true;
+
 const Stack = createStackNavigator();
 
 const App = () => {
