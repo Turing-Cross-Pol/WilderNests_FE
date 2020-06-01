@@ -51,6 +51,7 @@ export const CommentForm = ({ route }) => {
 
   return (
     <SafeAreaView>
+      <Text style={styles.instructions}>Click a star to leave a rating</Text>
       <FlatList
         style={styles.flatList}
         numColumns={5}
@@ -108,7 +109,8 @@ const styles = StyleSheet.create({
   },
   flatList: {
     alignSelf: "center",
-    margin: 20,
+    marginTop: 15,
+    marginBottom: 20,
   },
   input: {
     fontSize: 20,
@@ -146,4 +148,9 @@ const styles = StyleSheet.create({
     fontFamily: "MavenPro-Medium",
     fontSize: 20,
   },
+  instructions: {
+    fontSize: 15,
+    textAlign: 'center',
+    paddingTop: 10,
+  }
 });

@@ -4,14 +4,32 @@ import {
   StyleSheet,
   Text,
   View,
-  Dimensions,
+  Image,
+  FlatList,
   TouchableOpacity,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 export const QuickView = ({ campsite }) => {
-  const { name, city, state, description } = campsite;
+  const { name, city, state, description, average_rating } = campsite;
+  let averageRating = average_rating;
+  if (averageRating === "no comments") {
+    averageRating = 0;
+  }
   const navigation = useNavigation();
+  
+  const createStarDisplay = (averageRating) => {
+    const numStars = Math.ceil(averageRating);
+    const filledStars = Array(numStars).fill(
+      require("../../assets/images/filled-star.png")
+    );
+    const emptyStars = Array(5 - numStars).fill(
+      require("../../assets/images/empty-star.png")
+    );
+    return filledStars.concat(emptyStars);
+  };
+
+  const stars = createStarDisplay(averageRating);
 
   const navigateToDetails = () => {
     navigation.navigate("Details", { ...campsite });
@@ -29,6 +47,15 @@ export const QuickView = ({ campsite }) => {
     <TouchableOpacity onPress={navigateToDetails} style={styles.container}>
       <Text style={styles.name}>{name}</Text>
       {cityState && location}
+      <View style={styles.starsContainer}>
+        <FlatList
+          numColumns={5}
+          data={stars}
+          renderItem={({ item, index }) => <Image source={item} key={index} style={styles.star} />}
+          keyExtractor={(item, index) => index.toString()}
+        />
+      </View>
+      {!averageRating && <Text>No ratings yet</Text>}
       <Text style={styles.description}>{descriptionSnippet}</Text>
       <Text style={styles.moreDetails}>Cick for more details ></Text>
     </TouchableOpacity>
@@ -64,9 +91,9 @@ const styles = StyleSheet.create({
   },
   location: {
     fontSize: 16,
-    marginBottom: 20,
   },
   description: {
+    fontSize: 16,
     marginBottom: 20,
   },
   moreDetails: {
@@ -74,5 +101,16 @@ const styles = StyleSheet.create({
     color: COLORS.purple,
     fontFamily: 'MavenPro-Medium',
     letterSpacing: 1,
-  }
+  },
+  starsContainer: {
+    display: "flex",
+    flexDirection: "column",
+    marginBottom: 20,
+    marginTop: 10,
+  },
+  star: {
+    height: 15,
+    width: 15,
+    marginRight: 3,
+  },
 });

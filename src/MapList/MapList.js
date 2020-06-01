@@ -5,6 +5,8 @@ import { Marker } from "react-native-maps";
 import { QuickView } from "../QuickView/QuickView";
 
 export const MapList = ({ data }) => {
+  console.log('formatted data: ', data);
+  
   const [selectedCampsite, setSelectedCampsite] = useState(null);
 
   const matchCampsiteData = (e) => {
@@ -16,11 +18,12 @@ export const MapList = ({ data }) => {
   };
 
   const markers = data.map((location) => {
-    let { lat, lon } = location;
+    let { lat, lon, id } = location;
+    console.log('location: ', id);
     
     return (
       <Marker
-        key={location.id}
+        key={id.toString()}
         coordinate={{ latitude: lat, longitude: lon }}
         image={require("../../assets/images/tent-location-icon.png")}
         onSelect={(e) => matchCampsiteData(e)}

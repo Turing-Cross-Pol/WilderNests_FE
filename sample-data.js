@@ -11,6 +11,7 @@ export const data = {
       drivingTips: '',
       image: 'https://freecampsites.net/wp-content/uploads/2019/06/Idaho-Falls-2-800x600.jpg',
       timestamps: 'May 13, 2018',
+      average_rating: 3,
     },
     {
       id: '2',
@@ -23,6 +24,7 @@ export const data = {
       drivingTips: 'The dirt road that leads to the campsite is rated as moderate and primarily used for off road driving. 4-wheel drive is probably needed.',
       image: '',
       timestamps: 'Aug 5, 2018',
+      average_rating: 'no comments',
     },
     {
       id: '3',
@@ -35,6 +37,7 @@ export const data = {
       drivingTips: '',
       image: '',
       timestamps: 'May 13, 2018',
+      average_rating: 'no comments',
     },
     {
       id: '4', 
@@ -47,6 +50,7 @@ export const data = {
       drivingTips: '',
       image: '',
       timestamps: 'May 13, 2018',
+      average_rating: 4,
     }
   ]
 }
