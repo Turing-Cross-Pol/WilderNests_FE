@@ -29,7 +29,18 @@ export const SiteDetails = ({ route }) => {
     average_rating,
     id,
   } = route.params;
-  const photo = image_url ? image_url : "https://place-hold.it/300x500";
+  
+  const displayPhoto = image_url 
+    ? (<Image
+        style={styles.image}
+        source={{
+          uri: image_url,
+        }}
+      />)
+    : (<Image
+        style={styles.image}
+        source={require("../../assets/images/placeholder-image.png")}
+      />);
 
   const [comments, setComments] = useState([]);
   let averageRating = average_rating;  
@@ -93,12 +104,14 @@ export const SiteDetails = ({ route }) => {
         />
         {!averageRating ? <Text style={styles.averageRatingText}>No ratings yet</Text> : <Text style={styles.averageRatingText}>Average Rating: {averageRating.toFixed(1)} out of {comments.length} reviews</Text>}
       </View>
-      <Image
+      {displayPhoto}
+      {/* <Image
         style={styles.image}
-        source={{
-          uri: photo,
-        }}
-      />
+        source={image_url ? image_url : require("../../assets/images/placeholder-image.png")}
+        // source={{
+        //   uri: photo,
+        // }}
+      /> */}
       <View style={styles.latLon}>
         <Text style={styles.unit}>Lat: <Text style={styles.coordinates}>{lat}</Text></Text>
         <Text style={styles.unit}>Long: <Text style={styles.coordinates}>{lon}</Text></Text>
