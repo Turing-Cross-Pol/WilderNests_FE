@@ -78,7 +78,6 @@ export const PostForm = ({ loadData }) => {
       lat,
       lon,
     };
-    console.log(newCampsite);
     try {
       const response = await fetch(
         "https://dpcamping-be-stage.herokuapp.com/campsites/",
