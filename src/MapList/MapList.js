@@ -1,11 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import MapView from "react-native-maps";
 import { StyleSheet, Text, View, Dimensions } from "react-native";
 import { Marker } from "react-native-maps";
 import { QuickView } from "../QuickView/QuickView";
+import * as Location from 'expo-location';
 
 export const MapList = ({ data }) => {  
   const [selectedCampsite, setSelectedCampsite] = useState(null);
+  const [location, setLocation] = useState({
+    coords: {
+      latitude: 39.833556,
+      longitude: -105.648361
+    }
+  });
+  const [errorMsg, setErrorMsg] = useState(null);
+
+  useEffect(() => {
+    (async () => {
+      let { status } = await Location.requestPermissionsAsync();
+      if (status !== 'granted') {
+        setErrorMsg('Permission to access location was denied');
+      }
+      let location = await Location.getCurrentPositionAsync({});
+      setLocation(location);
+    })();
+  }, []);
 
   const matchCampsiteData = (e) => {
     const { latitude, longitude } = e.nativeEvent.coordinate;
@@ -33,15 +52,16 @@ export const MapList = ({ data }) => {
       <MapView
         onMarkerDeselect={() => setSelectedCampsite(null)}
         style={styles.mapStyle}
-        initialRegion={{
-          latitude: 39.833556,
-          longitude: -105.648361,
+        region={{
+          latitude: location.coords.latitude,
+          longitude: location.coords.longitude,
           latitudeDelta: 1,
           longitudeDelta: 1,
         }}
         showsScale={true}
         zoomEnabled={true}
         zoomControlEnabled={true}
+        showsUserLocation={true}
       >
         {markers}
       </MapView>
