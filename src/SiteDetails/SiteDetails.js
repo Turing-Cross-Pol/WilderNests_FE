@@ -147,10 +147,10 @@ export const SiteDetails = ({ route }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 10,
+    padding: 15,
   },
   campsiteTitle: {
-    fontSize: 25,
+    fontSize: 30,
     fontFamily: 'MavenPro-Medium',
   },
   location: {
@@ -169,7 +169,7 @@ const styles = StyleSheet.create({
   },
   image: {
     alignSelf: "center",
-    width: 400,
+    width: 385,
     height: 200,
     marginBottom: 20,
   },

@@ -89,13 +89,12 @@ const styles = StyleSheet.create({
   },
   name: {
     fontFamily: "MavenPro-Medium",
-    fontSize: 25,
-    // color: COLORS.green,
+    fontSize: 26,
     color: '#000',
     marginBottom: 5,
   },
   location: {
-    fontSize: 16,
+    fontSize: 18,
     fontFamily: "MavenPro-Medium",
     color: COLORS.green,
   },
