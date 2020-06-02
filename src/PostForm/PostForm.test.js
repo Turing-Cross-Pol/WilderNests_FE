@@ -18,7 +18,7 @@ describe("PostForm", () => {
 
   test("Renders Form to screen", async () => {
     const postFormComponent = () => <PostForm loadData={jest.fn()} />;
-    const { getByText, getByTestId, getByPlaceholder } = render(
+    const { getByText, getByTestId, getByPlaceholder, getAllByTestId } = render(
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen name="Post" component={postFormComponent} />
@@ -65,6 +65,8 @@ describe("PostForm", () => {
     expect(getByTestId("Horse Trails")).toBeTruthy();
     expect(getByTestId("Hiking Trails")).toBeTruthy();
     expect(getByText("Submit Campsite")).toBeTruthy();
+
+    expect(getAllByTestId("check-icon")).toHaveLength(7);
   });
 
   test("User can change input fields", async () => {

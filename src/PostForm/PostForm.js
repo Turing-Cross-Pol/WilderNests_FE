@@ -44,7 +44,17 @@ export const PostForm = ({ loadData }) => {
     const isLatValid = lat && lat > -90 && lat < 90;
     const isLonValid = lon && lon > -180 && lon < 180;
     if (isLatValid && isLonValid && name) {
-      postData(amenities, name, city, state, description, driving_tips, image_url, lat, lon);
+      postData(
+        amenities,
+        name,
+        city,
+        state,
+        description,
+        driving_tips,
+        image_url,
+        lat,
+        lon
+      );
       setAmenities("");
       setName("");
       setCity("");
@@ -137,9 +147,10 @@ export const PostForm = ({ loadData }) => {
         <TouchableOpacity
           style={styles.checkContainer}
           onPress={() => handleAmenities("fire")}
-          testID='Firepit'
+          testID="Firepit"
         >
           <Image
+            testID="check-icon"
             style={styles.icon}
             source={amenities.includes("fire") ? fullCheck : emptyCheck}
           />
@@ -148,9 +159,10 @@ export const PostForm = ({ loadData }) => {
         <TouchableOpacity
           style={styles.checkContainer}
           onPress={() => handleAmenities("boat")}
-          testID='Boating/Water'
+          testID="Boating/Water"
         >
           <Image
+            testID="check-icon"
             style={styles.icon}
             source={amenities.includes("boat") ? fullCheck : emptyCheck}
           />
@@ -159,9 +171,10 @@ export const PostForm = ({ loadData }) => {
         <TouchableOpacity
           style={styles.checkContainer}
           onPress={() => handleAmenities("fish")}
-          testID='Fishing'
+          testID="Fishing"
         >
           <Image
+            testID="check-icon"
             style={styles.icon}
             source={amenities.includes("fish") ? fullCheck : emptyCheck}
           />
@@ -170,9 +183,10 @@ export const PostForm = ({ loadData }) => {
         <TouchableOpacity
           style={styles.checkContainer}
           onPress={() => handleAmenities("bike")}
-          testID='Mountain Biking Trails'
+          testID="Mountain Biking Trails"
         >
           <Image
+            testID="check-icon"
             style={styles.icon}
             source={amenities.includes("bike") ? fullCheck : emptyCheck}
           />
@@ -181,9 +195,10 @@ export const PostForm = ({ loadData }) => {
         <TouchableOpacity
           style={styles.checkContainer}
           onPress={() => handleAmenities("atv")}
-          testID='ATV Trails'
+          testID="ATV Trails"
         >
           <Image
+            testID="check-icon"
             style={styles.icon}
             source={amenities.includes("atv") ? fullCheck : emptyCheck}
           />
@@ -192,9 +207,10 @@ export const PostForm = ({ loadData }) => {
         <TouchableOpacity
           style={styles.checkContainer}
           onPress={() => handleAmenities("horse")}
-          testID='Horse Trails'
+          testID="Horse Trails"
         >
           <Image
+            testID="check-icon"
             style={styles.icon}
             source={amenities.includes("horse") ? fullCheck : emptyCheck}
           />
@@ -203,9 +219,10 @@ export const PostForm = ({ loadData }) => {
         <TouchableOpacity
           style={styles.checkContainer}
           onPress={() => handleAmenities("hike")}
-          testID='Hiking Trails'
+          testID="Hiking Trails"
         >
           <Image
+            testID="check-icon"
             style={styles.icon}
             source={amenities.includes("hike") ? fullCheck : emptyCheck}
           />
@@ -213,10 +230,7 @@ export const PostForm = ({ loadData }) => {
         </TouchableOpacity>
       </View>
       {!!message && <Text style={styles.message}>{message}</Text>}
-      <TouchableOpacity
-        style={styles.touchable}
-        onPress={handleSubmit}
-      >
+      <TouchableOpacity style={styles.touchable} onPress={handleSubmit}>
         <Text style={styles.button}>Submit Campsite</Text>
       </TouchableOpacity>
     </ScrollView>
@@ -272,8 +286,8 @@ const styles = StyleSheet.create({
   button: {
     color: "#fff",
     padding: 15,
-    textAlign: 'center',
-    fontFamily: 'MavenPro-Medium',
+    textAlign: "center",
+    fontFamily: "MavenPro-Medium",
     fontSize: 20,
   },
   touchable: {
