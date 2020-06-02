@@ -97,7 +97,7 @@ export const PostForm = ({ loadData }) => {
 
   return (
     <ScrollView style={styles.container}>
-      <Text style={styles.text}>Tell us about your campsite</Text>
+      <Text style={styles.header}>Tell us about your campsite</Text>
       <Text style={styles.label}>Title*:</Text>
       <TextInput
         style={styles.input}
@@ -160,7 +160,7 @@ export const PostForm = ({ loadData }) => {
         value={image_url}
         onChangeText={(value) => handleInputChange(value, setImgUrl)}
       />
-      <Text style={styles.text}>Available Amenities Nearby:</Text>
+      <Text style={styles.header}>Available Amenities Nearby:</Text>
       <View style={styles.allCheckboxes}>
         <TouchableOpacity
           style={styles.checkContainer}
@@ -254,27 +254,28 @@ export const PostForm = ({ loadData }) => {
 const styles = StyleSheet.create({
   container: {
     marginBottom: 50,
-    marginTop: 30,
   },
   label: {
     fontSize: 20,
     marginLeft: 20,
     color: COLORS.green,
   },
-  text: {
+  header: {
     fontSize: 25,
     textAlign: "center",
-    margin: 10,
+    marginTop: 30,
+    marginBottom: 30,
     color: COLORS.purple,
   },
   input: {
-    fontSize: 20,
-    padding: 15,
+    fontSize: 18,
+    paddingTop: 10,
+    paddingBottom: 15,
     borderBottomColor: COLORS.green,
     borderBottomWidth: 1,
     marginLeft: 20,
     marginRight: 20,
-    marginBottom: 5,
+    marginBottom: 20,
   },
   icon: {
     height: 20,
@@ -282,7 +283,7 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   allCheckboxes: {
-    marginBottom: 10,
+    marginBottom: 20,
   },
   checkContainer: {
     display: "flex",

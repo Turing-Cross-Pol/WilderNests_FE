@@ -17,7 +17,21 @@ export const ListCard = ({ info }) => {
   if (averageRating === "no comments") {
     averageRating = 0;
   }
-  const imageUrl = image_url ? image_url : "https://place-hold.it/300x500";
+  
+  const displayPhoto = image_url 
+    ? (<Image
+        testID='data-img'
+        style={styles.image}
+        source={{
+          uri: image_url,
+        }}
+      />)
+    : (<Image
+        testID='data-img'
+        style={styles.image}
+        source={require("../../assets/images/placeholder-image.png")}
+      />);
+
   const navigation = useNavigation();
 
   const createStarDisplay = (averageRating) => {
@@ -40,14 +54,12 @@ export const ListCard = ({ info }) => {
   };
 
   return (
-    <TouchableOpacity onPress={handleCardPress} style={styles.listItem}>
-      <Image
-        testID="data-img"
-        style={styles.image}
-        source={{
-          uri: imageUrl,
-        }}
-      />
+    <TouchableOpacity 
+      onPress={handleCardPress} 
+      style={styles.listItem}
+      activeOpacity={0.7}
+    >
+      {displayPhoto}
       <View style={styles.meta}>
         <Text style={styles.title}>{name}</Text>
         <View style={styles.starsContainer}>
@@ -101,7 +113,7 @@ const styles = StyleSheet.create({
     flex: 4,
   },
   title: {
-    fontSize: 24,
+    fontSize: 22,
     fontFamily: "MavenPro-Medium",
     marginBottom: 5,
   },

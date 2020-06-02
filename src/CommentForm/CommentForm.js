@@ -100,7 +100,8 @@ const styles = StyleSheet.create({
   star: {
     height: 25,
     width: 25,
-    marginRight: 3,
+    marginRight: 8,
+    marginRight: 8,
   },
   header: {
     fontSize: 20,
