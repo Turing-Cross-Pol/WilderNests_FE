@@ -39,10 +39,10 @@ export const Filter = ({ setSelected, options }) => {
   return (
     <View>
       <TouchableOpacity style={styles.touchable} onPress={toggleExpanded}>
-        <Text style={styles.button}>Filter {!!expanded && "(hide)"}</Text>
+        <Text style={styles.button}>Filter {!!expanded ? "(hide)" : "(expand)"}</Text>
       </TouchableOpacity>
       {!!expanded && (
-        <View>
+        <View style={styles.optionsContainer}>
           <FlatList
             data={options}
             renderItem={({ item }) => (
@@ -66,6 +66,11 @@ export const Filter = ({ setSelected, options }) => {
 };
 
 const styles = StyleSheet.create({
+  optionsContainer: {
+    borderBottomColor: "black",
+    borderBottomWidth: 1,
+    paddingBottom: 10
+  },
   label: {
     fontSize: 20,
     marginLeft: 20,
