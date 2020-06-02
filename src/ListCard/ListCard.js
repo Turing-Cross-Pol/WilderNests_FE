@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   View,
   Text,
@@ -31,17 +31,17 @@ export const ListCard = ({ info }) => {
     return filledStars.concat(emptyStars);
   };
 
-  // const icons = {
-  //   boat: require("../../assets/images/boat-icon.png"),
-  //   atv: require("../../assets/images/atv-icon.png"),
-  //   bike: require("../../assets/images/bike-icon.png"),
-  //   fire: require("../../assets/images/fire-icon.png"),
-  //   fish: require("../../assets/images/fish-icon.png"),
-  //   hike: require("../../assets/images/hike-icon.png"),
-  //   horse: require("../../assets/images/horse-icon.png"),
-  // };
+  const icons = {
+    boat: require("../../assets/images/boat-icon.png"),
+    atv: require("../../assets/images/atv-icon.png"),
+    bike: require("../../assets/images/bike-icon.png"),
+    fire: require("../../assets/images/fire-icon.png"),
+    fish: require("../../assets/images/fish-icon.png"),
+    hike: require("../../assets/images/hike-icon.png"),
+    horse: require("../../assets/images/horse-icon.png"),
+  };
 
-  // const amenityIcons = amenitiesArray.map((type) => icons[type]);
+  const amenityIcons = amenities.map((type) => icons[type]);
 
   const stars = createStarDisplay(averageRating);
 
@@ -71,9 +71,10 @@ export const ListCard = ({ info }) => {
             listKey={(item, index) => index.toString()}
           />
         </View>
-        {/* {amenitiesArray.length && 
+        {amenities.length && 
           <View style={styles.starsContainer}>
             <FlatList
+            numColumns={7}
               data={amenityIcons}
               renderItem={({ item, index }) => (
                 <Image source={item} key={index} style={styles.star} />
@@ -82,7 +83,7 @@ export const ListCard = ({ info }) => {
               listKey={(item, index) => index.toString()}
             />
           </View>
-        } */}
+        }
         {!averageRating && <Text>No ratings yet</Text>}
         <Text style={styles.location}>
           {city}, {state}
@@ -121,7 +122,7 @@ const styles = StyleSheet.create({
   },
   starsContainer: {
     display: "flex",
-    flexDirection: "column",
+    flexDirection: "row",
     marginBottom: 5,
   },
   star: {
