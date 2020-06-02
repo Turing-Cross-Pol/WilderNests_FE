@@ -172,7 +172,7 @@ export const SiteDetails = ({ route }) => {
           <FlatList
             data={comments}
             renderItem={({ item }) => (
-              <CommentCard info={item} stars={stars} key={item.id} />
+              <CommentCard info={item} key={item.id} />
             )}
             listKey={(item) => item.id.toString()}
             keyExtractor={(item) => item.id.toString()}
