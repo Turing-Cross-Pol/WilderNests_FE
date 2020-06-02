@@ -11,14 +11,18 @@ import { COLORS } from "../../assets/constants/constants";
 
 export const Filter = ({ setSelected, options }) => {
   const [expanded, setExpanded] = useState("");
-  const [checked, setChecked] = useState("");
+  const [checked, setChecked] = useState([]);
+
   const handleFilter = (option) => {
-    if (option === checked) {
-      setChecked("");
-      setSelected("");
+    let selectedArray = [...checked];
+    if (checked.includes(option)) {
+      const filtered = selectedArray.filter((box) => box !== option);
+      setChecked(filtered);
+      setSelected(filtered);
     } else {
-      setSelected(option);
-      setChecked(option);
+      selectedArray.push(option);
+      setSelected(selectedArray);
+      setChecked(selectedArray);
     }
   };
   const emptyCheck = require("../../assets/images/checkbox.png");
@@ -48,7 +52,7 @@ export const Filter = ({ setSelected, options }) => {
               >
                 <Image
                   style={styles.icon}
-                  source={checked === item ? fullCheck : emptyCheck}
+                  source={checked.includes(item) ? fullCheck : emptyCheck}
                 />
                 <Text style={styles.label}>{item}</Text>
               </TouchableOpacity>
@@ -75,7 +79,6 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   button: {
-    // color: COLORS.green,
     padding: 5,
     textAlign: "center",
     fontFamily: "MavenPro-Medium",
