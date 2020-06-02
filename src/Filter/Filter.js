@@ -1,12 +1,25 @@
 import React, { useState } from "react";
-import { Text, TouchableOpacity, View, StyleSheet, Image } from "react-native";
+import {
+  Text,
+  TouchableOpacity,
+  View,
+  StyleSheet,
+  Image,
+  FlatList,
+} from "react-native";
 import { COLORS } from "../../assets/constants/constants";
 
-export const Filter = () => {
+export const Filter = ({ setSelected, options }) => {
   const [expanded, setExpanded] = useState("");
-  const [selected, setSelected] = useState("");
-  const handleFilter = (selected) => {
-    setSelected(selected);
+  const [checked, setChecked] = useState("");
+  const handleFilter = (option) => {
+    if (option === checked) {
+      setChecked("");
+      setSelected("");
+    } else {
+      setSelected(option);
+      setChecked(option);
+    }
   };
   const emptyCheck = require("../../assets/images/checkbox.png");
   const fullCheck = require("../../assets/images/done.png");
@@ -22,21 +35,26 @@ export const Filter = () => {
   return (
     <View>
       <TouchableOpacity style={styles.touchable} onPress={toggleExpanded}>
-  <Text style={styles.button}>Filter {!!expanded && "(hide)"}</Text>
+        <Text style={styles.button}>Filter {!!expanded && "(hide)"}</Text>
       </TouchableOpacity>
       {!!expanded && (
         <View>
-          <TouchableOpacity
-            style={styles.checkContainer}
-            onPress={() => handleFilter("horse")}
-            testID="Horse Trails"
-          >
-            <Image
-              style={styles.icon}
-              // source={amenities.includes("horse") ? fullCheck : emptyCheck}
-            />
-            <Text style={styles.label}>Horse Trails</Text>
-          </TouchableOpacity>
+          <FlatList
+            data={options}
+            renderItem={({ item }) => (
+              <TouchableOpacity
+                style={styles.checkContainer}
+                onPress={() => handleFilter(item)}
+              >
+                <Image
+                  style={styles.icon}
+                  source={checked === item ? fullCheck : emptyCheck}
+                />
+                <Text style={styles.label}>{item}</Text>
+              </TouchableOpacity>
+            )}
+            keyExtractor={(item) => item}
+          />
         </View>
       )}
     </View>
@@ -66,5 +84,10 @@ const styles = StyleSheet.create({
   touchable: {
     backgroundColor: COLORS.cream,
     alignSelf: "stretch",
+  },
+  icon: {
+    height: 20,
+    width: 20,
+    marginRight: 10,
   },
 });
