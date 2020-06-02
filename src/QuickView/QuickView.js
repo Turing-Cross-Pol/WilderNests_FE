@@ -90,26 +90,30 @@ const styles = StyleSheet.create({
   name: {
     fontFamily: "MavenPro-Medium",
     fontSize: 25,
-    color: COLORS.green,
+    // color: COLORS.green,
+    color: '#000',
     marginBottom: 5,
   },
   location: {
     fontSize: 16,
+    fontFamily: "MavenPro-Medium",
+    color: COLORS.green,
   },
   description: {
-    fontSize: 16,
-    marginBottom: 20,
+    fontSize: 18,
+    marginBottom: 30,
   },
   moreDetails: {
     textAlign: "center",
     color: COLORS.purple,
     fontFamily: 'MavenPro-Medium',
     letterSpacing: 1,
+    fontSize: 20,
   },
   starsContainer: {
     display: "flex",
     flexDirection: "column",
-    marginBottom: 20,
+    marginBottom: 30,
     marginTop: 10,
   },
   star: {

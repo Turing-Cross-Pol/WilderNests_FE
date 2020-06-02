@@ -185,18 +185,20 @@ const styles = StyleSheet.create({
     letterSpacing: .5,
   },
   header: {
-    fontSize: 22,
+    fontSize: 24,
+    letterSpacing: 1,
     marginBottom: 10,
     marginTop: 10,
+    fontWeight: '500'
   },
   text: {
     marginBottom: 10,
-    fontSize: 16,
+    fontSize: 18,
   },
   star: {
     height: 20,
     width: 20,
-    marginRight: 3,
+    marginRight: 8,
   },
   touchable: {
     borderRadius: 4,

@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
     flex: 4,
   },
   title: {
-    fontSize: 24,
+    fontSize: 22,
     fontFamily: "MavenPro-Medium",
     marginBottom: 5,
   },
