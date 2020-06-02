@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-// import { data } from "../../sample-data.js";
 import { ListCard } from "../ListCard/ListCard";
 import { Filter } from "../Filter/Filter";
 import { FlatList, StyleSheet, View } from "react-native";
@@ -10,6 +9,7 @@ export const ListView = ({ data }) => {
   let options = data.filter((data) => data.city && data.state);
   options = options.map((data) => data.city + ", " + data.state);
   options = [...new Set(options)];
+  options = options.sort();
 
   const display = selected.length
     ? data.filter((data) => selected.includes(data.city + ", " + data.state))
