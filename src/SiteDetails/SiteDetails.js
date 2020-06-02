@@ -55,7 +55,8 @@ export const SiteDetails = ({ route }) => {
   }
 
   useEffect(() => {
-    loadComments(id, setComments);
+    const newComments = loadComments(id);
+    setComments(newComments);
   }, []);
 
   const getDirections = () => {
