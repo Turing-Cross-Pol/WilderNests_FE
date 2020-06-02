@@ -18,7 +18,7 @@ describe("PostForm", () => {
 
   test("Renders Form to screen", async () => {
     const postFormComponent = () => <PostForm loadData={jest.fn()} />
-    const { getByText, getByTestId } = render(
+    const { getByText, getByTestId, getByPlaceholder } = render(
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen 
@@ -39,7 +39,16 @@ describe("PostForm", () => {
     expect(getByText('Description:')).toBeTruthy();
     expect(getByText('Directions:')).toBeTruthy();
     expect(getByText('Image:')).toBeTruthy();
-    
+
+    expect(getByPlaceholder('Campsite Title')).toBeTruthy();
+    expect(getByPlaceholder('Closest city/town')).toBeTruthy();
+    expect(getByPlaceholder('State')).toBeTruthy();
+    expect(getByPlaceholder('Latitude')).toBeTruthy();
+    expect(getByPlaceholder('Longitude')).toBeTruthy();
+    expect(getByPlaceholder('A brief description of the site including details about the surroundings')).toBeTruthy();
+    expect(getByPlaceholder('How far is it from major roads? Any tips for landmarks to look out for?')).toBeTruthy();
+    expect(getByPlaceholder('Image URL')).toBeTruthy();
+
     expect(getByText('Available Amenities Nearby:')).toBeTruthy();
     expect(getByTestId('Firepit')).toBeTruthy();
     expect(getByTestId('Boating/Water')).toBeTruthy();
