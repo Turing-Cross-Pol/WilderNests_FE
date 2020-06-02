@@ -25,6 +25,12 @@ export const Filter = ({ setSelected, options }) => {
       setChecked(selectedArray);
     }
   };
+
+  const handleClear = () => {
+    setChecked([]);
+    setSelected([]);
+  }
+
   const emptyCheck = require("../../assets/images/checkbox.png");
   const fullCheck = require("../../assets/images/done.png");
 
@@ -39,10 +45,17 @@ export const Filter = ({ setSelected, options }) => {
   return (
     <View>
       <TouchableOpacity style={styles.touchable} onPress={toggleExpanded}>
-        <Text style={styles.button}>Filter {!!expanded ? "(hide)" : "(expand)"}</Text>
+        <Text style={styles.button}>
+          Filter {!!expanded ? "(hide)" : "(expand)"}
+        </Text>
       </TouchableOpacity>
       {!!expanded && (
         <View style={styles.optionsContainer}>
+          <TouchableOpacity onPress={handleClear}>
+            <Text style={styles.clear}>
+              Clear All Filters
+            </Text>
+          </TouchableOpacity>
           <FlatList
             data={options}
             renderItem={({ item }) => (
@@ -69,7 +82,14 @@ const styles = StyleSheet.create({
   optionsContainer: {
     borderBottomColor: "black",
     borderBottomWidth: 1,
-    paddingBottom: 10
+    paddingBottom: 10,
+  },
+  clear: {
+    padding: 5,
+    textAlign: "center",
+    fontFamily: "MavenPro-Medium",
+    fontSize: 15,
+    color: COLORS.purple
   },
   label: {
     fontSize: 20,
@@ -88,10 +108,11 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontFamily: "MavenPro-Medium",
     fontSize: 20,
+    color: "#fff"
   },
   touchable: {
-    backgroundColor: COLORS.cream,
-    alignSelf: "stretch",
+    backgroundColor: COLORS.green,
+    alignSelf: "stretch"
   },
   icon: {
     height: 20,
