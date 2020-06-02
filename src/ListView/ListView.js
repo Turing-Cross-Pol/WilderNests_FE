@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 // import { data } from "../../sample-data.js";
 import { ListCard } from "../ListCard/ListCard";
+import { Filter } from "../Filter/Filter";
 import {
   FlatList,
   StyleSheet,
@@ -10,6 +11,7 @@ import {
 export const ListView = ({ data }) => {
   return (
     <View style={styles.container}>
+      <Filter /> 
       <FlatList
         data={data}
         renderItem={({ item }) => <ListCard info={item} />}

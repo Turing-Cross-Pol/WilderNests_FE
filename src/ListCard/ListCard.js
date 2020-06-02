@@ -1,10 +1,18 @@
-import React, { useState } from "react";
-import { View, Text, Image, StyleSheet, TouchableOpacity, FlatList } from "react-native";
-import { COLORS } from "../../assets/constants/constants";
+import React from "react";
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  TouchableOpacity,
+  FlatList,
+} from "react-native";
+import { COLORS, icons } from "../../assets/constants/constants";
 import { useNavigation } from "@react-navigation/native";
 
 export const ListCard = ({ info }) => {
-  const { name, city, state, image_url, average_rating } = info;
+  const { name, city, state, image_url, average_rating, amenities } = info;
+
   let averageRating = average_rating;
   if (averageRating === "no comments") {
     averageRating = 0;
@@ -26,7 +34,6 @@ export const ListCard = ({ info }) => {
 
   const navigation = useNavigation();
 
-
   const createStarDisplay = (averageRating) => {
     const numStars = Math.ceil(averageRating);
     const filledStars = Array(numStars).fill(
@@ -37,6 +44,8 @@ export const ListCard = ({ info }) => {
     );
     return filledStars.concat(emptyStars);
   };
+
+  const amenityIcons = amenities.map((type) => icons[type]);
 
   const stars = createStarDisplay(averageRating);
 
@@ -57,11 +66,26 @@ export const ListCard = ({ info }) => {
           <FlatList
             numColumns={5}
             data={stars}
-            renderItem={({ item, index }) => <Image source={item} key={index} style={styles.star} />}
+            renderItem={({ item, index }) => (
+              <Image source={item} key={index} style={styles.star} />
+            )}
             keyExtractor={(item, index) => index.toString()}
             listKey={(item, index) => index.toString()}
           />
         </View>
+        {amenities.length && 
+          <View style={styles.starsContainer}>
+            <FlatList
+            numColumns={7}
+              data={amenityIcons}
+              renderItem={({ item, index }) => (
+                <Image source={item} key={index} style={styles.star} />
+              )}
+              keyExtractor={(item, index) => index.toString()}
+              listKey={(item, index) => index.toString()}
+            />
+          </View>
+        }
         {!averageRating && <Text>No ratings yet</Text>}
         <Text style={styles.location}>
           {city}, {state}
@@ -100,7 +124,7 @@ const styles = StyleSheet.create({
   },
   starsContainer: {
     display: "flex",
-    flexDirection: "column",
+    flexDirection: "row",
     marginBottom: 5,
   },
   star: {

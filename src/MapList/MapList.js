@@ -4,9 +4,7 @@ import { StyleSheet, Text, View, Dimensions } from "react-native";
 import { Marker } from "react-native-maps";
 import { QuickView } from "../QuickView/QuickView";
 
-export const MapList = ({ data }) => {
-  console.log('formatted data: ', data);
-  
+export const MapList = ({ data }) => {  
   const [selectedCampsite, setSelectedCampsite] = useState(null);
 
   const matchCampsiteData = (e) => {
@@ -19,7 +17,6 @@ export const MapList = ({ data }) => {
 
   const markers = data.map((location) => {
     let { lat, lon, id } = location;
-    console.log('location: ', id);
     
     return (
       <Marker
