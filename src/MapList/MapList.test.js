@@ -37,12 +37,13 @@ describe('MapList Test', () => {
   });
 
   test('Renders to screen with 4 markers', async () => {
+    const mapComponent = () => <MapList data={sampleData} />
     const { findAllByTestId } = render(
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen 
             name="Map List"
-            component={() => <MapList data={sampleData} />}
+            component={mapComponent}
           />
         </Stack.Navigator>
       </NavigationContainer>

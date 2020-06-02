@@ -19,14 +19,13 @@ describe("Filter Test", () => {
   });
 
   test("Renders what we expect", async () => {
+    const filterComponent = () => <Filter setSelected={jest.fn()} options={options} />
     const { getByText } = render(
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen
             name="Filter"
-            component={() => (
-              <Filter setSelected={jest.fn()} options={options} />
-            )}
+            component={filterComponent}
           />
         </Stack.Navigator>
       </NavigationContainer>
@@ -37,14 +36,13 @@ describe("Filter Test", () => {
     expect(filterButton).toBeTruthy();
   });
   test("Expands when clicked", async () => {
+    const filterComponent = () => <Filter setSelected={jest.fn()} options={options} />
     const { getByText } = render(
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen
             name="Filter"
-            component={() => (
-              <Filter setSelected={jest.fn()} options={options} />
-            )}
+            component={filterComponent}
           />
         </Stack.Navigator>
       </NavigationContainer>
@@ -59,14 +57,13 @@ describe("Filter Test", () => {
   });
 
   test("Expands with unchecked boxes", async () => {
+    const filterComponent = () => <Filter setSelected={jest.fn()} options={options} />
     const { getByText, getByTestId } = render(
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen
             name="Filter"
-            component={() => (
-              <Filter setSelected={jest.fn()} options={options} />
-            )}
+            component={filterComponent}
           />
         </Stack.Navigator>
       </NavigationContainer>
@@ -79,14 +76,13 @@ describe("Filter Test", () => {
   });
 
   test("Can have boxes checked when expanded", async () => {
+    const filterComponent = () => <Filter setSelected={jest.fn()} options={options} />
     const { getByText, getByTestId } = render(
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen
             name="Filter"
-            component={() => (
-              <Filter setSelected={jest.fn()} options={options} />
-            )}
+            component={filterComponent}
           />
         </Stack.Navigator>
       </NavigationContainer>
