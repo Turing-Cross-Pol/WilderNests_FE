@@ -7,6 +7,7 @@ import { PostForm } from "./src/PostForm/PostForm";
 import { ToggleView } from "./src/ToggleView/ToggleView";
 import { SiteDetails } from "./src/SiteDetails/SiteDetails";
 import { CommentForm } from "./src/CommentForm/CommentForm";
+import { loadData } from './src/apiCalls';
 
 // Disables warnsing from displaying in app.
 console.disableYellowBox = true;
@@ -14,19 +15,11 @@ console.disableYellowBox = true;
 const Stack = createStackNavigator();
 
 const App = () => {
-  const [campsiteData, setCampsiteDate] = useState([]);
+  const [campsiteData, setCampsiteData] = useState([]);
 
   useEffect(() => {
-    loadData();
+    loadData(setCampsiteData);
   }, []);
-
-  const loadData = async () => {
-    const response = await fetch(
-      "https://dpcamping-be-stage.herokuapp.com/campsites/"
-    );
-    const data = await response.json();
-    setCampsiteDate(data);
-  };
 
   const brandHeader = {
     title: "WilderNests",
@@ -44,7 +37,7 @@ const App = () => {
 
   const toggleComponent = () => <ToggleView data={campsiteData} />;
 
-  const postFormComponent = () => <PostForm loadData={loadData} />;
+  const postFormComponent = () => <PostForm loadData={() => loadData(setCampsiteData)} />;
 
   return (
     <NavigationContainer>

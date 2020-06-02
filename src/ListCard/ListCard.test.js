@@ -16,7 +16,7 @@ describe('ListCard Test', () => {
   });
 
   test('Renders what we expect', async () => {
-    const { getByText, getByTestId } = render(
+    const { getByText, getByTestId, getAllByTestId } = render(
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen 
@@ -32,6 +32,6 @@ describe('ListCard Test', () => {
     expect(campsiteName).toBeTruthy();
     expect(getByTestId('data-img')).toBeTruthy();
     expect(getByText('Idaho Springs, CO')).toBeTruthy();
-
+    expect(getAllByTestId('activity-icon')).toHaveLength(2)
   });
 });

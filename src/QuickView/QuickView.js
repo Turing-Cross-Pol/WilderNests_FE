@@ -76,7 +76,7 @@ export const QuickView = ({ campsite }) => {
             numColumns={7}
             data={amenityIcons}
             renderItem={({ item, index }) => (
-              <Image source={item} key={index} style={styles.star} />
+              <Image testID="activity-icon" source={item} key={index} style={styles.star} />
             )}
             keyExtractor={(item, index) => index.toString()}
             listKey={(item, index) => index.toString()}

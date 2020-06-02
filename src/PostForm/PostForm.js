@@ -10,6 +10,7 @@ import {
 } from "react-native";
 // import { TouchableOpacity } from "react-native-gesture-handler";
 import { COLORS } from "../../assets/constants/constants";
+import { postData } from "../apiCalls";
 
 const emptyCheck = require("../../assets/images/checkbox.png");
 const fullCheck = require("../../assets/images/done.png");
@@ -43,7 +44,7 @@ export const PostForm = ({ loadData }) => {
     const isLatValid = lat && lat > -90 && lat < 90;
     const isLonValid = lon && lon > -180 && lon < 180;
     if (isLatValid && isLonValid && name) {
-      postData();
+      postData(amenities, name, city, state, description, driving_tips, image_url, lat, lon);
       setAmenities("");
       setName("");
       setCity("");
@@ -57,41 +58,12 @@ export const PostForm = ({ loadData }) => {
       loadData();
       setTimeout(() => {
         setMessage("");
-      }, 3000);
+      }, 5000);
     } else {
       setMessage("All fields marked with an * are required and must be valid.");
       setTimeout(() => {
         setMessage("");
-      }, 3000);
-    }
-  };
-
-  const postData = async () => {
-    const newCampsite = {
-      amenities: amenities.join(', '),
-      name,
-      city,
-      state,
-      description,
-      driving_tips,
-      image_url,
-      lat,
-      lon,
-    };
-    try {
-      const response = await fetch(
-        "https://dpcamping-be-stage.herokuapp.com/campsites/",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(newCampsite),
-        }
-      );
-      console.log(response.status);
-    } catch (error) {
-      console.error(error.message);
+      }, 5000);
     }
   };
 

@@ -11,7 +11,7 @@ import {
 } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/native";
-
+import { loadComments } from '../apiCalls';
 // import AppLink from 'react-native-app-link';
 
 import { COLORS, icons } from "../../assets/constants/constants";
@@ -55,17 +55,8 @@ export const SiteDetails = ({ route }) => {
   }
 
   useEffect(() => {
-    loadComments();
+    loadComments(id, setComments);
   }, []);
-
-  const loadComments = async () => {
-    const response = await fetch(
-      `https://dpcamping-be-stage.herokuapp.com/campsites/${id}/comments`
-    );
-    const newComments = await response.json();
-
-    setComments(newComments[0]);
-  };
 
   const getDirections = () => {
     // Will default to users current locaiton. Does not work in Expo Simulator (defaults to california.)
@@ -131,7 +122,7 @@ export const SiteDetails = ({ route }) => {
             numColumns={7}
             data={amenityIcons}
             renderItem={({ item, index }) => (
-              <Image source={item} key={index} style={styles.star} />
+              <Image testID="activity-icon" source={item} key={index} style={styles.star} />
             )}
             keyExtractor={(item, index) => index.toString()}
             listKey={(item, index) => index.toString()}
@@ -172,7 +163,7 @@ export const SiteDetails = ({ route }) => {
           <FlatList
             data={comments}
             renderItem={({ item }) => (
-              <CommentCard info={item} stars={stars} key={item.id} />
+              <CommentCard info={item} key={item.id} />
             )}
             listKey={(item) => item.id.toString()}
             keyExtractor={(item) => item.id.toString()}
