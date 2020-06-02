@@ -44,7 +44,11 @@ export const QuickView = ({ campsite }) => {
   );
 
   return (
-    <TouchableOpacity onPress={navigateToDetails} style={styles.container}>
+    <TouchableOpacity 
+      onPress={navigateToDetails} 
+      style={styles.container}
+      activeOpacity={0.7}
+    >
       <Text style={styles.name}>{name}</Text>
       {cityState && location}
       <View style={styles.starsContainer}>

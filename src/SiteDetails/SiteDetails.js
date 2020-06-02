@@ -105,13 +105,6 @@ export const SiteDetails = ({ route }) => {
         {!averageRating ? <Text style={styles.averageRatingText}>No ratings yet</Text> : <Text style={styles.averageRatingText}>Average Rating: {averageRating.toFixed(1)} out of {comments.length} reviews</Text>}
       </View>
       {displayPhoto}
-      {/* <Image
-        style={styles.image}
-        source={image_url ? image_url : require("../../assets/images/placeholder-image.png")}
-        // source={{
-        //   uri: photo,
-        // }}
-      /> */}
       <View style={styles.latLon}>
         <Text style={styles.unit}>Lat: <Text style={styles.coordinates}>{lat}</Text></Text>
         <Text style={styles.unit}>Long: <Text style={styles.coordinates}>{lon}</Text></Text>
@@ -124,10 +117,15 @@ export const SiteDetails = ({ route }) => {
       <TouchableOpacity
         style={styles.touchable}
         onPress={() => navigation.navigate("Comment Form", { name, id })}
+        activeOpacity={0.7}
       >
         <Text style={styles.button}>Write a Comment/Review</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.touchable} onPress={getDirections}>
+      <TouchableOpacity 
+        style={styles.touchable} 
+        onPress={getDirections}
+        activeOpacity={0.7}
+      >
         <Text style={styles.button}>Get Directions</Text>
       </TouchableOpacity>
       <View style={styles.commentContainer}>
