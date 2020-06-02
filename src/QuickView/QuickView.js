@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { COLORS } from "../../assets/constants/constants";
+import { COLORS, icons } from "../../assets/constants/constants";
 import {
   StyleSheet,
   Text,
@@ -11,13 +11,20 @@ import {
 import { useNavigation } from "@react-navigation/native";
 
 export const QuickView = ({ campsite }) => {
-  const { name, city, state, description, average_rating } = campsite;
+  const {
+    name,
+    city,
+    state,
+    description,
+    average_rating,
+    amenities,
+  } = campsite;
   let averageRating = average_rating;
   if (averageRating === "no comments") {
     averageRating = 0;
   }
   const navigation = useNavigation();
-  
+
   const createStarDisplay = (averageRating) => {
     const numStars = Math.ceil(averageRating);
     const filledStars = Array(numStars).fill(
@@ -30,6 +37,8 @@ export const QuickView = ({ campsite }) => {
   };
 
   const stars = createStarDisplay(averageRating);
+
+  const amenityIcons = amenities.map((type) => icons[type]);
 
   const navigateToDetails = () => {
     navigation.navigate("Details", { ...campsite });
@@ -51,10 +60,25 @@ export const QuickView = ({ campsite }) => {
         <FlatList
           numColumns={5}
           data={stars}
-          renderItem={({ item, index }) => <Image source={item} key={index} style={styles.star} />}
+          renderItem={({ item, index }) => (
+            <Image source={item} key={index} style={styles.star} />
+          )}
           keyExtractor={(item, index) => index.toString()}
         />
       </View>
+      {amenities.length && (
+        <View style={styles.starsContainer}>
+          <FlatList
+            numColumns={7}
+            data={amenityIcons}
+            renderItem={({ item, index }) => (
+              <Image source={item} key={index} style={styles.star} />
+            )}
+            keyExtractor={(item, index) => index.toString()}
+            listKey={(item, index) => index.toString()}
+          />
+        </View>
+      )}
       {!averageRating && <Text>No ratings yet</Text>}
       <Text style={styles.description}>{descriptionSnippet}</Text>
       <Text style={styles.moreDetails}>Cick for more details ></Text>
@@ -99,7 +123,7 @@ const styles = StyleSheet.create({
   moreDetails: {
     textAlign: "center",
     color: COLORS.purple,
-    fontFamily: 'MavenPro-Medium',
+    fontFamily: "MavenPro-Medium",
     letterSpacing: 1,
   },
   starsContainer: {
