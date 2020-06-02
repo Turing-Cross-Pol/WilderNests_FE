@@ -44,7 +44,11 @@ export const QuickView = ({ campsite }) => {
   );
 
   return (
-    <TouchableOpacity onPress={navigateToDetails} style={styles.container}>
+    <TouchableOpacity 
+      onPress={navigateToDetails} 
+      style={styles.container}
+      activeOpacity={0.7}
+    >
       <Text style={styles.name}>{name}</Text>
       {cityState && location}
       <View style={styles.starsContainer}>
@@ -85,27 +89,30 @@ const styles = StyleSheet.create({
   },
   name: {
     fontFamily: "MavenPro-Medium",
-    fontSize: 25,
-    color: COLORS.green,
+    fontSize: 26,
+    color: '#000',
     marginBottom: 5,
   },
   location: {
-    fontSize: 16,
+    fontSize: 18,
+    fontFamily: "MavenPro-Medium",
+    color: COLORS.green,
   },
   description: {
-    fontSize: 16,
-    marginBottom: 20,
+    fontSize: 18,
+    marginBottom: 30,
   },
   moreDetails: {
     textAlign: "center",
     color: COLORS.purple,
     fontFamily: 'MavenPro-Medium',
     letterSpacing: 1,
+    fontSize: 20,
   },
   starsContainer: {
     display: "flex",
     flexDirection: "column",
-    marginBottom: 20,
+    marginBottom: 30,
     marginTop: 10,
   },
   star: {

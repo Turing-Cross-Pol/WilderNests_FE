@@ -29,7 +29,18 @@ export const SiteDetails = ({ route }) => {
     average_rating,
     id,
   } = route.params;
-  const photo = image_url ? image_url : "https://place-hold.it/300x500";
+  
+  const displayPhoto = image_url 
+    ? (<Image
+        style={styles.image}
+        source={{
+          uri: image_url,
+        }}
+      />)
+    : (<Image
+        style={styles.image}
+        source={require("../../assets/images/placeholder-image.png")}
+      />);
 
   const [comments, setComments] = useState([]);
   let averageRating = average_rating;  
@@ -93,12 +104,7 @@ export const SiteDetails = ({ route }) => {
         />
         {!averageRating ? <Text style={styles.averageRatingText}>No ratings yet</Text> : <Text style={styles.averageRatingText}>Average Rating: {averageRating.toFixed(1)} out of {comments.length} reviews</Text>}
       </View>
-      <Image
-        style={styles.image}
-        source={{
-          uri: photo,
-        }}
-      />
+      {displayPhoto}
       <View style={styles.latLon}>
         <Text style={styles.unit}>Lat: <Text style={styles.coordinates}>{lat}</Text></Text>
         <Text style={styles.unit}>Long: <Text style={styles.coordinates}>{lon}</Text></Text>
@@ -111,10 +117,15 @@ export const SiteDetails = ({ route }) => {
       <TouchableOpacity
         style={styles.touchable}
         onPress={() => navigation.navigate("Comment Form", { name, id })}
+        activeOpacity={0.7}
       >
         <Text style={styles.button}>Write a Comment/Review</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.touchable} onPress={getDirections}>
+      <TouchableOpacity 
+        style={styles.touchable} 
+        onPress={getDirections}
+        activeOpacity={0.7}
+      >
         <Text style={styles.button}>Get Directions</Text>
       </TouchableOpacity>
       <View style={styles.commentContainer}>
@@ -136,10 +147,10 @@ export const SiteDetails = ({ route }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 10,
+    padding: 15,
   },
   campsiteTitle: {
-    fontSize: 25,
+    fontSize: 30,
     fontFamily: 'MavenPro-Medium',
   },
   location: {
@@ -158,7 +169,7 @@ const styles = StyleSheet.create({
   },
   image: {
     alignSelf: "center",
-    width: 400,
+    width: 385,
     height: 200,
     marginBottom: 20,
   },
@@ -174,18 +185,20 @@ const styles = StyleSheet.create({
     letterSpacing: .5,
   },
   header: {
-    fontSize: 22,
+    fontSize: 24,
+    letterSpacing: 1,
     marginBottom: 10,
     marginTop: 10,
+    fontWeight: '500'
   },
   text: {
     marginBottom: 10,
-    fontSize: 16,
+    fontSize: 18,
   },
   star: {
     height: 20,
     width: 20,
-    marginRight: 3,
+    marginRight: 8,
   },
   touchable: {
     borderRadius: 4,
