@@ -24,40 +24,79 @@ describe("Filter Test", () => {
         <Stack.Navigator>
           <Stack.Screen
             name="Filter"
-            component={() => <Filter setSelected={jest.fn()} options={options}/>}
+            component={() => (
+              <Filter setSelected={jest.fn()} options={options} />
+            )}
           />
         </Stack.Navigator>
       </NavigationContainer>
     );
 
-    const filterButton = await waitFor(() =>
-      getByText("Filter (expand)")
-    );
+    const filterButton = await waitFor(() => getByText("Filter (expand)"));
 
     expect(filterButton).toBeTruthy();
   });
   test("Expands when clicked", async () => {
+    const { getByText } = render(
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen
+            name="Filter"
+            component={() => (
+              <Filter setSelected={jest.fn()} options={options} />
+            )}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    );
+
+    const filterButton = await waitFor(() => getByText("Filter (expand)"));
+    fireEvent.press(filterButton);
+    const idahoSprings = await waitFor(() => getByText("Idaho Springs, CO"));
+    const expanded = await waitFor(() => getByText("Filter (hide)"));
+    expect(idahoSprings).toBeTruthy();
+    expect(expanded).toBeTruthy();
+  });
+
+  test("Expands with unchecked boxes", async () => {
     const { getByText, getByTestId } = render(
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen
             name="Filter"
-            component={() => <Filter setSelected={jest.fn()} options={options}/>}
+            component={() => (
+              <Filter setSelected={jest.fn()} options={options} />
+            )}
           />
         </Stack.Navigator>
       </NavigationContainer>
     );
 
-    const filterButton = await waitFor(() =>
-      getByText("Filter (expand)")
-    );
+    const filterButton = await waitFor(() => getByText("Filter (expand)"));
     fireEvent.press(filterButton);
-    const idahoSprings = await waitFor(() =>
-      getByText("Idaho Springs, CO")
+    const unchecked = await waitFor(() => getByTestId("unchecked-0"));
+    expect(unchecked).toBeTruthy();
+  });
+
+  test("Can have boxes checked when expanded", async () => {
+    const { getByText, getByTestId } = render(
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen
+            name="Filter"
+            component={() => (
+              <Filter setSelected={jest.fn()} options={options} />
+            )}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
     );
-    const expanded = await waitFor(() =>
-      getByText("Filter (hide)")
-    );
-    expect(expanded).toBeTruthy();
+
+    const filterButton = await waitFor(() => getByText("Filter (expand)"));
+    fireEvent.press(filterButton);
+    const unchecked = await waitFor(() => getByTestId("unchecked-0"));
+    fireEvent.press(unchecked);
+    const checked = await waitFor(() => getByTestId("checked-0"));
+    expect(checked).toBeTruthy();
   });
 });

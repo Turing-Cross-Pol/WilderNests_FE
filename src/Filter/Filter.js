@@ -58,12 +58,13 @@ export const Filter = ({ setSelected, options }) => {
           </TouchableOpacity>
           <FlatList
             data={options}
-            renderItem={({ item }) => (
+            renderItem={({ item, index }) => (
               <TouchableOpacity
                 style={styles.checkContainer}
                 onPress={() => handleFilter(item)}
               >
                 <Image
+                  testID={checked.includes(item) ? `checked-${index}` : `unchecked-${index}`}
                   style={styles.icon}
                   source={checked.includes(item) ? fullCheck : emptyCheck}
                 />
