@@ -48,7 +48,7 @@ export const MapList = ({ data }) => {
   });
 
   return (
-    <View style={styles.container}>
+    <View testID="map-container" style={styles.container}>
       <MapView
         onMarkerDeselect={() => setSelectedCampsite(null)}
         style={styles.mapStyle}
