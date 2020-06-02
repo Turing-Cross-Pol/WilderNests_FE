@@ -12,12 +12,14 @@ export const ListCard = ({ info }) => {
   
   const displayPhoto = image_url 
     ? (<Image
+        testID='data-img'
         style={styles.image}
         source={{
           uri: image_url,
         }}
       />)
     : (<Image
+        testID='data-img'
         style={styles.image}
         source={require("../../assets/images/placeholder-image.png")}
       />);
