@@ -64,15 +64,3 @@ export const data = {
     },
   ],
 };
-
-// City.String
-// State.String
-// Name.string
-// Long.Float
-// Lat.Float
-// Description.string
-// Driving Tips.string
-// Image.string(url for now. upload an image as a stretch goal)
-// Timestamps
-// has_many comments
-// has_many amenities

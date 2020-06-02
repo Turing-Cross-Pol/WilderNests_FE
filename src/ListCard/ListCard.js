@@ -55,6 +55,7 @@ export const ListCard = ({ info }) => {
 
   return (
     <TouchableOpacity 
+      testID="list-card"
       onPress={handleCardPress} 
       style={styles.listItem}
       activeOpacity={0.7}
