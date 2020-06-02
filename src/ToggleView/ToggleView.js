@@ -54,23 +54,27 @@ const styles = StyleSheet.create({
   toggleBox: {
     flexDirection: "row",
     borderBottomWidth: 1,
-    borderBottomColor: '#000',
+    borderBottomColor: '#333',
   },
   selected: {
     backgroundColor: COLORS.purple,
     flex: 1,
-    padding: 8,
+    padding: 10,
   },
   selectedText: {
     color: "#FFF",
     textAlign: "center",
+    fontSize: 18,
+    fontFamily: 'MavenPro-Medium',
   },
   unselectedText: {
     textAlign: "center",
+    fontSize: 18,
+    fontFamily: 'MavenPro-Medium',
   },
   unselected: {
     flex: 1,
-    padding: 8,
+    padding: 10,
     backgroundColor: "#f1f1f1",
   },
 });
