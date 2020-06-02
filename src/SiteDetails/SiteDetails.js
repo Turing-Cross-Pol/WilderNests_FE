@@ -11,7 +11,7 @@ import {
 } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/native";
-
+import { loadComments } from '../apiCalls';
 // import AppLink from 'react-native-app-link';
 
 import { COLORS, icons } from "../../assets/constants/constants";
@@ -55,17 +55,8 @@ export const SiteDetails = ({ route }) => {
   }
 
   useEffect(() => {
-    loadComments();
+    loadComments(id, setComments);
   }, []);
-
-  const loadComments = async () => {
-    const response = await fetch(
-      `https://dpcamping-be-stage.herokuapp.com/campsites/${id}/comments`
-    );
-    const newComments = await response.json();
-
-    setComments(newComments[0]);
-  };
 
   const getDirections = () => {
     // Will default to users current locaiton. Does not work in Expo Simulator (defaults to california.)

@@ -50,3 +50,27 @@
       console.error(error.message);
     }
   };
+
+  export const loadData = async (func) => {
+    try {
+      const response = await fetch(
+        "https://dpcamping-be-stage.herokuapp.com/campsites/"
+      );
+      const data = await response.json();
+      func(data);
+    } catch (error) {
+      console.error(error.message);
+      
+    }
+  };
+
+  export const loadComments = async (id, func) => {
+    const response = await fetch(
+      `https://dpcamping-be-stage.herokuapp.com/campsites/${id}/comments`
+    );
+    const newComments = await response.json();
+    console.log(newComments)
+
+
+    func(newComments[0]);
+  };
