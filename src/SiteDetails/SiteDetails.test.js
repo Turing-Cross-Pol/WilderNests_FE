@@ -19,7 +19,7 @@ describe("SiteDetails", () => {
     const route = { params: data.data[0] };
     const detailsComponent = () => <SiteDetails route={route} />;
 
-    const { getByText } = render(
+    const { getByText, getAllByTestId } = render(
       <NavigationContainer>
         <Stack.Navigator initialRouteName="Details">
           <Stack.Screen name="Details" component={detailsComponent} />
@@ -42,6 +42,7 @@ describe("SiteDetails", () => {
     expect(lat).toBeTruthy();
     expect(lon).toBeTruthy();
     expect(description).toBeTruthy();
+    expect(getAllByTestId('activity-icon')).toHaveLength(2)
   });
 
   test("Can navigate to the comment form by clicking on a star", async () => {

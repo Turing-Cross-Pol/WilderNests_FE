@@ -14,7 +14,7 @@ describe("QuickView", () => {
 
   test("Renders what we expect", async () => {
     const quickViewComponent = () => <QuickView campsite={data.data[0]} />;
-    const { getByText } = render(
+    const { getByText, getAllByTestId } = render(
       <NavigationContainer>
         <Stack.Navigator initialRouteName="Quick View">
           <Stack.Screen name="Quick View" component={quickViewComponent} />
@@ -34,9 +34,11 @@ describe("QuickView", () => {
     const moreDetails = await waitFor(() =>
       getByText("Cick for more details >")
     );
+    const activityIcons = await waitFor(() => getAllByTestId("activity-icon"));
     expect(siteTitle).toBeTruthy();
     expect(location).toBeTruthy();
     expect(description).toBeTruthy();
     expect(moreDetails).toBeTruthy();
+    expect(activityIcons).toHaveLength(2);
   });
 });
