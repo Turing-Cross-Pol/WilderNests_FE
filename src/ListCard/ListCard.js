@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   FlatList,
 } from "react-native";
-import { COLORS } from "../../assets/constants/constants";
+import { COLORS, icons } from "../../assets/constants/constants";
 import { useNavigation } from "@react-navigation/native";
 
 export const ListCard = ({ info }) => {
@@ -29,16 +29,6 @@ export const ListCard = ({ info }) => {
       require("../../assets/images/empty-star.png")
     );
     return filledStars.concat(emptyStars);
-  };
-
-  const icons = {
-    boat: require("../../assets/images/boat-icon.png"),
-    atv: require("../../assets/images/atv-icon.png"),
-    bike: require("../../assets/images/bike-icon.png"),
-    fire: require("../../assets/images/fire-icon.png"),
-    fish: require("../../assets/images/fish-icon.png"),
-    hike: require("../../assets/images/hike-icon.png"),
-    horse: require("../../assets/images/horse-icon.png"),
   };
 
   const amenityIcons = amenities.map((type) => icons[type]);
