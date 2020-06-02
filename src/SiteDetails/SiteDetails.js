@@ -10,8 +10,8 @@ import {
 } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/native";
-import { COLORS } from "../../assets/constants/constants";
-import { CommentCard } from '../CommentCard/CommentCard';
+import { COLORS, icons } from "../../assets/constants/constants";
+import { CommentCard } from "../CommentCard/CommentCard";
 
 export const SiteDetails = ({ route }) => {
   const navigation = useNavigation();
@@ -28,12 +28,13 @@ export const SiteDetails = ({ route }) => {
     timestamps,
     average_rating,
     id,
+    amenities,
   } = route.params;
   const photo = image_url ? image_url : "https://place-hold.it/300x500";
 
   const [comments, setComments] = useState([]);
-  let averageRating = average_rating;  
-  
+  let averageRating = average_rating;
+
   if (averageRating === "no comments") {
     averageRating = 0;
   }
@@ -43,12 +44,14 @@ export const SiteDetails = ({ route }) => {
   }, []);
 
   const loadComments = async () => {
-    const response = await fetch(`https://dpcamping-be-stage.herokuapp.com/campsites/${id}/comments`);
+    const response = await fetch(
+      `https://dpcamping-be-stage.herokuapp.com/campsites/${id}/comments`
+    );
     const newComments = await response.json();
-  
-    setComments(newComments[0])
-  }
-  
+
+    setComments(newComments[0]);
+  };
+
   const getDirections = () => {
     console.log("directions");
   };
@@ -63,6 +66,8 @@ export const SiteDetails = ({ route }) => {
     );
     return filledStars.concat(emptyStars);
   };
+
+  const amenityIcons = amenities.map((type) => icons[type]);
 
   const stars = createStarDisplay(averageRating);
 
@@ -91,8 +96,28 @@ export const SiteDetails = ({ route }) => {
           )}
           keyExtractor={(item, index) => index.toString()}
         />
-        {!averageRating ? <Text style={styles.averageRatingText}>No ratings yet</Text> : <Text style={styles.averageRatingText}>Average Rating: {averageRating.toFixed(1)} out of {comments.length} reviews</Text>}
+        {!averageRating ? (
+          <Text style={styles.averageRatingText}>No ratings yet</Text>
+        ) : (
+          <Text style={styles.averageRatingText}>
+            Average Rating: {averageRating.toFixed(1)} out of {comments.length}{" "}
+            reviews
+          </Text>
+        )}
       </View>
+      {amenities.length && (
+        <View style={styles.starsContainer}>
+          <FlatList
+            numColumns={7}
+            data={amenityIcons}
+            renderItem={({ item, index }) => (
+              <Image source={item} key={index} style={styles.star} />
+            )}
+            keyExtractor={(item, index) => index.toString()}
+            listKey={(item, index) => index.toString()}
+          />
+        </View>
+      )}
       <Image
         style={styles.image}
         source={{
@@ -100,8 +125,12 @@ export const SiteDetails = ({ route }) => {
         }}
       />
       <View style={styles.latLon}>
-        <Text style={styles.unit}>Lat: <Text style={styles.coordinates}>{lat}</Text></Text>
-        <Text style={styles.unit}>Long: <Text style={styles.coordinates}>{lon}</Text></Text>
+        <Text style={styles.unit}>
+          Lat: <Text style={styles.coordinates}>{lat}</Text>
+        </Text>
+        <Text style={styles.unit}>
+          Long: <Text style={styles.coordinates}>{lon}</Text>
+        </Text>
       </View>
       <Text style={styles.header}>Description:</Text>
       <Text style={styles.text}>{description}</Text>
@@ -119,15 +148,24 @@ export const SiteDetails = ({ route }) => {
       </TouchableOpacity>
       <View style={styles.commentContainer}>
         <Text style={styles.header}>Reviews</Text>
-        {comments.length 
-          ? (<FlatList 
-              data={comments}
-              renderItem={({ item }) => <CommentCard info={item} stars={stars} key={item.id} />}
-              listKey={(item) => item.id.toString()}
-              keyExtractor={(item) => item.id.toString()}
-            />)
-          : (<TouchableOpacity onPress={() => navigation.navigate("Comment Form", { name, id })}><Text style={styles.noReviews}>No reviews yet. Click to leave a review.</Text></TouchableOpacity>)
-        }
+        {comments.length ? (
+          <FlatList
+            data={comments}
+            renderItem={({ item }) => (
+              <CommentCard info={item} stars={stars} key={item.id} />
+            )}
+            listKey={(item) => item.id.toString()}
+            keyExtractor={(item) => item.id.toString()}
+          />
+        ) : (
+          <TouchableOpacity
+            onPress={() => navigation.navigate("Comment Form", { name, id })}
+          >
+            <Text style={styles.noReviews}>
+              No reviews yet. Click to leave a review.
+            </Text>
+          </TouchableOpacity>
+        )}
       </View>
     </ScrollView>
   );
@@ -140,12 +178,12 @@ const styles = StyleSheet.create({
   },
   campsiteTitle: {
     fontSize: 25,
-    fontFamily: 'MavenPro-Medium',
+    fontFamily: "MavenPro-Medium",
   },
   location: {
     paddingBottom: 10,
     fontSize: 18,
-    fontFamily: 'MavenPro-Medium',
+    fontFamily: "MavenPro-Medium",
     color: COLORS.purple,
   },
   starsContainer: {
@@ -164,14 +202,14 @@ const styles = StyleSheet.create({
   },
   latLon: {
     marginBottom: 20,
-  },  
+  },
   unit: {
-    fontSize:18,
+    fontSize: 18,
   },
   coordinates: {
     color: COLORS.purple,
-    fontFamily: 'MavenPro-Medium',
-    letterSpacing: .5,
+    fontFamily: "MavenPro-Medium",
+    letterSpacing: 0.5,
   },
   header: {
     fontSize: 22,
@@ -208,6 +246,6 @@ const styles = StyleSheet.create({
   noReviews: {
     color: COLORS.purple,
     fontSize: 16,
-    fontFamily: 'MavenPro-Medium',
-  }
+    fontFamily: "MavenPro-Medium",
+  },
 });
