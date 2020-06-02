@@ -1,0 +1,473 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1591137890981" clover="3.2.0">
+  <project timestamp="1591137890981" name="All files">
+    <metrics statements="320" coveredstatements="251" conditionals="106" coveredconditionals="81" methods="112" coveredmethods="70" elements="538" coveredelements="402" complexity="0" loc="320" ncloc="320" packages="16" files="33" classes="33"/>
+    <package name="Wildernests_FE">
+      <metrics statements="11" coveredstatements="11" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="2"/>
+      <file name="App.js" path="/Users/lilianamanrique/turing/4module/Wildernests_FE/App.js">
+        <metrics statements="10" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="2"/>
+        <line num="13" count="1" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
+        <line num="17" count="1" type="stmt"/>
+        <line num="18" count="1" type="stmt"/>
+        <line num="20" count="1" type="stmt"/>
+        <line num="21" count="1" type="stmt"/>
+        <line num="24" count="1" type="stmt"/>
+        <line num="38" count="1" type="stmt"/>
+        <line num="40" count="1" type="stmt"/>
+        <line num="42" count="1" type="stmt"/>
+      </file>
+      <file name="sample-data.js" path="/Users/lilianamanrique/turing/4module/Wildernests_FE/sample-data.js">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="8" type="stmt"/>
+      </file>
+    </package>
+    <package name="Wildernests_FE.assets.constants">
+      <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="constants.js" path="/Users/lilianamanrique/turing/4module/Wildernests_FE/assets/constants/constants.js">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="12" type="stmt"/>
+        <line num="9" count="12" type="stmt"/>
+      </file>
+    </package>
+    <package name="Wildernests_FE.assets.fonts">
+      <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="MavenPro-Medium.ttf" path="/Users/lilianamanrique/turing/4module/Wildernests_FE/assets/fonts/MavenPro-Medium.ttf">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="2" type="stmt"/>
+      </file>
+      <file name="MavenPro-Regular.ttf" path="/Users/lilianamanrique/turing/4module/Wildernests_FE/assets/fonts/MavenPro-Regular.ttf">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="2" type="stmt"/>
+      </file>
+      <file name="PatuaOne-Regular.ttf" path="/Users/lilianamanrique/turing/4module/Wildernests_FE/assets/fonts/PatuaOne-Regular.ttf">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="2" type="stmt"/>
+      </file>
+    </package>
+    <package name="Wildernests_FE.assets.images">
+      <metrics statements="15" coveredstatements="15" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="atv-icon.png" path="/Users/lilianamanrique/turing/4module/Wildernests_FE/assets/images/atv-icon.png">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="12" type="stmt"/>
+      </file>
+      <file name="bike-icon.png" path="/Users/lilianamanrique/turing/4module/Wildernests_FE/assets/images/bike-icon.png">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="12" type="stmt"/>
+      </file>
+      <file name="boat-icon.png" path="/Users/lilianamanrique/turing/4module/Wildernests_FE/assets/images/boat-icon.png">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="12" type="stmt"/>
+      </file>
+      <file name="checkbox.png" path="/Users/lilianamanrique/turing/4module/Wildernests_FE/assets/images/checkbox.png">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="5" type="stmt"/>
+      </file>
+      <file name="done.png" path="/Users/lilianamanrique/turing/4module/Wildernests_FE/assets/images/done.png">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="5" type="stmt"/>
+      </file>
+      <file name="empty-star.png" path="/Users/lilianamanrique/turing/4module/Wildernests_FE/assets/images/empty-star.png">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="7" type="stmt"/>
+      </file>
+      <file name="filled-star.png" path="/Users/lilianamanrique/turing/4module/Wildernests_FE/assets/images/filled-star.png">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="7" type="stmt"/>
+      </file>
+      <file name="fire-icon.png" path="/Users/lilianamanrique/turing/4module/Wildernests_FE/assets/images/fire-icon.png">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="12" type="stmt"/>
+      </file>
+      <file name="fish-icon.png" path="/Users/lilianamanrique/turing/4module/Wildernests_FE/assets/images/fish-icon.png">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="12" type="stmt"/>
+      </file>
+      <file name="hike-icon.png" path="/Users/lilianamanrique/turing/4module/Wildernests_FE/assets/images/hike-icon.png">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="12" type="stmt"/>
+      </file>
+      <file name="horse-icon.png" path="/Users/lilianamanrique/turing/4module/Wildernests_FE/assets/images/horse-icon.png">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="12" type="stmt"/>
+      </file>
+      <file name="landing-bg.png" path="/Users/lilianamanrique/turing/4module/Wildernests_FE/assets/images/landing-bg.png">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="2" type="stmt"/>
+      </file>
+      <file name="placeholder-image.png" path="/Users/lilianamanrique/turing/4module/Wildernests_FE/assets/images/placeholder-image.png">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="4" type="stmt"/>
+      </file>
+      <file name="tent-icon.png" path="/Users/lilianamanrique/turing/4module/Wildernests_FE/assets/images/tent-icon.png">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="2" type="stmt"/>
+      </file>
+      <file name="tent-location-icon.png" path="/Users/lilianamanrique/turing/4module/Wildernests_FE/assets/images/tent-location-icon.png">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="2" type="stmt"/>
+      </file>
+    </package>
+    <package name="Wildernests_FE.src">
+      <metrics statements="23" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="2"/>
+      <file name="apiCalls.js" path="/Users/lilianamanrique/turing/4module/Wildernests_FE/src/apiCalls.js">
+        <metrics statements="23" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="2"/>
+        <line num="1" count="4" type="stmt"/>
+        <line num="2" count="0" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="25" count="4" type="stmt"/>
+        <line num="26" count="0" type="stmt"/>
+        <line num="37" count="0" type="stmt"/>
+        <line num="38" count="0" type="stmt"/>
+        <line num="48" count="0" type="stmt"/>
+        <line num="50" count="0" type="stmt"/>
+        <line num="54" count="4" type="stmt"/>
+        <line num="55" count="1" type="stmt"/>
+        <line num="56" count="1" type="stmt"/>
+        <line num="59" count="0" type="stmt"/>
+        <line num="60" count="0" type="stmt"/>
+        <line num="62" count="1" type="stmt"/>
+        <line num="67" count="4" type="stmt"/>
+        <line num="68" count="3" type="stmt"/>
+        <line num="71" count="0" type="stmt"/>
+        <line num="72" count="0" type="stmt"/>
+        <line num="75" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="Wildernests_FE.src.CommentCard">
+      <metrics statements="13" coveredstatements="12" conditionals="2" coveredconditionals="1" methods="5" coveredmethods="4"/>
+      <file name="CommentCard.js" path="/Users/lilianamanrique/turing/4module/Wildernests_FE/src/CommentCard/CommentCard.js">
+        <metrics statements="13" coveredstatements="12" conditionals="2" coveredconditionals="1" methods="5" coveredmethods="4"/>
+        <line num="13" count="3" type="stmt"/>
+        <line num="14" count="1" type="stmt"/>
+        <line num="16" count="1" type="stmt"/>
+        <line num="17" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="18" count="1" type="stmt"/>
+        <line num="21" count="1" type="stmt"/>
+        <line num="24" count="1" type="stmt"/>
+        <line num="27" count="1" type="stmt"/>
+        <line num="29" count="1" type="stmt"/>
+        <line num="37" count="5" type="stmt"/>
+        <line num="39" count="0" type="stmt"/>
+        <line num="40" count="5" type="stmt"/>
+        <line num="48" count="3" type="stmt"/>
+      </file>
+    </package>
+    <package name="Wildernests_FE.src.CommentForm">
+      <metrics statements="31" coveredstatements="26" conditionals="11" coveredconditionals="10" methods="10" coveredmethods="7"/>
+      <file name="CommentForm.js" path="/Users/lilianamanrique/turing/4module/Wildernests_FE/src/CommentForm/CommentForm.js">
+        <metrics statements="31" coveredstatements="26" conditionals="11" coveredconditionals="10" methods="10" coveredmethods="7"/>
+        <line num="14" count="3" type="stmt"/>
+        <line num="15" count="7" type="stmt"/>
+        <line num="16" count="7" type="stmt"/>
+        <line num="17" count="7" type="stmt"/>
+        <line num="18" count="7" type="stmt"/>
+        <line num="19" count="7" type="stmt"/>
+        <line num="21" count="7" type="stmt"/>
+        <line num="22" count="7" type="cond" truecount="1" falsecount="1"/>
+        <line num="23" count="7" type="stmt"/>
+        <line num="26" count="7" type="stmt"/>
+        <line num="29" count="7" type="stmt"/>
+        <line num="32" count="7" type="stmt"/>
+        <line num="33" count="7" type="stmt"/>
+        <line num="35" count="7" type="stmt"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="37" count="0" type="stmt"/>
+        <line num="38" count="0" type="stmt"/>
+        <line num="39" count="0" type="stmt"/>
+        <line num="42" count="7" type="stmt"/>
+        <line num="43" count="1" type="stmt"/>
+        <line num="44" count="1" type="stmt"/>
+        <line num="45" count="1" type="stmt"/>
+        <line num="46" count="1" type="stmt"/>
+        <line num="47" count="1" type="stmt"/>
+        <line num="50" count="7" type="cond" truecount="3" falsecount="0"/>
+        <line num="52" count="7" type="stmt"/>
+        <line num="60" count="35" type="stmt"/>
+        <line num="69" count="35" type="stmt"/>
+        <line num="76" count="1" type="stmt"/>
+        <line num="84" count="0" type="stmt"/>
+        <line num="99" count="3" type="stmt"/>
+      </file>
+    </package>
+    <package name="Wildernests_FE.src.Filter">
+      <metrics statements="26" coveredstatements="20" conditionals="12" coveredconditionals="10" methods="8" coveredmethods="6"/>
+      <file name="Filter.js" path="/Users/lilianamanrique/turing/4module/Wildernests_FE/src/Filter/Filter.js">
+        <metrics statements="26" coveredstatements="20" conditionals="12" coveredconditionals="10" methods="8" coveredmethods="6"/>
+        <line num="12" count="4" type="stmt"/>
+        <line num="13" count="13" type="stmt"/>
+        <line num="14" count="13" type="stmt"/>
+        <line num="16" count="13" type="stmt"/>
+        <line num="17" count="2" type="stmt"/>
+        <line num="18" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="23" count="2" type="stmt"/>
+        <line num="24" count="2" type="stmt"/>
+        <line num="25" count="2" type="stmt"/>
+        <line num="29" count="13" type="stmt"/>
+        <line num="30" count="0" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
+        <line num="34" count="13" type="stmt"/>
+        <line num="35" count="13" type="stmt"/>
+        <line num="37" count="13" type="stmt"/>
+        <line num="38" count="4" type="cond" truecount="1" falsecount="1"/>
+        <line num="39" count="0" type="stmt"/>
+        <line num="41" count="4" type="stmt"/>
+        <line num="45" count="13" type="stmt"/>
+        <line num="62" count="6" type="stmt"/>
+        <line num="64" count="2" type="stmt"/>
+        <line num="74" count="6" type="stmt"/>
+        <line num="82" count="4" type="stmt"/>
+      </file>
+    </package>
+    <package name="Wildernests_FE.src.Landing">
+      <metrics statements="12" coveredstatements="8" conditionals="2" coveredconditionals="2" methods="5" coveredmethods="1"/>
+      <file name="Landing.js" path="/Users/lilianamanrique/turing/4module/Wildernests_FE/src/Landing/Landing.js">
+        <metrics statements="12" coveredstatements="8" conditionals="2" coveredconditionals="2" methods="5" coveredmethods="1"/>
+        <line num="14" count="2" type="stmt"/>
+        <line num="16" count="6" type="stmt"/>
+        <line num="22" count="6" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="26" count="6" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="30" count="6" type="cond" truecount="2" falsecount="0"/>
+        <line num="31" count="3" type="stmt"/>
+        <line num="33" count="3" type="stmt"/>
+        <line num="50" count="0" type="stmt"/>
+        <line num="56" count="0" type="stmt"/>
+        <line num="69" count="2" type="stmt"/>
+      </file>
+    </package>
+    <package name="Wildernests_FE.src.ListCard">
+      <metrics statements="24" coveredstatements="21" conditionals="8" coveredconditionals="7" methods="10" coveredmethods="7"/>
+      <file name="ListCard.js" path="/Users/lilianamanrique/turing/4module/Wildernests_FE/src/ListCard/ListCard.js">
+        <metrics statements="24" coveredstatements="21" conditionals="8" coveredconditionals="7" methods="10" coveredmethods="7"/>
+        <line num="13" count="4" type="stmt"/>
+        <line num="14" count="16" type="stmt"/>
+        <line num="16" count="16" type="stmt"/>
+        <line num="17" count="16" type="cond" truecount="2" falsecount="0"/>
+        <line num="18" count="8" type="stmt"/>
+        <line num="21" count="16" type="cond" truecount="1" falsecount="1"/>
+        <line num="35" count="16" type="stmt"/>
+        <line num="37" count="16" type="stmt"/>
+        <line num="38" count="16" type="stmt"/>
+        <line num="39" count="16" type="stmt"/>
+        <line num="42" count="16" type="stmt"/>
+        <line num="45" count="16" type="stmt"/>
+        <line num="48" count="32" type="stmt"/>
+        <line num="50" count="16" type="stmt"/>
+        <line num="52" count="16" type="stmt"/>
+        <line num="53" count="0" type="stmt"/>
+        <line num="56" count="16" type="stmt"/>
+        <line num="71" count="80" type="stmt"/>
+        <line num="73" count="80" type="stmt"/>
+        <line num="74" count="0" type="stmt"/>
+        <line num="83" count="32" type="stmt"/>
+        <line num="85" count="32" type="stmt"/>
+        <line num="86" count="0" type="stmt"/>
+        <line num="99" count="4" type="stmt"/>
+      </file>
+    </package>
+    <package name="Wildernests_FE.src.ListView">
+      <metrics statements="12" coveredstatements="12" conditionals="4" coveredconditionals="4" methods="6" coveredmethods="6"/>
+      <file name="ListView.js" path="/Users/lilianamanrique/turing/4module/Wildernests_FE/src/ListView/ListView.js">
+        <metrics statements="12" coveredstatements="12" conditionals="4" coveredconditionals="4" methods="6" coveredmethods="6"/>
+        <line num="6" count="3" type="stmt"/>
+        <line num="7" count="4" type="stmt"/>
+        <line num="9" count="16" type="cond" truecount="2" falsecount="0"/>
+        <line num="10" count="12" type="stmt"/>
+        <line num="11" count="4" type="stmt"/>
+        <line num="12" count="4" type="stmt"/>
+        <line num="14" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="15" count="4" type="stmt"/>
+        <line num="18" count="4" type="stmt"/>
+        <line num="23" count="15" type="stmt"/>
+        <line num="24" count="15" type="stmt"/>
+        <line num="30" count="3" type="stmt"/>
+      </file>
+    </package>
+    <package name="Wildernests_FE.src.MapList">
+      <metrics statements="23" coveredstatements="13" conditionals="6" coveredconditionals="1" methods="8" coveredmethods="4"/>
+      <file name="MapList.js" path="/Users/lilianamanrique/turing/4module/Wildernests_FE/src/MapList/MapList.js">
+        <metrics statements="23" coveredstatements="13" conditionals="6" coveredconditionals="1" methods="8" coveredmethods="4"/>
+        <line num="8" count="3" type="stmt"/>
+        <line num="9" count="4" type="stmt"/>
+        <line num="10" count="4" type="stmt"/>
+        <line num="16" count="4" type="stmt"/>
+        <line num="18" count="4" type="stmt"/>
+        <line num="19" count="4" type="stmt"/>
+        <line num="20" count="4" type="stmt"/>
+        <line num="21" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="25" count="0" type="stmt"/>
+        <line num="29" count="4" type="stmt"/>
+        <line num="30" count="0" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
+        <line num="32" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="34" count="0" type="stmt"/>
+        <line num="37" count="4" type="stmt"/>
+        <line num="38" count="16" type="stmt"/>
+        <line num="40" count="16" type="stmt"/>
+        <line num="45" count="0" type="stmt"/>
+        <line num="50" count="4" type="stmt"/>
+        <line num="53" count="0" type="stmt"/>
+        <line num="77" count="3" type="stmt"/>
+      </file>
+    </package>
+    <package name="Wildernests_FE.src.PostForm">
+      <metrics statements="58" coveredstatements="45" conditionals="29" coveredconditionals="20" methods="22" coveredmethods="11"/>
+      <file name="PostForm.js" path="/Users/lilianamanrique/turing/4module/Wildernests_FE/src/PostForm/PostForm.js">
+        <metrics statements="58" coveredstatements="45" conditionals="29" coveredconditionals="20" methods="22" coveredmethods="11"/>
+        <line num="15" count="2" type="stmt"/>
+        <line num="16" count="2" type="stmt"/>
+        <line num="18" count="2" type="stmt"/>
+        <line num="19" count="22" type="stmt"/>
+        <line num="20" count="22" type="stmt"/>
+        <line num="21" count="22" type="stmt"/>
+        <line num="22" count="22" type="stmt"/>
+        <line num="23" count="22" type="stmt"/>
+        <line num="24" count="22" type="stmt"/>
+        <line num="25" count="22" type="stmt"/>
+        <line num="26" count="22" type="stmt"/>
+        <line num="27" count="22" type="stmt"/>
+        <line num="28" count="22" type="stmt"/>
+        <line num="30" count="22" type="stmt"/>
+        <line num="31" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="32" count="0" type="stmt"/>
+        <line num="33" count="0" type="stmt"/>
+        <line num="35" count="0" type="stmt"/>
+        <line num="39" count="22" type="stmt"/>
+        <line num="40" count="14" type="stmt"/>
+        <line num="43" count="22" type="stmt"/>
+        <line num="44" count="3" type="cond" truecount="3" falsecount="0"/>
+        <line num="45" count="3" type="cond" truecount="3" falsecount="0"/>
+        <line num="46" count="3" type="cond" truecount="5" falsecount="0"/>
+        <line num="47" count="1" type="stmt"/>
+        <line num="48" count="1" type="stmt"/>
+        <line num="49" count="1" type="stmt"/>
+        <line num="50" count="1" type="stmt"/>
+        <line num="51" count="1" type="stmt"/>
+        <line num="52" count="1" type="stmt"/>
+        <line num="53" count="1" type="stmt"/>
+        <line num="54" count="1" type="stmt"/>
+        <line num="55" count="1" type="stmt"/>
+        <line num="56" count="1" type="stmt"/>
+        <line num="57" count="1" type="stmt"/>
+        <line num="58" count="1" type="stmt"/>
+        <line num="59" count="1" type="stmt"/>
+        <line num="60" count="0" type="stmt"/>
+        <line num="63" count="2" type="stmt"/>
+        <line num="64" count="2" type="stmt"/>
+        <line num="65" count="0" type="stmt"/>
+        <line num="70" count="22" type="stmt"/>
+        <line num="78" count="3" type="stmt"/>
+        <line num="85" count="1" type="stmt"/>
+        <line num="92" count="1" type="stmt"/>
+        <line num="100" count="3" type="stmt"/>
+        <line num="108" count="3" type="stmt"/>
+        <line num="117" count="1" type="stmt"/>
+        <line num="126" count="1" type="stmt"/>
+        <line num="133" count="1" type="stmt"/>
+        <line num="139" count="0" type="stmt"/>
+        <line num="150" count="0" type="stmt"/>
+        <line num="161" count="0" type="stmt"/>
+        <line num="172" count="0" type="stmt"/>
+        <line num="183" count="0" type="stmt"/>
+        <line num="194" count="0" type="stmt"/>
+        <line num="205" count="0" type="stmt"/>
+        <line num="226" count="2" type="stmt"/>
+      </file>
+    </package>
+    <package name="Wildernests_FE.src.QuickView">
+      <metrics statements="25" coveredstatements="22" conditionals="12" coveredconditionals="10" methods="9" coveredmethods="7"/>
+      <file name="QuickView.js" path="/Users/lilianamanrique/turing/4module/Wildernests_FE/src/QuickView/QuickView.js">
+        <metrics statements="25" coveredstatements="22" conditionals="12" coveredconditionals="10" methods="9" coveredmethods="7"/>
+        <line num="13" count="4" type="stmt"/>
+        <line num="21" count="1" type="stmt"/>
+        <line num="22" count="1" type="stmt"/>
+        <line num="23" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="26" count="1" type="stmt"/>
+        <line num="28" count="1" type="stmt"/>
+        <line num="29" count="1" type="stmt"/>
+        <line num="30" count="1" type="stmt"/>
+        <line num="33" count="1" type="stmt"/>
+        <line num="36" count="1" type="stmt"/>
+        <line num="39" count="1" type="stmt"/>
+        <line num="41" count="2" type="stmt"/>
+        <line num="43" count="1" type="stmt"/>
+        <line num="44" count="0" type="stmt"/>
+        <line num="47" count="1" type="cond" truecount="2" falsecount="0"/>
+        <line num="48" count="1" type="cond" truecount="2" falsecount="0"/>
+        <line num="50" count="1" type="stmt"/>
+        <line num="55" count="1" type="stmt"/>
+        <line num="68" count="5" type="stmt"/>
+        <line num="70" count="5" type="stmt"/>
+        <line num="79" count="2" type="stmt"/>
+        <line num="81" count="2" type="stmt"/>
+        <line num="82" count="0" type="stmt"/>
+        <line num="93" count="4" type="stmt"/>
+      </file>
+    </package>
+    <package name="Wildernests_FE.src.SiteDetails">
+      <metrics statements="36" coveredstatements="28" conditionals="10" coveredconditionals="6" methods="17" coveredmethods="11"/>
+      <file name="SiteDetails.js" path="/Users/lilianamanrique/turing/4module/Wildernests_FE/src/SiteDetails/SiteDetails.js">
+        <metrics statements="36" coveredstatements="28" conditionals="10" coveredconditionals="6" methods="17" coveredmethods="11"/>
+        <line num="20" count="2" type="stmt"/>
+        <line num="21" count="3" type="stmt"/>
+        <line num="36" count="3" type="stmt"/>
+        <line num="38" count="3" type="cond" truecount="1" falsecount="1"/>
+        <line num="50" count="3" type="stmt"/>
+        <line num="51" count="3" type="stmt"/>
+        <line num="53" count="3" type="cond" truecount="1" falsecount="1"/>
+        <line num="54" count="0" type="stmt"/>
+        <line num="57" count="3" type="stmt"/>
+        <line num="58" count="3" type="stmt"/>
+        <line num="61" count="3" type="stmt"/>
+        <line num="66" count="0" type="stmt"/>
+        <line num="67" count="0" type="stmt"/>
+        <line num="70" count="3" type="stmt"/>
+        <line num="71" count="3" type="stmt"/>
+        <line num="72" count="3" type="stmt"/>
+        <line num="75" count="3" type="stmt"/>
+        <line num="78" count="3" type="stmt"/>
+        <line num="81" count="6" type="stmt"/>
+        <line num="83" count="3" type="stmt"/>
+        <line num="85" count="3" type="stmt"/>
+        <line num="86" count="1" type="stmt"/>
+        <line num="87" count="1" type="stmt"/>
+        <line num="90" count="3" type="stmt"/>
+        <line num="101" count="15" type="stmt"/>
+        <line num="103" count="1" type="stmt"/>
+        <line num="108" count="15" type="stmt"/>
+        <line num="125" count="6" type="stmt"/>
+        <line num="127" count="6" type="stmt"/>
+        <line num="128" count="0" type="stmt"/>
+        <line num="148" count="1" type="stmt"/>
+        <line num="166" count="0" type="stmt"/>
+        <line num="168" count="0" type="stmt"/>
+        <line num="169" count="0" type="stmt"/>
+        <line num="173" count="0" type="stmt"/>
+        <line num="185" count="2" type="stmt"/>
+      </file>
+    </package>
+    <package name="Wildernests_FE.src.ToggleView">
+      <metrics statements="6" coveredstatements="5" conditionals="10" coveredconditionals="10" methods="3" coveredmethods="2"/>
+      <file name="ToggleView.js" path="/Users/lilianamanrique/turing/4module/Wildernests_FE/src/ToggleView/ToggleView.js">
+        <metrics statements="6" coveredstatements="5" conditionals="10" coveredconditionals="10" methods="3" coveredmethods="2"/>
+        <line num="7" count="2" type="stmt"/>
+        <line num="8" count="4" type="stmt"/>
+        <line num="9" count="4" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="29" count="1" type="stmt"/>
+        <line num="50" count="2" type="stmt"/>
+      </file>
+    </package>
+  </project>
+</coverage>
