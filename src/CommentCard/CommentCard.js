@@ -34,7 +34,7 @@ export const CommentCard = ({ info }) => {
           numColumns={5}
           data={stars}
           renderItem={({ item, index }) => (
-            <Image source={item} key={item.id} style={styles.star} />
+            <Image testID={`star-${index}`} source={item} key={item.id} style={styles.star} />
           )}
           listKey={(item, index) => index.toString()}
           keyExtractor={(item, index) => index.toString()}
