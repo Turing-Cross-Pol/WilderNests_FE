@@ -89,8 +89,13 @@ export const SiteDetails = ({ route }) => {
 
   const handleRating = (index) => {
     const newRating = index + 1;
-    navigation.navigate("Comment Form", { newRating, name, id });
+    navigation.navigate("Comment Form", { info: route.params, newRating, addComment });
   };
+
+  const addComment = comment => {
+    const newComments = [...comments, comment];
+    setComments(newComments);
+  }
 
   return (
     <ScrollView style={styles.container}>
@@ -116,7 +121,7 @@ export const SiteDetails = ({ route }) => {
           <Text style={styles.averageRatingText}>No ratings yet</Text>
         ) : (
           <Text style={styles.averageRatingText}>
-            Average Rating: {averageRating.toFixed(1)} out of {comments.length}{" "}
+            Average Rating: {averageRating.toFixed(1)} out of {comments.length}
             reviews
           </Text>
         )}
@@ -150,7 +155,7 @@ export const SiteDetails = ({ route }) => {
       <Text style={styles.text}>Date added: {timestamps}</Text>
       <TouchableOpacity
         style={styles.touchable}
-        onPress={() => navigation.navigate("Comment Form", { name, id })}
+        onPress={() => navigation.navigate("Comment Form", { info: route.params, addComment })}
         activeOpacity={0.7}
       >
         <Text style={styles.button}>Write a Comment/Review</Text>
@@ -175,7 +180,7 @@ export const SiteDetails = ({ route }) => {
           />
         ) : (
           <TouchableOpacity
-            onPress={() => navigation.navigate("Comment Form", { name, id })}
+            onPress={() => navigation.navigate("Comment Form", { info: route.params, addComment })}
           >
             <Text style={styles.noReviews}>
               No reviews yet. Click to leave a review.
