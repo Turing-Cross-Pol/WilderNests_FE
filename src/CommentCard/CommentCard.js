@@ -35,7 +35,7 @@ export const CommentCard = ({ info }) => {
           data={stars}
           renderItem={({ item, index }) => (
             <Image
-              testID={`star-${index}`}
+              testID={`comment-star-${index}`}
               source={item}
               key={item.id}
               style={styles.star}

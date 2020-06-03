@@ -7,11 +7,11 @@ import {
   SafeAreaView,
   View,
   FlatList,
-  Linking
+  Linking,
 } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/native";
-import { loadComments } from '../apiCalls';
+import { loadComments } from "../apiCalls";
 // import AppLink from 'react-native-app-link';
 
 import { COLORS, icons } from "../../assets/constants/constants";
@@ -34,30 +34,33 @@ export const SiteDetails = ({ route }) => {
     id,
     amenities,
   } = route.params;
-  
-  const displayPhoto = image_url 
-    ? (<Image
-        style={styles.image}
-        source={{
-          uri: image_url,
-        }}
-      />)
-    : (<Image
-        style={styles.image}
-        source={require("../../assets/images/placeholder-image.png")}
-      />);
+
+  const [averageRating, setAverageRating] = useState(average_rating);
+
+  const displayPhoto = image_url ? (
+    <Image
+      style={styles.image}
+      source={{
+        uri: image_url,
+      }}
+    />
+  ) : (
+    <Image
+      style={styles.image}
+      source={require("../../assets/images/placeholder-image.png")}
+    />
+  );
 
   const [comments, setComments] = useState([]);
-  let averageRating = average_rating;
-
-  if (averageRating === "no comments") {
-    averageRating = 0;
-  }
 
   useEffect(() => {
-    const newComments = loadComments(id);
-    setComments(newComments);
+    setFetchedComments();
   }, []);
+
+  const setFetchedComments = async () => {
+    const loadedComments = await loadComments(id);
+    setComments(loadedComments);
+  };
 
   const getDirections = () => {
     // Will default to users current locaiton. Does not work in Expo Simulator (defaults to california.)
@@ -69,6 +72,9 @@ export const SiteDetails = ({ route }) => {
   };
 
   const createStarDisplay = (rating) => {
+    if (rating === "no comments") {
+      rating = 0;
+    }
     const numStars = Math.ceil(rating);
     const filledStars = Array(numStars).fill(
       require("../../assets/images/filled-star.png")
@@ -79,13 +85,31 @@ export const SiteDetails = ({ route }) => {
     return filledStars.concat(emptyStars);
   };
 
+  const addComment = (comment) => {
+    const newComments = [...comments, comment];
+    setComments(newComments);
+    if (averageRating === "no comments") {
+      setAverageRating(comment.rating);
+    } else {
+      const newAverage =
+        (averageRating * newComments.length - 1 + comment.rating) /
+        newComments.length;
+      setAverageRating(newAverage);
+    }
+    console.log(averageRating);
+  };
+
   const amenityIcons = amenities.map((type) => icons[type]);
 
   const stars = createStarDisplay(averageRating);
 
   const handleRating = (index) => {
     const newRating = index + 1;
-    navigation.navigate("Comment Form", { newRating, name, id });
+    navigation.navigate("Comment Form", {
+      info: route.params,
+      newRating,
+      addComment,
+    });
   };
 
   return (
@@ -108,7 +132,7 @@ export const SiteDetails = ({ route }) => {
           )}
           keyExtractor={(item, index) => index.toString()}
         />
-        {!averageRating ? (
+        {averageRating === "no comments" ? (
           <Text style={styles.averageRatingText}>No ratings yet</Text>
         ) : (
           <Text style={styles.averageRatingText}>
@@ -117,20 +141,25 @@ export const SiteDetails = ({ route }) => {
           </Text>
         )}
       </View>
-      {amenities.length && (
-        <View style={styles.starsContainer}>
+      {displayPhoto}
+      {!!amenities.length && (
+        <View style={styles.iconContainer}>
           <FlatList
             numColumns={7}
             data={amenityIcons}
             renderItem={({ item, index }) => (
-              <Image testID="activity-icon" source={item} key={index} style={styles.star} />
+              <Image
+                testID="activity-icon"
+                source={item}
+                key={index}
+                style={styles.icon}
+              />
             )}
             keyExtractor={(item, index) => index.toString()}
             listKey={(item, index) => index.toString()}
           />
         </View>
       )}
-      {displayPhoto}
       <View style={styles.latLon}>
         <Text style={styles.unit}>
           Lat: <Text style={styles.coordinates}>{lat}</Text>
@@ -146,13 +175,18 @@ export const SiteDetails = ({ route }) => {
       <Text style={styles.text}>Date added: {timestamps}</Text>
       <TouchableOpacity
         style={styles.touchable}
-        onPress={() => navigation.navigate("Comment Form", { name, id })}
+        onPress={() =>
+          navigation.navigate("Comment Form", {
+            info: route.params,
+            addComment,
+          })
+        }
         activeOpacity={0.7}
       >
         <Text style={styles.button}>Write a Comment/Review</Text>
       </TouchableOpacity>
-      <TouchableOpacity 
-        style={styles.touchable} 
+      <TouchableOpacity
+        style={styles.touchable}
         onPress={getDirections}
         activeOpacity={0.7}
       >
@@ -160,18 +194,21 @@ export const SiteDetails = ({ route }) => {
       </TouchableOpacity>
       <View style={styles.commentContainer}>
         <Text style={styles.header}>Reviews</Text>
-        {comments.length ? (
+        {!!comments.length ? (
           <FlatList
             data={comments}
-            renderItem={({ item }) => (
-              <CommentCard info={item} key={item.id} />
-            )}
+            renderItem={({ item }) => <CommentCard info={item} key={item.id} />}
             listKey={(item) => item.id.toString()}
             keyExtractor={(item) => item.id.toString()}
           />
         ) : (
           <TouchableOpacity
-            onPress={() => navigation.navigate("Comment Form", { name, id })}
+            onPress={() =>
+              navigation.navigate("Comment Form", {
+                info: route.params,
+                addComment,
+              })
+            }
           >
             <Text style={styles.noReviews}>
               No reviews yet. Click to leave a review.
@@ -190,7 +227,7 @@ const styles = StyleSheet.create({
   },
   campsiteTitle: {
     fontSize: 30,
-    fontFamily: 'MavenPro-Medium',
+    fontFamily: "MavenPro-Medium",
   },
   location: {
     paddingBottom: 10,
@@ -202,6 +239,16 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "column",
     marginBottom: 20,
+  },
+  iconContainer: {
+    display: "flex",
+    flexDirection: "column",
+    marginBottom: 20,
+  },
+  icon: {
+    width: 26,
+    height: 26,
+    marginRight: 10,
   },
   averageRatingText: {
     paddingTop: 5,
@@ -228,7 +275,7 @@ const styles = StyleSheet.create({
     letterSpacing: 1,
     marginBottom: 10,
     marginTop: 10,
-    fontWeight: '500'
+    fontWeight: "500",
   },
   text: {
     marginBottom: 10,
