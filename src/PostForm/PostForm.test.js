@@ -133,7 +133,7 @@ describe("PostForm", () => {
 
   test("User can't submit the form if the lat, long, and title aren't present", async () => {
     const postFormComponent = () => <PostForm loadData={jest.fn()} />;
-    const { getByText, getByTestId, getByPlaceholder } = render(
+    const { getByText } = render(
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen name="Post" component={postFormComponent} />
@@ -154,7 +154,7 @@ describe("PostForm", () => {
 
   test("User can't submit the form if the lat or long are invalid", async () => {
     const postFormComponent = () => <PostForm loadData={jest.fn()} />;
-    const { getByText, getByTestId, getByPlaceholder } = render(
+    const { getByText, getByPlaceholder } = render(
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen name="Post" component={postFormComponent} />
@@ -183,7 +183,7 @@ describe("PostForm", () => {
 
   test("User can submit the form if at least title, lat, and long are valid", async () => {
     const postFormComponent = () => <PostForm loadData={jest.fn()} />;
-    const { getByText, getByTestId, getByPlaceholder } = render(
+    const { getByText, getByPlaceholder } = render(
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen name="Post" component={postFormComponent} />
@@ -212,7 +212,7 @@ describe("PostForm", () => {
 
   test("Inputs should clear after form is successfully submitted", async () => {
     const postFormComponent = () => <PostForm loadData={jest.fn()} />;
-    const { getByText, getByTestId, getByPlaceholder } = render(
+    const { getByText, getByPlaceholder } = render(
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen name="Post" component={postFormComponent} />

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useFonts } from '@use-expo/font';
 import { AppLoading } from 'expo';
 import { COLORS } from '../../assets/constants/constants';

@@ -8,7 +8,6 @@ import {
   TouchableOpacity,
   Image,
 } from "react-native";
-// import { TouchableOpacity } from "react-native-gesture-handler";
 import { COLORS } from "../../assets/constants/constants";
 import { postData } from "../apiCalls";
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { COLORS, icons } from "../../assets/constants/constants";
 import {
   StyleSheet,
