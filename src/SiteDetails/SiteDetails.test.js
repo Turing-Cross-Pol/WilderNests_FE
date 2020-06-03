@@ -56,7 +56,7 @@ describe("SiteDetails", () => {
         "Dispersed campsites are all along Fall River Rd. We saw at least 4 other vehicles camping 20 to 100 feet off the road. There are also a dozen or so areas to pull off on the shoulder as well. Expect mostly level dirt paths or shoulder areas and look for stone fire rings marking the dispersed sites. There are no amenities (no restrooms, water, etc.). We stayed several days and were not bothered. See http://www.fs.usda.gov/Internet/FSE_DOCUMENTS/stelprdb5165771.pdf for exact site details."
       )
     );
-    expect(loadComments).toBeCalled();
+    expect(await waitFor(() => loadComments)).toBeCalled();
     expect(siteTitle).toBeTruthy();
     expect(lat).toBeTruthy();
     expect(lon).toBeTruthy();
@@ -67,7 +67,12 @@ describe("SiteDetails", () => {
   test("Can navigate to the comment form by clicking on a star", async () => {
     const route = { params: data.data[0] };
     const detailsComponent = () => <SiteDetails route={route} />;
-    const commentFormComponent = () => <CommentForm route={route} />;
+    const addComment = jest.fn();
+
+    const commentFormRoute = {
+      params: { info: data.data[0], newRating: 4, addComment },
+    };
+    const commentFormComponent = () => <CommentForm route={commentFormRoute} />;
 
     const { getByTestId, getByText } = render(
       <NavigationContainer>
@@ -92,7 +97,11 @@ describe("SiteDetails", () => {
   test("Can navigate to the comment form by clicking on the comment button", async () => {
     const route = { params: data.data[0] };
     const detailsComponent = () => <SiteDetails route={route} />;
-    const commentFormComponent = () => <CommentForm route={route} />;
+    const addComment = jest.fn();
+    const commentFormRoute = {
+      params: { info: data.data[0], newRating: 4, addComment },
+    };
+    const commentFormComponent = () => <CommentForm route={commentFormRoute} />;
 
     const { getByText } = render(
       <NavigationContainer>

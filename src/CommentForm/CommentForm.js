@@ -14,7 +14,7 @@ import { useNavigation } from "@react-navigation/native";
 
 export const CommentForm = ({ route }) => {
   const { newRating, info, addComment } = route.params;
-  const { name, id } = info; 
+  const { name, id } = info;
   const [rating, setRating] = useState(newRating);
   const [description, setDescription] = useState("");
   const [title, setTitle] = useState("");
@@ -48,21 +48,19 @@ export const CommentForm = ({ route }) => {
         title,
         description,
         rating,
-        id: new Date()
-      }
+        id: new Date(),
+      };
       addComment(comment);
       postComment(id, description, title, rating);
       setRating("");
       setDescription("");
       setTitle("");
       setMessage("Comment posted!");
-      navigation.navigate("Details", { info })
-    } else {
-      setMessage("Please choose a rating before submitting a comment.");
+      navigation.navigate("Details", { info });
     }
   };
 
-  const disabled = !title && !description && !rating;
+  const disabled = !rating;
 
   return (
     <SafeAreaView>
@@ -103,7 +101,7 @@ export const CommentForm = ({ route }) => {
         testID="submit-opacity"
         disabled={disabled}
         style={disabled ? styles.disabled : styles.touchable}
-        onPress={!disabled ? handleSubmit : () => {}}
+        onPress={disabled ? () => {} : handleSubmit}
       >
         <Text style={styles.button}>Submit Comment</Text>
       </TouchableOpacity>
