@@ -34,11 +34,11 @@ describe("CommentCard", () => {
     const commentDescription = await waitFor(() =>
       getByText("One of my favorite campsites in Colorado.")
     );
-    const star0 = await waitFor(() => getByTestId("star-0"));
-    const star1 = await waitFor(() => getByTestId("star-1"));
-    const star2 = await waitFor(() => getByTestId("star-2"));
-    const star3 = await waitFor(() => getByTestId("star-3"));
-    const star4 = await waitFor(() => getByTestId("star-4"));
+    const star0 = await waitFor(() => getByTestId("comment-star-0"));
+    const star1 = await waitFor(() => getByTestId("comment-star-1"));
+    const star2 = await waitFor(() => getByTestId("comment-star-2"));
+    const star3 = await waitFor(() => getByTestId("comment-star-3"));
+    const star4 = await waitFor(() => getByTestId("comment-star-4"));
     const titleInput = await waitFor(() => getByText("Best camping in Colorado!"));
 
     expect(commentDescription).toBeTruthy();
