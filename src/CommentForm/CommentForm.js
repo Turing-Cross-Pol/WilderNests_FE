@@ -40,11 +40,15 @@ export const CommentForm = ({ route }) => {
   };
 
   const handleSubmit = () => {
-    postComment(id, description, title, rating);
-    setRating("");
-    setDescription("");
-    setTitle("");
-    setMessage("Comment posted!");
+    if (rating) {
+      postComment(id, description, title, rating);
+      setRating("");
+      setDescription("");
+      setTitle("");
+      setMessage("Comment posted!");
+    } else {
+      setMessage("Please choose a rating before submitting a comment.")
+    }
   };
 
   const disabled = !title && !description && !rating;
