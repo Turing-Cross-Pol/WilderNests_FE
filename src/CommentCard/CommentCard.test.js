@@ -3,6 +3,7 @@ import { render, waitFor } from "react-native-testing-library";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { CommentCard } from "./CommentCard";
+jest.mock("react-native/Libraries/Animated/src/NativeAnimatedHelper");
 
 describe("CommentCard", () => {
   let Stack;

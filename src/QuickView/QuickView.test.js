@@ -4,6 +4,7 @@ import { data } from "../../sample-data";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { QuickView } from "./QuickView";
+jest.mock("react-native/Libraries/Animated/src/NativeAnimatedHelper");
 
 describe("QuickView", () => {
   let Stack;

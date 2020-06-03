@@ -2,6 +2,7 @@ import React from "react";
 import { render, waitFor } from "react-native-testing-library";
 
 import { Landing } from "./Landing";
+jest.mock("react-native/Libraries/Animated/src/NativeAnimatedHelper");
 
 describe("Landing Component", () => {
   test("Renders the App name", async () => {

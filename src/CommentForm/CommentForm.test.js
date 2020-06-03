@@ -6,6 +6,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { postComment } from "../apiCalls";
 import { CommentForm } from "./CommentForm";
 jest.mock("../apiCalls");
+jest.mock("react-native/Libraries/Animated/src/NativeAnimatedHelper");
 
 describe("CommentForm", () => {
   let Stack;
