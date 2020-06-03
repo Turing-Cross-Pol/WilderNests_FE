@@ -4,7 +4,6 @@ import { data } from "../../sample-data";
 import { Filter } from "./Filter";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { act } from "react-test-renderer";
 jest.mock("react-native/Libraries/Animated/src/NativeAnimatedHelper");
 
 describe("Filter Test", () => {

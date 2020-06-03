@@ -4,7 +4,6 @@ import {
   Image,
   ScrollView,
   StyleSheet,
-  SafeAreaView,
   View,
   FlatList,
   Linking,

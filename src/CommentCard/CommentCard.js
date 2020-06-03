@@ -1,17 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   View,
-  TextInput,
   FlatList,
-  TouchableOpacity,
   Text,
   Image,
   StyleSheet,
 } from "react-native";
-import { COLORS } from "../../assets/constants/constants";
 
 export const CommentCard = ({ info }) => {
-  const { id, campsite_id, description, title, rating } = info;
+  const { description, title, rating } = info;
 
   const createStarDisplay = (rating) => {
     const numStars = rating ? Math.ceil(rating) : 0;

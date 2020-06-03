@@ -23,7 +23,7 @@ describe("CommentCard", () => {
   test("Renders what we expect", async () => {
     const commentCardComponent = () => <CommentCard info={info} key={1} />;
 
-    const { getByText, getByPlaceholder, getByTestId } = render(
+    const { getByText, getByTestId } = render(
       <NavigationContainer>
         <Stack.Navigator initialRouteName="Comment">
           <Stack.Screen name="Comment" component={commentCardComponent} />

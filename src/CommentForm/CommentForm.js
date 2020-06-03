@@ -10,7 +10,6 @@ import {
 } from "react-native";
 import { COLORS } from "../../assets/constants/constants";
 import { postComment } from "../apiCalls";
-import { useNavigation } from "@react-navigation/native";
 
 export const CommentForm = ({ route }) => {
   const { newRating, info, addComment } = route.params;
@@ -19,7 +18,6 @@ export const CommentForm = ({ route }) => {
   const [description, setDescription] = useState("");
   const [title, setTitle] = useState("");
   const [message, setMessage] = useState("");
-  const navigation = useNavigation();
 
   const createStarDisplay = (rating) => {
     const numStars = rating ? Math.ceil(rating) : 0;

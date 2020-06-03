@@ -59,7 +59,6 @@ export const MapList = ({ data }) => {
       <MapView
         onMarkerDeselect={() => setSelectedCampsite(null)}
         style={styles.mapStyle}
-        // initialRegion={initialRegion}
         region={location.coords}
         showsScale={true}
         zoomEnabled={true}
@@ -70,6 +69,7 @@ export const MapList = ({ data }) => {
         {markers}
       </MapView>
       {selectedCampsite && <QuickView campsite={selectedCampsite} />}
+      {errorMsg && <Text>{errorMsg}</Text>}
     </View>
   );
 };
