@@ -44,19 +44,13 @@ export const CommentForm = ({ route }) => {
 
   const handleSubmit = () => {
     if (rating) {
-      const comment = {
-        title,
-        description,
-        rating,
-        id: new Date(),
-      };
-      addComment(comment);
       postComment(id, description, title, rating);
       setRating("");
       setDescription("");
       setTitle("");
       setMessage("Comment posted!");
-      navigation.navigate("Details", { info });
+      addComment(rating);
+      // navigation.navigate("Details", { info });
     }
   };
 
