@@ -6,14 +6,18 @@ import { QuickView } from "../QuickView/QuickView";
 import * as Location from "expo-location";
 
 export const MapList = ({ data }) => {
+  const initialRegion = {
+    coords: {
+      latitude: 39.833556,
+      longitude: -105.648361,
+      latitudeDelta: 1,
+      longitudeDelta: 1,
+    },
+  };
   const [selectedCampsite, setSelectedCampsite] = useState(null);
-  const [location, setLocation] = useState({
-    latitude: 39.833556,
-    longitude: -105.648361,
-    latitudeDelta: 1,
-    longitudeDelta: 1
-  });
+  const [location, setLocation] = useState(initialRegion);
   const [errorMsg, setErrorMsg] = useState(null);
+  console.log("location", location);
 
   useEffect(() => {
     (async () => {
@@ -35,7 +39,7 @@ export const MapList = ({ data }) => {
   };
 
   const handleRegionChange = (region) => {
-    setLocation(region);
+    setLocation({coords: region});
   };
 
   const markers = data.map((location) => {
@@ -56,7 +60,8 @@ export const MapList = ({ data }) => {
       <MapView
         onMarkerDeselect={() => setSelectedCampsite(null)}
         style={styles.mapStyle}
-        region={location}
+        // initialRegion={initialRegion}
+        region={location.coords}
         showsScale={true}
         zoomEnabled={true}
         zoomControlEnabled={true}
