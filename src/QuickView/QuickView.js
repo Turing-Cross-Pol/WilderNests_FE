@@ -71,12 +71,12 @@ export const QuickView = ({ campsite }) => {
         />
       </View>
       {!!amenities.length && (
-        <View style={styles.starsContainer}>
+        <View style={styles.iconContainer}>
           <FlatList
             numColumns={7}
             data={amenityIcons}
             renderItem={({ item, index }) => (
-              <Image testID="activity-icon" source={item} key={index} style={styles.star} />
+              <Image testID="activity-icon" source={item} key={index} style={styles.icon} />
             )}
             keyExtractor={(item, index) => index.toString()}
             listKey={(item, index) => index.toString()}
@@ -136,12 +136,22 @@ const styles = StyleSheet.create({
   starsContainer: {
     display: "flex",
     flexDirection: "column",
-    marginBottom: 30,
+    marginBottom: 20,
     marginTop: 10,
   },
   star: {
     height: 15,
     width: 15,
     marginRight: 3,
+  },
+  iconContainer: {
+    display: "flex",
+    flexDirection: "column",
+    marginBottom: 20,
+  },
+  icon: {
+    width:26,
+    height:26,
+    marginRight: 10,
   },
 });

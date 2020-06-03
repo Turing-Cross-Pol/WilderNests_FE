@@ -19,7 +19,7 @@ import { CommentCard } from "../CommentCard/CommentCard";
 
 export const SiteDetails = ({ route }) => {
   const navigation = useNavigation();
-  
+
   const {
     image_url,
     name,
@@ -34,8 +34,8 @@ export const SiteDetails = ({ route }) => {
     id,
     amenities,
   } = route.params;
-  
-  const [averageRating, setAverageRating] = useState(average_rating)
+
+  const [averageRating, setAverageRating] = useState(average_rating);
 
   const displayPhoto = image_url ? (
     <Image
@@ -84,17 +84,17 @@ export const SiteDetails = ({ route }) => {
     );
     return filledStars.concat(emptyStars);
   };
-  
+
   const addComment = (comment) => {
     const newComments = [...comments, comment];
     setComments(newComments);
     if (averageRating === "no comments") {
-      setAverageRating(comment.rating)
+      setAverageRating(comment.rating);
     } else {
       const newAverage =
         (averageRating * newComments.length - 1 + comment.rating) /
         newComments.length;
-      setAverageRating(newAverage)
+      setAverageRating(newAverage);
     }
     console.log(averageRating);
   };
@@ -111,7 +111,6 @@ export const SiteDetails = ({ route }) => {
       addComment,
     });
   };
-
 
   return (
     <ScrollView style={styles.container}>
@@ -137,12 +136,14 @@ export const SiteDetails = ({ route }) => {
           <Text style={styles.averageRatingText}>No ratings yet</Text>
         ) : (
           <Text style={styles.averageRatingText}>
-            Average Rating: {averageRating.toFixed(1)} out of {comments.length} reviews
+            Average Rating: {averageRating.toFixed(1)} out of {comments.length}{" "}
+            reviews
           </Text>
         )}
       </View>
+      {displayPhoto}
       {!!amenities.length && (
-        <View style={styles.starsContainer}>
+        <View style={styles.iconContainer}>
           <FlatList
             numColumns={7}
             data={amenityIcons}
@@ -151,7 +152,7 @@ export const SiteDetails = ({ route }) => {
                 testID="activity-icon"
                 source={item}
                 key={index}
-                style={styles.star}
+                style={styles.icon}
               />
             )}
             keyExtractor={(item, index) => index.toString()}
@@ -159,7 +160,6 @@ export const SiteDetails = ({ route }) => {
           />
         </View>
       )}
-      {displayPhoto}
       <View style={styles.latLon}>
         <Text style={styles.unit}>
           Lat: <Text style={styles.coordinates}>{lat}</Text>
@@ -239,6 +239,16 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "column",
     marginBottom: 20,
+  },
+  iconContainer: {
+    display: "flex",
+    flexDirection: "column",
+    marginBottom: 20,
+  },
+  icon: {
+    width: 26,
+    height: 26,
+    marginRight: 10,
   },
   averageRatingText: {
     paddingTop: 5,
