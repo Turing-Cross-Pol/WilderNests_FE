@@ -46,6 +46,7 @@ export const CommentForm = ({ route }) => {
       setRating("");
       setDescription("");
       setTitle("");
+      setStars(createStarDisplay());
       setMessage("Comment posted!");
       addComment(rating);
     }
