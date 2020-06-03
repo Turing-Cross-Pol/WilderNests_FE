@@ -96,8 +96,8 @@ describe("PostForm", () => {
       fireEvent.changeText(titleInput, "sample title");
       fireEvent.changeText(cityInput, "sample city");
       fireEvent.changeText(stateInput, "sample state");
-      fireEvent.changeText(latInput, 50);
-      fireEvent.changeText(longInput, 60);
+      fireEvent.changeText(latInput, "50");
+      fireEvent.changeText(longInput, "60");
       fireEvent.changeText(descInput, "sample desc");
       fireEvent.changeText(driveInput, "sample drive");
       fireEvent.changeText(imgInput, "sample img");
