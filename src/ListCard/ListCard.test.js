@@ -16,12 +16,13 @@ describe('ListCard Test', () => {
   });
 
   test('Renders what we expect', async () => {
+    const listCardComponent = () => <ListCard info={sampleData} />
     const { getByText, getByTestId, getAllByTestId } = render(
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen 
             name="List Card"
-            component={() => <ListCard info={sampleData} />}
+            component={listCardComponent}
           />
         </Stack.Navigator>
       </NavigationContainer>
@@ -30,8 +31,8 @@ describe('ListCard Test', () => {
     const campsiteName = await waitFor(() => getByText("Dispersed Camping Near St. Mary's Glacier"));
 
     expect(campsiteName).toBeTruthy();
-    expect(getByTestId('data-img')).toBeTruthy();
-    expect(getByText('Idaho Springs, CO')).toBeTruthy();
-    expect(getAllByTestId('activity-icon')).toHaveLength(2)
+    expect(await waitFor(() => getByTestId('data-img'))).toBeTruthy();
+    expect(await waitFor(() => getByText('Idaho Springs, CO'))).toBeTruthy();
+    expect(await waitFor(() => getAllByTestId('activity-icon'))).toHaveLength(2)
   });
 });
