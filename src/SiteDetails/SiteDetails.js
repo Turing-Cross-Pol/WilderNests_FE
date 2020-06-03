@@ -62,11 +62,13 @@ export const SiteDetails = ({ route }) => {
   };
 
   const getDirections = () => {
-    // Will default to users current locaiton. Does not work in Expo Simulator (defaults to california.)
-    // var url = `http://maps.google.com/?daddr=${lat},${lon}`;
+    // Will default to users current locaiton. Does not work in Expo Simulator which uses custom input location.
+
+    // const url = `http://maps.google.com/?daddr=${lat},${lon}`;
 
     // Use this url below when demoing app.
-    var url = `http://maps.google.com/?saddr=39.733635,-104.936145&daddr=${lat},${lon}`;
+
+    const url = `http://maps.google.com/?saddr=39.733635,-104.936145&daddr=${lat},${lon}`;
     Linking.openURL(url);
   };
 

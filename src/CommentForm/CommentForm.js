@@ -50,7 +50,6 @@ export const CommentForm = ({ route }) => {
       setTitle("");
       setMessage("Comment posted!");
       addComment(rating);
-      // navigation.navigate("Details", { info });
     }
   };
 

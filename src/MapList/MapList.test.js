@@ -55,23 +55,18 @@ describe('MapList Test', () => {
   });
 
   test('Can click on a marker to open QuickView', async () => {
-    // const { getByText, findAllByTestId } = render(
-    //   <NavigationContainer>
-    //     <Stack.Navigator>
-    //       <Stack.Screen 
-    //         name="Map List"
-    //         component={() => <MapList data={sampleData} />}
-    //       />
-    //     </Stack.Navigator>
-    //   </NavigationContainer>
-    // );
+    const { findAllByTestId } = render(
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen 
+            name="Map List"
+            component={() => <MapList data={sampleData} />}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    );
 
-    // const markers = await waitFor(() => findAllByTestId('marker'));
-    // expect(markers).toHaveLength(4);
-
-    // fireEvent.press(markers[0]);
-    // expect(onPressMock).toHaveBeenCalled();
+    const markers = await waitFor(() => findAllByTestId('marker'));
+    fireEvent.press(markers[0]);
   })
-  // Click on Marker
-  // Check that QuickView has displayed
 });
