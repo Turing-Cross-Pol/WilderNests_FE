@@ -3,7 +3,6 @@ import { render, waitFor, fireEvent } from "react-native-testing-library";
 import { loadData } from "./src/apiCalls";
 import { createStackNavigator } from "@react-navigation/stack";
 import App from "./App";
-
 jest.mock("./src/apiCalls");
 jest.mock("react-native/Libraries/Animated/src/NativeAnimatedHelper");
 jest.mock('react-native-maps', () => {
