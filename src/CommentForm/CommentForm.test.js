@@ -5,6 +5,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { postComment } from "../apiCalls";
 import { CommentForm } from "./CommentForm";
+import { act } from "react-test-renderer";
 jest.mock("../apiCalls");
 jest.mock("react-native/Libraries/Animated/src/NativeAnimatedHelper");
 
@@ -65,7 +66,9 @@ describe("CommentForm", () => {
     );
 
     const submitBtn = await waitFor(() => getByTestId("submit-opacity"));
-    fireEvent.press(submitBtn);
+    act(() => {
+      fireEvent.press(submitBtn);
+    });
     expect(postComment).not.toBeCalled();
   });
 
@@ -83,8 +86,12 @@ describe("CommentForm", () => {
 
     const submitBtn = await waitFor(() => getByTestId("submit-opacity"));
     const titleInput = await waitFor(() => getByPlaceholder("Comment Title"));
-    fireEvent.changeText(titleInput, "Great Campsite");
-    fireEvent.press(submitBtn);
+    act(() => {
+      fireEvent.changeText(titleInput, "Great Campsite");
+    });
+    act(() => {
+      fireEvent.press(submitBtn);
+    });
     expect(postComment).toBeCalled();
   });
 });

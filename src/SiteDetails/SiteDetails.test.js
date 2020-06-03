@@ -5,9 +5,9 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { CommentForm } from "../CommentForm/CommentForm";
 import { loadComments } from "../apiCalls";
-jest.mock("../apiCalls");
-
+import { act } from "react-test-renderer";
 import { SiteDetails } from "./SiteDetails";
+jest.mock("../apiCalls");
 jest.mock("react-native/Libraries/Animated/src/NativeAnimatedHelper");
 
 describe("SiteDetails", () => {
@@ -79,7 +79,10 @@ describe("SiteDetails", () => {
     );
 
     const thirdStar = await waitFor(() => getByTestId("star-3"));
-    fireEvent(thirdStar, "press");
+    act(() => {
+      fireEvent(thirdStar, "press");
+    });
+
     const commentDescription = await waitFor(() =>
       getByText("Comment for Dispersed Camping Near St. Mary's Glacier")
     );
@@ -100,7 +103,10 @@ describe("SiteDetails", () => {
       </NavigationContainer>
     );
     const commentBtn = await waitFor(() => getByText("Write a Comment/Review"));
-    fireEvent(commentBtn, "press");
+    act(() => {
+      fireEvent(commentBtn, "press");
+    });
+
     const commentDescription = await waitFor(() =>
       getByText("Comment for Dispersed Camping Near St. Mary's Glacier")
     );

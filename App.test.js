@@ -3,16 +3,21 @@ import { render, waitFor, fireEvent } from "react-native-testing-library";
 import { loadData } from "./src/apiCalls";
 import { createStackNavigator } from "@react-navigation/stack";
 import App from "./App";
+import { act } from "react-test-renderer";
 jest.mock("./src/apiCalls");
 jest.mock("react-native/Libraries/Animated/src/NativeAnimatedHelper");
-jest.mock('react-native-maps', () => {
-  const { View, TouchableOpacity } = require('react-native');
+jest.mock("react-native-maps", () => {
+  const { View, TouchableOpacity } = require("react-native");
   const onPressMock = jest.fn();
   const MockMapView = (props) => {
     return <View>{props.children}</View>;
   };
   const MockMarker = (props) => {
-    return <TouchableOpacity testID='marker' onPress={onPressMock}>{props.children}</TouchableOpacity>;
+    return (
+      <TouchableOpacity testID="marker" onPress={onPressMock}>
+        {props.children}
+      </TouchableOpacity>
+    );
   };
   return {
     __esModule: true,
@@ -43,16 +48,22 @@ describe("<App />", () => {
     const find = await waitFor(() => getByText("Find a Campsite"));
     expect(loadData).toBeCalled();
     expect(find).toBeTruthy();
-    fireEvent.press(find);
+    act(() => {
+      fireEvent.press(find);
+    });
     const mapContainer = await waitFor(() => getByTestId("map-container"));
     expect(mapContainer).toBeTruthy();
   });
 
   test("Can navigate to post form", async () => {
-    const { getByText, getByPlaceholder, getByTestId, getAllByTestId } = render(<App />);
+    const { getByText, getByPlaceholder, getByTestId, getAllByTestId } = render(
+      <App />
+    );
     const post = await waitFor(() => getByText("Post a Campsite"));
     expect(post).toBeTruthy();
-    fireEvent.press(post);
+    act(() => {
+      fireEvent.press(post);
+    });
     const header = await waitFor(() =>
       getByText("Tell us about your campsite")
     );

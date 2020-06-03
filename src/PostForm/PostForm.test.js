@@ -101,7 +101,7 @@ describe("PostForm", () => {
       fireEvent.changeText(descInput, "sample desc");
       fireEvent.changeText(driveInput, "sample drive");
       fireEvent.changeText(imgInput, "sample img");
-    })
+    });
 
     expect(titleInput.props.value).toEqual("sample title");
     expect(cityInput.props.value).toEqual("sample city");
@@ -126,7 +126,7 @@ describe("PostForm", () => {
     const submitButton = getByText("Submit Campsite");
     act(() => {
       fireEvent.press(submitButton);
-    })
+    });
     const errorMessage = await waitFor(() =>
       getByText("All fields marked with an * are required and must be valid.")
     );
@@ -151,9 +151,11 @@ describe("PostForm", () => {
       fireEvent.changeText(title, "Cool Campsite");
       fireEvent.changeText(lat, "80");
       fireEvent.changeText(long, "190");
-    })
+    });
     const submitButton = getByText("Submit Campsite");
-    fireEvent.press(submitButton);
+    act(() => {
+      fireEvent.press(submitButton);
+    });
     const errorMessage = await waitFor(() =>
       getByText("All fields marked with an * are required and must be valid.")
     );
@@ -178,16 +180,18 @@ describe("PostForm", () => {
       fireEvent.changeText(title, "Cool Campsite");
       fireEvent.changeText(lat, "80");
       fireEvent.changeText(long, "100");
-    })
+    });
     const submitButton = getByText("Submit Campsite");
-    fireEvent.press(submitButton);
+    act(() => {
+      fireEvent.press(submitButton);
+    });
     const successMessage = await waitFor(() =>
       getByText("Form successfully submitted")
     );
     expect(successMessage).toBeTruthy;
     expect(postData).toBeCalled();
   });
-  
+
   test("Inputs should clear after form is successfully submitted", async () => {
     const postFormComponent = () => <PostForm loadData={jest.fn()} />;
     const { getByText, getByTestId, getByPlaceholder } = render(
@@ -205,10 +209,11 @@ describe("PostForm", () => {
       fireEvent.changeText(title, "Cool Campsite");
       fireEvent.changeText(lat, "80");
       fireEvent.changeText(long, "100");
-    })
+    });
     const submitButton = getByText("Submit Campsite");
-    fireEvent.press(submitButton);
-
+    act(() => {
+      fireEvent.press(submitButton);
+    });
     expect(title.props.value).toEqual("");
     expect(lat.props.value).toEqual("");
     expect(long.props.value).toEqual("");
