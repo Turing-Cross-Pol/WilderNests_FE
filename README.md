@@ -10,6 +10,10 @@
   </p>
 </p>
 
+![map view](./assets/images/preview-map.gif)
+![list view](./assets/images/preview-list.gif)
+![post view](./assets/images/preview-post.gif)
+
 ## Table of Contents
 1. [Summary](#summary)
 2. [Getting Started](#getting-started)
