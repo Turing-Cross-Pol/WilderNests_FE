@@ -17,7 +17,6 @@ export const MapList = ({ data }) => {
   const [selectedCampsite, setSelectedCampsite] = useState(null);
   const [location, setLocation] = useState(initialRegion);
   const [errorMsg, setErrorMsg] = useState(null);
-  console.log("location", location);
 
   useEffect(() => {
     (async () => {
