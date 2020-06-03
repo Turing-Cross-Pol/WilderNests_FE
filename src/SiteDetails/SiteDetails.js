@@ -55,9 +55,13 @@ export const SiteDetails = ({ route }) => {
   }
 
   useEffect(() => {
-    const newComments = loadComments(id);
-    setComments(newComments);
+    setFetchedComments();
   }, []);
+
+  const setFetchedComments = async () => {
+    const loadedComments = await loadComments(id);
+    setComments(loadedComments);
+  }
 
   const getDirections = () => {
     // Will default to users current locaiton. Does not work in Expo Simulator (defaults to california.)
