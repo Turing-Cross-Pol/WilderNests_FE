@@ -70,7 +70,7 @@ export const QuickView = ({ campsite }) => {
           keyExtractor={(item, index) => index.toString()}
         />
       </View>
-      {amenities.length && (
+      {!!amenities.length && (
         <View style={styles.starsContainer}>
           <FlatList
             numColumns={7}

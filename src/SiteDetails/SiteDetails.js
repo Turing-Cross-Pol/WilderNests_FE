@@ -117,7 +117,7 @@ export const SiteDetails = ({ route }) => {
           </Text>
         )}
       </View>
-      {amenities.length && (
+      {!!amenities.length && (
         <View style={styles.starsContainer}>
           <FlatList
             numColumns={7}
