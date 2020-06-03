@@ -69,7 +69,7 @@
         `https://dpcamping-be-stage.herokuapp.com/campsites/${id}/comments`
       );
       const fetchedComments = await response.json();
-      return fetchedComments[0];
+      return fetchedComments;
     } catch (error) {
       console.error(error.message)
     }
