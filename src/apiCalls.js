@@ -68,8 +68,8 @@
       const response = await fetch(
         `https://dpcamping-be-stage.herokuapp.com/campsites/${id}/comments`
       );
-      const newComments = await response.json();
-      return newComments[0];
+      const fetchedComments = await response.json();
+      return fetchedComments[0];
     } catch (error) {
       console.error(error.message)
     }
