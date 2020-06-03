@@ -46,7 +46,7 @@ describe("<App />", () => {
   test("Can navigate to the map view", async () => {
     const { getByText, getByTestId } = render(<App />);
     const find = await waitFor(() => getByText("Find a Campsite"));
-    expect(loadData).toBeCalled();
+    expect(await waitFor(() => loadData)).toBeCalled();
     expect(find).toBeTruthy();
     act(() => {
       fireEvent.press(find);
@@ -68,42 +68,54 @@ describe("<App />", () => {
       getByText("Tell us about your campsite")
     );
     expect(header).toBeTruthy();
-    expect(getByText("Title*:")).toBeTruthy();
-    expect(getByText("City:")).toBeTruthy();
-    expect(getByText("State:")).toBeTruthy();
-    expect(getByText("Lat (-90 to 90)*:")).toBeTruthy();
-    expect(getByText("Long (-180 to 180)*:")).toBeTruthy();
-    expect(getByText("Description:")).toBeTruthy();
-    expect(getByText("Directions:")).toBeTruthy();
-    expect(getByText("Image:")).toBeTruthy();
+    expect(await waitFor(() => getByText("Title*:"))).toBeTruthy();
+    expect(await waitFor(() => getByText("City:"))).toBeTruthy();
+    expect(await waitFor(() => getByText("State:"))).toBeTruthy();
+    expect(await waitFor(() => getByText("Lat (-90 to 90)*:"))).toBeTruthy();
+    expect(await waitFor(() => getByText("Long (-180 to 180)*:"))).toBeTruthy();
+    expect(await waitFor(() => getByText("Description:"))).toBeTruthy();
+    expect(await waitFor(() => getByText("Directions:"))).toBeTruthy();
+    expect(await waitFor(() => getByText("Image:"))).toBeTruthy();
 
-    expect(getByPlaceholder("Campsite Title")).toBeTruthy();
-    expect(getByPlaceholder("Closest city/town")).toBeTruthy();
-    expect(getByPlaceholder("State")).toBeTruthy();
-    expect(getByPlaceholder("Latitude")).toBeTruthy();
-    expect(getByPlaceholder("Longitude")).toBeTruthy();
     expect(
-      getByPlaceholder(
-        "A brief description of the site including details about the surroundings"
+      await waitFor(() => getByPlaceholder("Campsite Title"))
+    ).toBeTruthy();
+    expect(
+      await waitFor(() => getByPlaceholder("Closest city/town"))
+    ).toBeTruthy();
+    expect(await waitFor(() => getByPlaceholder("State"))).toBeTruthy();
+    expect(await waitFor(() => getByPlaceholder("Latitude"))).toBeTruthy();
+    expect(await waitFor(() => getByPlaceholder("Longitude"))).toBeTruthy();
+    expect(
+      await waitFor(() =>
+        getByPlaceholder(
+          "A brief description of the site including details about the surroundings"
+        )
       )
     ).toBeTruthy();
     expect(
-      getByPlaceholder(
-        "How far is it from major roads? Any tips for landmarks to look out for?"
+      await waitFor(() =>
+        getByPlaceholder(
+          "How far is it from major roads? Any tips for landmarks to look out for?"
+        )
       )
     ).toBeTruthy();
-    expect(getByPlaceholder("Image URL")).toBeTruthy();
+    expect(await waitFor(() => getByPlaceholder("Image URL"))).toBeTruthy();
 
-    expect(getByText("Available Amenities Nearby:")).toBeTruthy();
-    expect(getByTestId("Firepit")).toBeTruthy();
-    expect(getByTestId("Boating/Water")).toBeTruthy();
-    expect(getByTestId("Fishing")).toBeTruthy();
-    expect(getByTestId("Mountain Biking Trails")).toBeTruthy();
-    expect(getByTestId("ATV Trails")).toBeTruthy();
-    expect(getByTestId("Horse Trails")).toBeTruthy();
-    expect(getByTestId("Hiking Trails")).toBeTruthy();
-    expect(getByText("Submit Campsite")).toBeTruthy();
+    expect(
+      await waitFor(() => getByText("Available Amenities Nearby:"))
+    ).toBeTruthy();
+    expect(await waitFor(() => getByTestId("Firepit"))).toBeTruthy();
+    expect(await waitFor(() => getByTestId("Boating/Water"))).toBeTruthy();
+    expect(await waitFor(() => getByTestId("Fishing"))).toBeTruthy();
+    expect(
+      await waitFor(() => getByTestId("Mountain Biking Trails"))
+    ).toBeTruthy();
+    expect(await waitFor(() => getByTestId("ATV Trails"))).toBeTruthy();
+    expect(await waitFor(() => getByTestId("Horse Trails"))).toBeTruthy();
+    expect(await waitFor(() => getByTestId("Hiking Trails"))).toBeTruthy();
+    expect(await waitFor(() => getByText("Submit Campsite"))).toBeTruthy();
 
-    expect(getAllByTestId("check-icon")).toHaveLength(7);
+    expect(await waitFor(() => getAllByTestId("check-icon"))).toHaveLength(7);
   });
 });

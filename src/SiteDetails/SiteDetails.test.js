@@ -61,7 +61,7 @@ describe("SiteDetails", () => {
     expect(lat).toBeTruthy();
     expect(lon).toBeTruthy();
     expect(description).toBeTruthy();
-    expect(getAllByTestId("activity-icon")).toHaveLength(2);
+    expect(await waitFor(() => getAllByTestId("activity-icon"))).toHaveLength(2);
   });
 
   test("Can navigate to the comment form by clicking on a star", async () => {
