@@ -76,8 +76,14 @@ export const ListCard = ({ info }) => {
             listKey={(item, index) => index.toString()}
           />
         </View>
+        {!averageRating && <Text>No ratings yet</Text>}
+        {!!city && !!state && (
+          <Text style={styles.location}>
+            {city}, {state}
+          </Text>
+        )}
         {!!amenities.length && (
-          <View style={styles.starsContainer}>
+          <View style={styles.iconContainer}>
             <FlatList
               numColumns={7}
               data={amenityIcons}
@@ -86,19 +92,13 @@ export const ListCard = ({ info }) => {
                   testID="activity-icon"
                   source={item}
                   key={index}
-                  style={styles.star}
+                  style={styles.icon}
                 />
               )}
               keyExtractor={(item, index) => index.toString()}
               listKey={(item, index) => index.toString()}
             />
           </View>
-        )}
-        {!averageRating && <Text>No ratings yet</Text>}
-        {!!city && !!state && (
-          <Text style={styles.location}>
-            {city}, {state}
-          </Text>
         )}
       </View>
     </TouchableOpacity>
@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
   location: {
     fontSize: 16,
     fontFamily: "MavenPro-Medium",
-    color: COLORS.green,
+    color: COLORS.purple,
   },
   starsContainer: {
     display: "flex",
@@ -141,5 +141,16 @@ const styles = StyleSheet.create({
     height: 15,
     width: 15,
     marginRight: 3,
+  },
+  iconContainer: {
+    display: "flex",
+    flexDirection: "column",
+    marginTop: 5,
+    marginBottom: 20,
+  },
+  icon: {
+    width:20,
+    height:20,
+    marginRight: 10,
   },
 });
