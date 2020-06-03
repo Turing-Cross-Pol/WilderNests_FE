@@ -36,11 +36,12 @@ To get this project up and running on your local environment, follow the steps b
 
 ### Installation
 1. Clone down this repo
-2. Install all dependencies: `npm install`
-3. Start up the Expo server: `expo start`
-4. In the window that opens up, click `run on IOS simulator`
+2. CD into directory
+3. Install all dependencies: `npm install`
+4. Start up the Expo server: `expo start`
+5. In the window that opens up in your browser, click `run on IOS simulator`
   - Or download the Expo App from the apple store on your phone. If you are connected to the same network, you can scan the QR code to get started or open the Expo and select the Project.
-5. Browse the app.
+6. Browse the app.
 
 ## Technologies Used
 - React Native
