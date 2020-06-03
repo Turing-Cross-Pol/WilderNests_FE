@@ -20,7 +20,7 @@ export const CommentForm = ({ route }) => {
   const [message, setMessage] = useState("");
 
   const createStarDisplay = (rating) => {
-    const numStars = rating ? Math.ceil(rating) : 0;
+    const numStars = rating && rating !== "no comments" ? Math.ceil(rating) : 0;
     const filledStars = Array(numStars).fill(
       require("../../assets/images/filled-star.png")
     );

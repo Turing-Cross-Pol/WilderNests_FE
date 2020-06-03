@@ -57,7 +57,8 @@ export const SiteDetails = ({ route }) => {
 
   const setFetchedComments = async () => {
     const loadedComments = await loadComments(id);
-    setComments(loadedComments);
+    setComments(loadedComments[0]);
+    setAverageRating(loadedComments[1].average_rating)
   };
 
   const getDirections = () => {
@@ -85,16 +86,8 @@ export const SiteDetails = ({ route }) => {
     return filledStars.concat(emptyStars);
   };
 
-  const addComment = (rating) => {
-    if (averageRating === "no comments") {
-      setAverageRating(comment.rating);
-    } else {
-      const newAverage =
-        (averageRating * comments.length - 1 + rating) /
-        comments.length;
-      setAverageRating(newAverage);
-    }
-    setFetchedComments();
+  const addComment = async () => {
+    await setFetchedComments();
   };
 
   const amenityIcons = amenities.map((type) => icons[type]);

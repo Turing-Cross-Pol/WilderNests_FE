@@ -17,18 +17,24 @@ describe("SiteDetails", () => {
   beforeEach(() => {
     Stack = createStackNavigator();
     sampleComments = [
+      [
+        {
+          description:
+            "It gets hot during the day but the campsites are right off the trail so you can go back to camp and cool off.",
+          id: 1,
+          rating: "5",
+          title: "Best Biking in Western Colorado",
+        },
+        {
+          description:
+            "I did not know scorpians swarmed. At our camp they do...",
+          id: 2,
+          rating: "3",
+          title: "Scorpians!",
+        },
+      ],
       {
-        description:
-          "It gets hot during the day but the campsites are right off the trail so you can go back to camp and cool off.",
-        id: 1,
-        rating: "5",
-        title: "Best Biking in Western Colorado",
-      },
-      {
-        description: "I did not know scorpians swarmed. At our camp they do...",
-        id: 2,
-        rating: "3",
-        title: "Scorpians!",
+        average_rating: 4,
       },
     ];
     loadComments.mockResolvedValueOnce(sampleComments);
@@ -61,7 +67,9 @@ describe("SiteDetails", () => {
     expect(lat).toBeTruthy();
     expect(lon).toBeTruthy();
     expect(description).toBeTruthy();
-    expect(await waitFor(() => getAllByTestId("activity-icon"))).toHaveLength(2);
+    expect(await waitFor(() => getAllByTestId("activity-icon"))).toHaveLength(
+      2
+    );
   });
 
   test("Can navigate to the comment form by clicking on a star", async () => {
