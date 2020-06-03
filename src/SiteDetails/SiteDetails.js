@@ -12,7 +12,6 @@ import {
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/native";
 import { loadComments } from "../apiCalls";
-// import AppLink from 'react-native-app-link';
 
 import { COLORS, icons } from "../../assets/constants/constants";
 import { CommentCard } from "../CommentCard/CommentCard";
@@ -85,18 +84,16 @@ export const SiteDetails = ({ route }) => {
     return filledStars.concat(emptyStars);
   };
 
-  const addComment = (comment) => {
-    const newComments = [...comments, comment];
-    setComments(newComments);
+  const addComment = (rating) => {
     if (averageRating === "no comments") {
       setAverageRating(comment.rating);
     } else {
       const newAverage =
-        (averageRating * newComments.length - 1 + comment.rating) /
-        newComments.length;
+        (averageRating * comments.length - 1 + rating) /
+        comments.length;
       setAverageRating(newAverage);
     }
-    console.log(averageRating);
+    setFetchedComments();
   };
 
   const amenityIcons = amenities.map((type) => icons[type]);
