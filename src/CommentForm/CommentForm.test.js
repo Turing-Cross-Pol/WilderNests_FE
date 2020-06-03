@@ -5,6 +5,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { postComment } from "../apiCalls";
 import { CommentForm } from "./CommentForm";
+import { SiteDetails } from "../SiteDetails/SiteDetails";
 import { act } from "react-test-renderer";
 jest.mock("../apiCalls");
 jest.mock("react-native/Libraries/Animated/src/NativeAnimatedHelper");
@@ -17,12 +18,20 @@ describe("CommentForm", () => {
   });
 
   test("Renders what we expect", async () => {
-    const route = { params: data.data[0] };
+    const addComment = () => {};
+    const route = {
+      params: { info: data.data[0], newRating: 4, addComment },
+    };
+    const detailsRoute = { params: data.data[0] };
+    const detailsComponent = () => <SiteDetails route={detailsRoute} />;
+
     const commentFormComponent = () => <CommentForm route={route} />;
 
     const { getByText, getByPlaceholder, getByTestId } = render(
       <NavigationContainer>
         <Stack.Navigator initialRouteName="Comment">
+          <Stack.Screen name="Details" component={detailsComponent} />
+
           <Stack.Screen name="Comment" component={commentFormComponent} />
         </Stack.Navigator>
       </NavigationContainer>
@@ -54,8 +63,11 @@ describe("CommentForm", () => {
     expect(submitBtn).toBeTruthy();
   });
 
-  test("Should have a disbled button if all fields are blank", async () => {
-    const route = { params: data.data[0] };
+  test("Should have a disabled button if all fields are blank", async () => {
+    const addComment = () => {};
+    const route = {
+      params: { info: data.data[0], addComment },
+    };
     const commentFormComponent = () => <CommentForm route={route} />;
     const { getByTestId } = render(
       <NavigationContainer>
@@ -69,16 +81,22 @@ describe("CommentForm", () => {
     act(() => {
       fireEvent.press(submitBtn);
     });
-    expect(postComment).not.toBeCalled();
+    expect(await waitFor(() => postComment)).not.toBeCalled();
   });
 
   test("Should be able to submit the form if any fields aren't blank", async () => {
-    const route = { params: data.data[0] };
+    const addComment = () => {};
+    const route = {
+      params: { info: data.data[0], newRating: 4, addComment },
+    };
+    const detailsRoute = { params: data.data[0] };
+    const detailsComponent = () => <SiteDetails route={detailsRoute} />;
     const commentFormComponent = () => <CommentForm route={route} />;
 
     const { getByTestId, getByPlaceholder } = render(
       <NavigationContainer>
         <Stack.Navigator initialRouteName="Comment">
+          <Stack.Screen name="Details" component={detailsComponent} />
           <Stack.Screen name="Comment" component={commentFormComponent} />
         </Stack.Navigator>
       </NavigationContainer>
@@ -92,6 +110,6 @@ describe("CommentForm", () => {
     act(() => {
       fireEvent.press(submitBtn);
     });
-    expect(postComment).toBeCalled();
+    expect(await waitFor(() => postComment)).toBeCalled();
   });
 });

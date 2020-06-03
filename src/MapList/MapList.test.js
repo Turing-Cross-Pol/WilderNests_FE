@@ -5,6 +5,7 @@ import { render, waitFor, fireEvent } from "react-native-testing-library";
 import { data } from '../../sample-data';
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
+import { act } from "react-test-renderer";
 jest.mock('react-native/Libraries/Animated/src/NativeAnimatedHelper');
 
 import { MapList } from "./MapList";

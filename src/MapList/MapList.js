@@ -3,23 +3,26 @@ import MapView from "react-native-maps";
 import { StyleSheet, Text, View, Dimensions } from "react-native";
 import { Marker } from "react-native-maps";
 import { QuickView } from "../QuickView/QuickView";
-import * as Location from 'expo-location';
+import * as Location from "expo-location";
 
-export const MapList = ({ data }) => {  
-  const [selectedCampsite, setSelectedCampsite] = useState(null);
-  const [location, setLocation] = useState({
+export const MapList = ({ data }) => {
+  const initialRegion = {
     coords: {
       latitude: 39.833556,
-      longitude: -105.648361
-    }
-  });
+      longitude: -105.648361,
+      latitudeDelta: 1,
+      longitudeDelta: 1,
+    },
+  };
+  const [selectedCampsite, setSelectedCampsite] = useState(null);
+  const [location, setLocation] = useState(initialRegion);
   const [errorMsg, setErrorMsg] = useState(null);
 
   useEffect(() => {
     (async () => {
       let { status } = await Location.requestPermissionsAsync();
-      if (status !== 'granted') {
-        setErrorMsg('Permission to access location was denied');
+      if (status !== "granted") {
+        setErrorMsg("Permission to access location was denied");
       }
       let location = await Location.getCurrentPositionAsync({});
       setLocation(location);
@@ -34,9 +37,13 @@ export const MapList = ({ data }) => {
     setSelectedCampsite(foundSite);
   };
 
+  const handleRegionChange = (region) => {
+    setLocation({coords: region});
+  };
+
   const markers = data.map((location) => {
     let { lat, lon, id } = location;
-    
+
     return (
       <Marker
         key={id.toString()}
@@ -52,24 +59,17 @@ export const MapList = ({ data }) => {
       <MapView
         onMarkerDeselect={() => setSelectedCampsite(null)}
         style={styles.mapStyle}
-        region={{
-          latitude: location.coords.latitude,
-          longitude: location.coords.longitude,
-          latitudeDelta: 1,
-          longitudeDelta: 1,
-        }}
+        // initialRegion={initialRegion}
+        region={location.coords}
         showsScale={true}
         zoomEnabled={true}
         zoomControlEnabled={true}
         showsUserLocation={true}
+        onRegionChangeComplete={(region) => handleRegionChange(region)}
       >
         {markers}
       </MapView>
-      {selectedCampsite && (
-        <QuickView
-          campsite={selectedCampsite}
-        />
-      )}
+      {selectedCampsite && <QuickView campsite={selectedCampsite} />}
     </View>
   );
 };
@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     marginTop: 129,
-    position: 'relative',
+    position: "relative",
   },
   mapStyle: {
     width: Dimensions.get("window").width,

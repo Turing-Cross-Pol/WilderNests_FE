@@ -10,13 +10,16 @@ import {
 } from "react-native";
 import { COLORS } from "../../assets/constants/constants";
 import { postComment } from "../apiCalls";
+import { useNavigation } from "@react-navigation/native";
 
 export const CommentForm = ({ route }) => {
-  const { newRating, name, id } = route.params;
+  const { newRating, info, addComment } = route.params;
+  const { name, id } = info;
   const [rating, setRating] = useState(newRating);
   const [description, setDescription] = useState("");
   const [title, setTitle] = useState("");
   const [message, setMessage] = useState("");
+  const navigation = useNavigation();
 
   const createStarDisplay = (rating) => {
     const numStars = rating ? Math.ceil(rating) : 0;
@@ -40,14 +43,24 @@ export const CommentForm = ({ route }) => {
   };
 
   const handleSubmit = () => {
-    postComment(id, description, title, rating);
-    setRating("");
-    setDescription("");
-    setTitle("");
-    setMessage("Comment posted!");
+    if (rating) {
+      const comment = {
+        title,
+        description,
+        rating,
+        id: new Date(),
+      };
+      addComment(comment);
+      postComment(id, description, title, rating);
+      setRating("");
+      setDescription("");
+      setTitle("");
+      setMessage("Comment posted!");
+      navigation.navigate("Details", { info });
+    }
   };
 
-  const disabled = !title && !description && !rating;
+  const disabled = !rating;
 
   return (
     <SafeAreaView>
@@ -88,7 +101,7 @@ export const CommentForm = ({ route }) => {
         testID="submit-opacity"
         disabled={disabled}
         style={disabled ? styles.disabled : styles.touchable}
-        onPress={!disabled ? handleSubmit: () => {}}
+        onPress={disabled ? () => {} : handleSubmit}
       >
         <Text style={styles.button}>Submit Comment</Text>
       </TouchableOpacity>
@@ -151,7 +164,7 @@ const styles = StyleSheet.create({
   },
   instructions: {
     fontSize: 15,
-    textAlign: 'center',
+    textAlign: "center",
     paddingTop: 10,
-  }
+  },
 });

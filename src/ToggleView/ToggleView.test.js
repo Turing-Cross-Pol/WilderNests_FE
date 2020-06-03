@@ -5,6 +5,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { ToggleView } from "./ToggleView";
 jest.mock("react-native/Libraries/Animated/src/NativeAnimatedHelper");
+import { act } from "react-test-renderer";
 
 jest.mock("react-native-maps", () => {
   const { View, TouchableOpacity } = require("react-native");
@@ -79,7 +80,9 @@ describe("ToggleView", () => {
     );
 
     const listViewBtn = await waitFor(() => getByText("List View"));
-    fireEvent.press(listViewBtn);
+    act(() => {
+      fireEvent.press(listViewBtn);
+    })
     const siteTitle1 = await waitFor(() =>
       getByText("Dispersed Camping Near St. Mary's Glacier")
     );
