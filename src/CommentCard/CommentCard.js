@@ -25,7 +25,7 @@ export const CommentCard = ({ info }) => {
   };
 
   const stars = createStarDisplay(rating);
-  
+
   return (
     <View style={styles.commentCard}>
       <Text style={styles.title}>{title}</Text>
@@ -34,7 +34,12 @@ export const CommentCard = ({ info }) => {
           numColumns={5}
           data={stars}
           renderItem={({ item, index }) => (
-            <Image testID={`star-${index}`} source={item} key={item.id} style={styles.star} />
+            <Image
+              testID={`star-${index}`}
+              source={item}
+              key={item.id}
+              style={styles.star}
+            />
           )}
           listKey={(item, index) => index.toString()}
           keyExtractor={(item, index) => index.toString()}
@@ -43,19 +48,19 @@ export const CommentCard = ({ info }) => {
       <Text style={styles.description}>{description}</Text>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   commentCard: {
     marginBottom: 20,
     borderBottomWidth: 1,
-    borderBottomColor: '#999',
+    borderBottomColor: "#999",
     paddingBottom: 20,
   },
   title: {
     fontSize: 18,
     marginBottom: 10,
-    fontFamily: 'MavenPro-Medium',
+    fontFamily: "MavenPro-Medium",
   },
   starsContainer: {
     display: "flex",
