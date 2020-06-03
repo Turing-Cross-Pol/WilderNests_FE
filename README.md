@@ -54,7 +54,9 @@ To get this project up and running on your local environment, follow the steps b
 3. Users can add campsites to a list of favorites
 
 ## Contributors
-- [Lili Manrique](https://github.com/lmanriq)
-- [Harry Borrelli](https://github.com/hborrelli1)
+- [Lili Manrique - FE](https://github.com/lmanriq)
+- [Harry Borrelli - FE](https://github.com/hborrelli1)
+- [Nathan Keller - BE](https://github.com/nkeller1)
+- [Harry Borrelli - BE](https://github.com/willkunz13)
 
 
