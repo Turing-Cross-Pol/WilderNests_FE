@@ -3,16 +3,35 @@ import { render, waitFor, fireEvent } from "react-native-testing-library";
 import { data } from "../../sample-data";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { CommentForm } from "../CommentForm/CommentForm"
-
+import { CommentForm } from "../CommentForm/CommentForm";
+import { loadComments } from "../apiCalls";
+import { act } from "react-test-renderer";
 import { SiteDetails } from "./SiteDetails";
+jest.mock("../apiCalls");
 jest.mock("react-native/Libraries/Animated/src/NativeAnimatedHelper");
 
 describe("SiteDetails", () => {
   let Stack;
+  let sampleComments;
 
   beforeEach(() => {
     Stack = createStackNavigator();
+    sampleComments = [
+      {
+        description:
+          "It gets hot during the day but the campsites are right off the trail so you can go back to camp and cool off.",
+        id: 1,
+        rating: "5",
+        title: "Best Biking in Western Colorado",
+      },
+      {
+        description: "I did not know scorpians swarmed. At our camp they do...",
+        id: 2,
+        rating: "3",
+        title: "Scorpians!",
+      },
+    ];
+    loadComments.mockResolvedValueOnce(sampleComments);
   });
 
   test("Renders what we expect", async () => {
@@ -37,12 +56,12 @@ describe("SiteDetails", () => {
         "Dispersed campsites are all along Fall River Rd. We saw at least 4 other vehicles camping 20 to 100 feet off the road. There are also a dozen or so areas to pull off on the shoulder as well. Expect mostly level dirt paths or shoulder areas and look for stone fire rings marking the dispersed sites. There are no amenities (no restrooms, water, etc.). We stayed several days and were not bothered. See http://www.fs.usda.gov/Internet/FSE_DOCUMENTS/stelprdb5165771.pdf for exact site details."
       )
     );
-
+    expect(loadComments).toBeCalled();
     expect(siteTitle).toBeTruthy();
     expect(lat).toBeTruthy();
     expect(lon).toBeTruthy();
     expect(description).toBeTruthy();
-    expect(getAllByTestId('activity-icon')).toHaveLength(2)
+    expect(getAllByTestId("activity-icon")).toHaveLength(2);
   });
 
   test("Can navigate to the comment form by clicking on a star", async () => {
@@ -60,7 +79,10 @@ describe("SiteDetails", () => {
     );
 
     const thirdStar = await waitFor(() => getByTestId("star-3"));
-    fireEvent(thirdStar, "press");
+    act(() => {
+      fireEvent(thirdStar, "press");
+    });
+
     const commentDescription = await waitFor(() =>
       getByText("Comment for Dispersed Camping Near St. Mary's Glacier")
     );
@@ -81,7 +103,10 @@ describe("SiteDetails", () => {
       </NavigationContainer>
     );
     const commentBtn = await waitFor(() => getByText("Write a Comment/Review"));
-    fireEvent(commentBtn, "press");
+    act(() => {
+      fireEvent(commentBtn, "press");
+    });
+
     const commentDescription = await waitFor(() =>
       getByText("Comment for Dispersed Camping Near St. Mary's Glacier")
     );
