@@ -17,20 +17,22 @@ export const ListCard = ({ info }) => {
   if (averageRating === "no comments") {
     averageRating = 0;
   }
-  
-  const displayPhoto = image_url 
-    ? (<Image
-        testID='data-img'
-        style={styles.image}
-        source={{
-          uri: image_url,
-        }}
-      />)
-    : (<Image
-        testID='data-img'
-        style={styles.image}
-        source={require("../../assets/images/placeholder-image.png")}
-      />);
+
+  const displayPhoto = image_url ? (
+    <Image
+      testID="data-img"
+      style={styles.image}
+      source={{
+        uri: image_url,
+      }}
+    />
+  ) : (
+    <Image
+      testID="data-img"
+      style={styles.image}
+      source={require("../../assets/images/placeholder-image.png")}
+    />
+  );
 
   const navigation = useNavigation();
 
@@ -54,9 +56,9 @@ export const ListCard = ({ info }) => {
   };
 
   return (
-    <TouchableOpacity 
+    <TouchableOpacity
       testID="list-card"
-      onPress={handleCardPress} 
+      onPress={handleCardPress}
       style={styles.listItem}
       activeOpacity={0.7}
     >
@@ -74,23 +76,30 @@ export const ListCard = ({ info }) => {
             listKey={(item, index) => index.toString()}
           />
         </View>
-        {amenities.length && 
+        {!!amenities.length && (
           <View style={styles.starsContainer}>
             <FlatList
-            numColumns={7}
+              numColumns={7}
               data={amenityIcons}
               renderItem={({ item, index }) => (
-                <Image testID="activity-icon" source={item} key={index} style={styles.star} />
+                <Image
+                  testID="activity-icon"
+                  source={item}
+                  key={index}
+                  style={styles.star}
+                />
               )}
               keyExtractor={(item, index) => index.toString()}
               listKey={(item, index) => index.toString()}
             />
           </View>
-        }
+        )}
         {!averageRating && <Text>No ratings yet</Text>}
-        <Text style={styles.location}>
-          {city}, {state}
-        </Text>
+        {!!city && !!state && (
+          <Text style={styles.location}>
+            {city}, {state}
+          </Text>
+        )}
       </View>
     </TouchableOpacity>
   );
