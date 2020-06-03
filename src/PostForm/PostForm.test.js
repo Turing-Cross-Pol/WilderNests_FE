@@ -114,8 +114,8 @@ describe("PostForm", () => {
       fireEvent.changeText(titleInput, "sample title");
       fireEvent.changeText(cityInput, "sample city");
       fireEvent.changeText(stateInput, "sample state");
-      fireEvent.changeText(latInput, "50");
-      fireEvent.changeText(longInput, "60");
+      fireEvent.changeText(latInput, 50);
+      fireEvent.changeText(longInput, 60);
       fireEvent.changeText(descInput, "sample desc");
       fireEvent.changeText(driveInput, "sample drive");
       fireEvent.changeText(imgInput, "sample img");
@@ -124,8 +124,8 @@ describe("PostForm", () => {
     expect(await waitFor(() => titleInput.props.value)).toEqual("sample title");
     expect(await waitFor(() => cityInput.props.value)).toEqual("sample city");
     expect(await waitFor(() => stateInput.props.value)).toEqual("sample state");
-    expect(await waitFor(() => latInput.props.value)).toEqual("50");
-    expect(await waitFor(() => longInput.props.value)).toEqual("60");
+    expect(await waitFor(() => latInput.props.value)).toEqual(50);
+    expect(await waitFor(() => longInput.props.value)).toEqual(60);
     expect(await waitFor(() => descInput.props.value)).toEqual("sample desc");
     expect(await waitFor(() => driveInput.props.value)).toEqual("sample drive");
     expect(await waitFor(() => imgInput.props.value)).toEqual("sample img");
