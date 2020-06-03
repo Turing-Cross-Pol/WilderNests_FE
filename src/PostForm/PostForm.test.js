@@ -106,8 +106,8 @@ describe("PostForm", () => {
     expect(titleInput.props.value).toEqual("sample title");
     expect(cityInput.props.value).toEqual("sample city");
     expect(stateInput.props.value).toEqual("sample state");
-    expect(latInput.props.value).toEqual(50);
-    expect(longInput.props.value).toEqual(60);
+    expect(latInput.props.value).toEqual("50");
+    expect(longInput.props.value).toEqual("60");
     expect(descInput.props.value).toEqual("sample desc");
     expect(driveInput.props.value).toEqual("sample drive");
     expect(imgInput.props.value).toEqual("sample img");
