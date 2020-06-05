@@ -10,7 +10,7 @@
   </p>
 </p>  
 
-[Application Demo Video](https://www.youtube.com/watch?v=GVoGGwNy4Rk)
+<a href="https://www.youtube.com/watch?v=GVoGGwNy4Rk" target="_blank">Application Demo Video</a>
 
 ![map view](./assets/images/preview-map.gif)
 ![list view](./assets/images/preview-list.gif)
