@@ -8,8 +8,9 @@
   <p align="center">
   WilderNests - A mobile app to find or post dispersed campsites in the United States. Giving adventurous campers peace of mind by providing community vetting in the back country.
   </p>
-</p>
-[Application Demo Video](https://www.youtube.com/watch?v=GVoGGwNy4Rk "YouTube Video")
+</p>  
+
+[Application Demo Video](https://www.youtube.com/watch?v=GVoGGwNy4Rk)
 
 ![map view](./assets/images/preview-map.gif)
 ![list view](./assets/images/preview-list.gif)
