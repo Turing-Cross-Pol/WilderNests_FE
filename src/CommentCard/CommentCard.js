@@ -9,6 +9,7 @@ import {
 
 export const CommentCard = ({ info }) => {
   const { description, title, rating, date_created } = info;
+  const date = date_created.split(' ').slice(1, 4).join(' ');
 
   const createStarDisplay = (rating) => {
     const numStars = rating ? Math.ceil(rating) : 0;
@@ -43,7 +44,7 @@ export const CommentCard = ({ info }) => {
             keyExtractor={(item, index) => index.toString()}
           />
         </View>
-        <Text>{date_created}</Text>
+        <Text>{date}</Text>
       </View>
       <Text style={styles.description}>{description}</Text>
     </View>
