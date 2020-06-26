@@ -27,7 +27,7 @@ export const SiteDetails = ({ route }) => {
     lon,
     description,
     driving_tips,
-    timestamps,
+    timestamp,
     average_rating,
     id,
     amenities,
@@ -163,7 +163,7 @@ export const SiteDetails = ({ route }) => {
       <Text style={styles.text}>{description}</Text>
       <Text style={styles.header}>Driving Tips:</Text>
       <Text style={styles.text}>{driving_tips}</Text>
-      <Text style={styles.text}>Date added: {timestamps}</Text>
+      <Text style={styles.text}>Date added: {timestamp}</Text>
       <TouchableOpacity
         style={styles.touchable}
         onPress={() =>
@@ -189,6 +189,7 @@ export const SiteDetails = ({ route }) => {
           navigation.navigate("Post", {
             isUpdate: true, 
             info: {
+              timestamp,
               image_url,
               name,
               city,
@@ -199,6 +200,7 @@ export const SiteDetails = ({ route }) => {
               driving_tips,
               id,
               amenities,
+              average_rating
             },
           })
         }

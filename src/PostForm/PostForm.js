@@ -10,7 +10,6 @@ import {
 } from "react-native";
 import { COLORS } from "../../assets/constants/constants";
 import { postData, putData } from "../apiCalls";
-import { CommonActions } from "@react-navigation/native";
 import { useNavigation } from "@react-navigation/native";
 
 const emptyCheck = require("../../assets/images/checkbox.png");
@@ -107,7 +106,20 @@ export const PostForm = ({ route, loadData }) => {
     if (isUpdate && isLatValid && isLonValid && name) {
       handleUpdatePost();
       loadData();
-      navigation.dispatch(CommonActions.goBack());
+      navigation.navigate("Details", {
+        image_url,
+        name,
+        city,
+        state,
+        lat,
+        lon,
+        description,
+        driving_tips,
+        timestamp: route.params.info.timestamp,
+        average_rating: route.params.info.average_rating,
+        id,
+        amenities,
+      });
     } else if (isLatValid && isLonValid && name) {
       handleNewPost();
       loadData();
