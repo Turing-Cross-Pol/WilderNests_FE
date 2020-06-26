@@ -103,21 +103,6 @@ export const SiteDetails = ({ route }) => {
     });
   };
 
-  const editSite = () => {
-    navigation.navigate("Post", {
-      image_url,
-      name,
-      city,
-      state,
-      lat,
-      lon,
-      description,
-      driving_tips,
-      id,
-      amenities,
-    });
-  };
-
   return (
     <ScrollView style={styles.container}>
       <Text style={styles.campsiteTitle}>{name}</Text>
@@ -202,6 +187,7 @@ export const SiteDetails = ({ route }) => {
         style={styles.touchable}
         onPress={() =>
           navigation.navigate("Post", {
+            isUpdate: true, 
             info: {
               image_url,
               name,
