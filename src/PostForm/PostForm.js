@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   StyleSheet,
   View,
@@ -9,12 +9,12 @@ import {
   Image,
 } from "react-native";
 import { COLORS } from "../../assets/constants/constants";
-import { postData } from "../apiCalls";
+import { postData, putData } from "../apiCalls";
 
 const emptyCheck = require("../../assets/images/checkbox.png");
 const fullCheck = require("../../assets/images/done.png");
 
-export const PostForm = ({ loadData }) => {
+export const PostForm = ({ route, loadData }) => {
   const [amenities, setAmenities] = useState([]);
   const [name, setName] = useState("");
   const [city, setCity] = useState("");
@@ -25,6 +25,21 @@ export const PostForm = ({ loadData }) => {
   const [driving_tips, setDrivingTips] = useState("");
   const [image_url, setImgUrl] = useState("");
   const [message, setMessage] = useState("");
+
+  useEffect(() => {
+    if (route) {
+      const { info } = route.params;
+      setAmenities(info.amenities);
+      setName(info.name);
+      setCity(info.city);
+      setState(info.state);
+      setLat(info.lat);
+      setLon(info.lon);
+      setDescription(info.description);
+      setDrivingTips(info.driving_tips);
+      setImgUrl(info.image_url);
+    }
+  }, []);
 
   const handleAmenities = (amenity) => {
     if (amenities.includes(amenity)) {
@@ -39,35 +54,66 @@ export const PostForm = ({ loadData }) => {
     func(value);
   };
 
+  const handleNewPost = () => {
+    postData(
+      amenities,
+      name,
+      city,
+      state,
+      description,
+      driving_tips,
+      image_url,
+      lat,
+      lon
+    );
+    setAmenities("");
+    setName("");
+    setCity("");
+    setState("");
+    setLat("");
+    setLon("");
+    setDescription("");
+    setDrivingTips("");
+    setImgUrl("");
+    setMessage("Form successfully submitted");
+    loadData();
+    setTimeout(() => {
+      setMessage("");
+    }, 5000);
+  };
+
+  const handleUpdatePost = () => {
+    const {
+      id,
+      amenities,
+      name,
+      city,
+      state,
+      description,
+      driving_tips,
+      image_url,
+      lat,
+      lon,
+    } = info;
+    putData(
+      id,
+      amenities,
+      name,
+      city,
+      state,
+      description,
+      driving_tips,
+      image_url,
+      lat,
+      lon
+    );
+  };
+
   const handleSubmit = () => {
     const isLatValid = lat && lat > -90 && lat < 90;
     const isLonValid = lon && lon > -180 && lon < 180;
     if (isLatValid && isLonValid && name) {
-      postData(
-        amenities,
-        name,
-        city,
-        state,
-        description,
-        driving_tips,
-        image_url,
-        lat,
-        lon
-      );
-      setAmenities("");
-      setName("");
-      setCity("");
-      setState("");
-      setLat("");
-      setLon("");
-      setDescription("");
-      setDrivingTips("");
-      setImgUrl("");
-      setMessage("Form successfully submitted");
-      loadData();
-      setTimeout(() => {
-        setMessage("");
-      }, 5000);
+      handleNewPost();
     } else {
       setMessage("All fields marked with an * are required and must be valid.");
       setTimeout(() => {
