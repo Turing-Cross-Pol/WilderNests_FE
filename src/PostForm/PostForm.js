@@ -29,7 +29,7 @@ export const PostForm = ({ route, loadData }) => {
   const navigation = useNavigation();
 
   useEffect(() => {
-    if (route.params) {
+    if (route && route.params) {
       const { info } = route.params;
       info.amenities && setAmenities(info.amenities);
       info.name && setName(info.name);
@@ -102,7 +102,10 @@ export const PostForm = ({ route, loadData }) => {
   const handleSubmit = () => {
     const isLatValid = lat && lat > -90 && lat < 90;
     const isLonValid = lon && lon > -180 && lon < 180;
-    const { isUpdate } = route.params;
+    let isUpdate = false;
+    if (route && route.params) {
+      isUpdate = route.params.isUpdate;
+    }
     if (isUpdate && isLatValid && isLonValid && name) {
       handleUpdatePost();
       loadData();
@@ -117,7 +120,7 @@ export const PostForm = ({ route, loadData }) => {
         driving_tips,
         timestamp: route.params.info.timestamp,
         average_rating: route.params.info.average_rating,
-        id,
+        id: route.params.info.id,
         amenities,
       });
     } else if (isLatValid && isLonValid && name) {

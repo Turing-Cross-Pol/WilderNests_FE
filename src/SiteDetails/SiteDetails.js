@@ -163,7 +163,7 @@ export const SiteDetails = ({ route }) => {
       <Text style={styles.text}>{description}</Text>
       <Text style={styles.header}>Driving Tips:</Text>
       <Text style={styles.text}>{driving_tips}</Text>
-      <Text style={styles.text}>Date added: {timestamp}</Text>
+      <Text style={styles.text}>Date added: {timestamp && timestamp.split(' ').slice(1, 4).join(' ')}</Text>
       <TouchableOpacity
         style={styles.touchable}
         onPress={() =>

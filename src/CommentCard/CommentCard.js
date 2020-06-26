@@ -4,11 +4,11 @@ import {
   FlatList,
   Text,
   Image,
-  StyleSheet,
+  StyleSheet
 } from "react-native";
 
 export const CommentCard = ({ info }) => {
-  const { description, title, rating } = info;
+  const { description, title, rating, date_created } = info;
 
   const createStarDisplay = (rating) => {
     const numStars = rating ? Math.ceil(rating) : 0;
@@ -26,21 +26,24 @@ export const CommentCard = ({ info }) => {
   return (
     <View style={styles.commentCard}>
       <Text style={styles.title}>{title}</Text>
-      <View style={styles.starsContainer}>
-        <FlatList
-          numColumns={5}
-          data={stars}
-          renderItem={({ item, index }) => (
-            <Image
-              testID={`comment-star-${index}`}
-              source={item}
-              key={item.id}
-              style={styles.star}
-            />
-          )}
-          listKey={(item, index) => index.toString()}
-          keyExtractor={(item, index) => index.toString()}
-        />
+      <View style={styles.spaceBetween}>
+        <View style={styles.starsContainer}>
+          <FlatList
+            numColumns={5}
+            data={stars}
+            renderItem={({ item, index }) => (
+              <Image
+                testID={`comment-star-${index}`}
+                source={item}
+                key={item.id}
+                style={styles.star}
+              />
+            )}
+            listKey={(item, index) => index.toString()}
+            keyExtractor={(item, index) => index.toString()}
+          />
+        </View>
+        <Text>{date_created && date_created.split(' ').slice(1, 4).join(' ')}</Text>
       </View>
       <Text style={styles.description}>{description}</Text>
     </View>
@@ -68,6 +71,10 @@ const styles = StyleSheet.create({
     height: 15,
     width: 15,
     marginRight: 3,
+  },
+  spaceBetween: {
+    flexDirection: "row",
+    justifyContent: "space-between"
   },
   description: {
     fontSize: 16,
