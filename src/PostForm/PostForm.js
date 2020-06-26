@@ -36,8 +36,8 @@ export const PostForm = ({ route, loadData }) => {
       info.name && setName(info.name);
       info.city && setCity(info.city);
       info.state && setState(info.state);
-      info.lat && setLat(parseFloat(info.lat));
-      info.lon && setLon(parseFloat(info.lon));
+      info.lat && setLat(info.lat.toString());
+      info.lon && setLon(info.lon.toString());
       info.description && setDescription(info.description);
       info.driving_tips && setDrivingTips(info.driving_tips);
       info.image_url && setImgUrl(info.image_url);

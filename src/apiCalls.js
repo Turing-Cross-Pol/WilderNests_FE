@@ -84,7 +84,6 @@ export const putData = async (
     lat,
     lon,
   };
-  console.log(updatedSite)
   try {
     const response = await fetch(
       `https://dpcamping-be-stage.herokuapp.com/campsites/${id}`,
