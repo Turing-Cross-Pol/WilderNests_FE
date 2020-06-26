@@ -58,7 +58,7 @@ export const SiteDetails = ({ route }) => {
   const setFetchedComments = async () => {
     const loadedComments = await loadComments(id);
     setComments(loadedComments[0]);
-    setAverageRating(loadedComments[1].average_rating)
+    setAverageRating(loadedComments[1].average_rating);
   };
 
   const getDirections = () => {
@@ -182,6 +182,31 @@ export const SiteDetails = ({ route }) => {
         activeOpacity={0.7}
       >
         <Text style={styles.button}>Get Directions</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.touchable}
+        onPress={() =>
+          navigation.navigate("Post", {
+            isUpdate: true, 
+            info: {
+              timestamp,
+              image_url,
+              name,
+              city,
+              state,
+              lat,
+              lon,
+              description,
+              driving_tips,
+              id,
+              amenities,
+              average_rating
+            },
+          })
+        }
+        activeOpacity={0.7}
+      >
+        <Text style={styles.button}>Edit Campsite</Text>
       </TouchableOpacity>
       <View style={styles.commentContainer}>
         <Text style={styles.header}>Reviews</Text>
