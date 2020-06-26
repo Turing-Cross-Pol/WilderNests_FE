@@ -9,7 +9,7 @@ import { SiteDetails } from "./src/SiteDetails/SiteDetails";
 import { CommentForm } from "./src/CommentForm/CommentForm";
 import { loadData } from './src/apiCalls';
 
-// Disables warnsing from displaying in app.
+// Disables warnings from displaying in app.
 console.disableYellowBox = true;
 
 const Stack = createStackNavigator();

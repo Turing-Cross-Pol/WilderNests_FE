@@ -10,6 +10,8 @@ import {
 } from "react-native";
 import { COLORS } from "../../assets/constants/constants";
 import { postData, putData } from "../apiCalls";
+import { CommonActions } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 
 const emptyCheck = require("../../assets/images/checkbox.png");
 const fullCheck = require("../../assets/images/done.png");
@@ -25,19 +27,20 @@ export const PostForm = ({ route, loadData }) => {
   const [driving_tips, setDrivingTips] = useState("");
   const [image_url, setImgUrl] = useState("");
   const [message, setMessage] = useState("");
+  const navigation = useNavigation();
 
   useEffect(() => {
-    if (route) {
+    if (route.params) {
       const { info } = route.params;
-      setAmenities(info.amenities);
-      setName(info.name);
-      setCity(info.city);
-      setState(info.state);
-      setLat(info.lat);
-      setLon(info.lon);
-      setDescription(info.description);
-      setDrivingTips(info.driving_tips);
-      setImgUrl(info.image_url);
+      info.amenities && setAmenities(info.amenities);
+      info.name && setName(info.name);
+      info.city && setCity(info.city);
+      info.state && setState(info.state);
+      info.lat && setLat(parseFloat(info.lat));
+      info.lon && setLon(parseFloat(info.lon));
+      info.description && setDescription(info.description);
+      info.driving_tips && setDrivingTips(info.driving_tips);
+      info.image_url && setImgUrl(info.image_url);
     }
   }, []);
 
@@ -76,25 +79,13 @@ export const PostForm = ({ route, loadData }) => {
     setDrivingTips("");
     setImgUrl("");
     setMessage("Form successfully submitted");
-    loadData();
     setTimeout(() => {
       setMessage("");
     }, 5000);
   };
 
   const handleUpdatePost = () => {
-    const {
-      id,
-      amenities,
-      name,
-      city,
-      state,
-      description,
-      driving_tips,
-      image_url,
-      lat,
-      lon,
-    } = info;
+    const { id } = route.params.info;
     putData(
       id,
       amenities,
@@ -112,8 +103,14 @@ export const PostForm = ({ route, loadData }) => {
   const handleSubmit = () => {
     const isLatValid = lat && lat > -90 && lat < 90;
     const isLonValid = lon && lon > -180 && lon < 180;
-    if (isLatValid && isLonValid && name) {
+    const { isUpdate } = route.params;
+    if (isUpdate && isLatValid && isLonValid && name) {
+      handleUpdatePost();
+      loadData();
+      navigation.dispatch(CommonActions.goBack());
+    } else if (isLatValid && isLonValid && name) {
       handleNewPost();
+      loadData();
     } else {
       setMessage("All fields marked with an * are required and must be valid.");
       setTimeout(() => {
