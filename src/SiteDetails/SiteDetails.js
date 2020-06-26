@@ -105,19 +105,16 @@ export const SiteDetails = ({ route }) => {
 
   const editSite = () => {
     navigation.navigate("Post", {
-      info: {
-        updateForm: true, 
-        image_url,
-        name,
-        city,
-        state,
-        lat,
-        lon,
-        description,
-        driving_tips,
-        id,
-        amenities
-      }
+      image_url,
+      name,
+      city,
+      state,
+      lat,
+      lon,
+      description,
+      driving_tips,
+      id,
+      amenities,
     });
   };
 
@@ -203,7 +200,22 @@ export const SiteDetails = ({ route }) => {
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.touchable}
-        onPress={editSite}
+        onPress={() =>
+          navigation.navigate("Post", {
+            info: {
+              image_url,
+              name,
+              city,
+              state,
+              lat,
+              lon,
+              description,
+              driving_tips,
+              id,
+              amenities,
+            },
+          })
+        }
         activeOpacity={0.7}
       >
         <Text style={styles.button}>Edit Campsite</Text>
