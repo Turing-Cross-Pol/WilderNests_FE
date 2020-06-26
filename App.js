@@ -37,8 +37,6 @@ const App = () => {
 
   const toggleComponent = () => <ToggleView data={campsiteData} />;
 
-  const postFormComponent = () => <PostForm loadData={() => loadData(setCampsiteData)} />;
-
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Landing">
@@ -47,7 +45,9 @@ const App = () => {
           component={Landing}
           options={{ headerShown: false }}
         />
-        <Stack.Screen name="Post" component={postFormComponent} />
+        <Stack.Screen name="Post">
+          {props => <PostForm {...props} loadData={() => loadData(setCampsiteData)} />}
+        </Stack.Screen>
         <Stack.Screen
           name="Toggle View"
           component={toggleComponent}
